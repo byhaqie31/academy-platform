@@ -1,4 +1,190 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* Theme tokens, fonts, and keyframes are defined in Task 3. */
+/* ------------------------------------------------------------------ *
+ * Academy theme (configured instance lives in config/academy.ts).
+ * Source palette converted to OKLCH.
+ * Warm, friendly education brand: rounded pills, rounded cards,
+ * soft shadows, 1px tint borders.
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Fonts (resolved to @font-face by @nuxt/fonts via the family names). */
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Fredoka", system-ui, sans-serif;
+
+  /* Brand */
+  --color-brand: oklch(62.6% 0.1903 290.67); /* #8B6CF0 */
+  --color-brand-deep: oklch(52.71% 0.2022 287.98); /* #6B4BD6 */
+  --color-accent-pink: oklch(74.61% 0.1677 0.16); /* #FF7AA8 */
+  --color-accent-orange: oklch(80.34% 0.1461 64.6); /* #FFA94D */
+  --color-accent-blue: oklch(69.82% 0.1494 245.54); /* #3DA5F4 */
+
+  /* Ink / text */
+  --color-ink: oklch(27.29% 0.0683 275.14); /* #1E2348 */
+  --color-ink-footer: oklch(23.02% 0.0631 275.1); /* #15193A */
+  --color-text-body: oklch(37.61% 0.0502 276.19); /* #3A3F5C */
+  --color-ink-soft: oklch(49.74% 0.0515 277.46); /* #5B6080 */
+  --color-muted: oklch(63.29% 0.0439 277.39); /* #8388A5 */
+  --color-faint: oklch(72.2% 0.0293 276.67); /* #A0A4B8 */
+  --color-faintest: oklch(74.83% 0.0318 277.43); /* #A8ACC2 */
+  --color-disabled: oklch(79.15% 0.0228 277.4); /* #B7BACA */
+
+  /* Surfaces / lines */
+  --color-bg-app: oklch(97.53% 0.0067 295.45); /* #F7F6FB */
+  --color-surface: oklch(100% 0 0); /* #FFFFFF */
+  --color-surface-subtle: oklch(98.7% 0.0054 297.73); /* #FBFAFE */
+  --color-surface-lavender: oklch(98.34% 0.0097 305.41); /* #FBF8FF */
+  --color-border: oklch(94.15% 0.0135 295.31); /* #ECEAF4 */
+  --color-border-marketing: oklch(95.3% 0.0108 297.62); /* #F0EEF6 */
+  --color-border-input: oklch(92.06% 0.0219 297.4); /* #E6E2F2 */
+  --color-divider: oklch(95.9% 0.0108 297.62); /* #F2F0F8 */
+  --color-dashed: oklch(82.41% 0.0761 295.72); /* #C9BCF2 */
+
+  /* Subject / category tile pairs (bg / fg) */
+  --color-tile-pink: oklch(94.79% 0.0302 351.51); /* #FFE6F0 */
+  --color-fg-pink: oklch(62.56% 0.1955 2.26); /* #E0457E */
+  --color-tile-blue: oklch(96.09% 0.0188 255.53); /* #EAF3FF */
+  --color-fg-blue: oklch(53.28% 0.1366 250.71); /* #1F6FB8 */
+  --color-tile-violet: oklch(95.25% 0.0259 297.93); /* #F1ECFF */
+  --color-fg-violet: oklch(52.71% 0.2022 287.98); /* #6B4BD6 */
+  --color-tile-green: oklch(96.25% 0.0198 159.76); /* #E8F7EE */
+  --color-fg-green: oklch(61.72% 0.1472 153.78); /* #1E9E5A */
+  --color-tile-amber: oklch(96.81% 0.0409 90.24); /* #FFF4D6 */
+  --color-fg-amber: oklch(56.22% 0.1171 78.34); /* #9A6B00 */
+  --color-tile-orange: oklch(95.52% 0.0329 70.35); /* #FFEDD9 */
+  --color-fg-orange: oklch(62.31% 0.1411 61.81); /* #C2700A */
+  --color-tile-indigo: oklch(94.18% 0.0284 281.5); /* #E8EAFF */
+  --color-fg-indigo: oklch(52.92% 0.1919 279.31); /* #5A55D6 */
+  --color-tile-rose: oklch(96.83% 0.0174 355.1); /* #FFF0F5 */
+  --color-fg-rose: oklch(58.53% 0.1587 354.15); /* #C04C82 */
+
+  /* Status (semantic; some share subject hues) */
+  --color-tile-overdue: oklch(94.79% 0.0302 351.51); /* #FFE6F0 */
+  --color-fg-overdue: oklch(59.66% 0.1818 24.51); /* #D64545 */
+  --color-tile-inactive: oklch(95.76% 0.008 293.91); /* #F1F0F6 */
+  --color-fg-inactive: oklch(63.29% 0.0439 277.39); /* #8388A5 */
+
+  /* CTA / misc */
+  --color-whatsapp: oklch(76.1% 0.2015 149.74); /* #25D366 */
+  --color-whatsapp-deep: oklch(61.31% 0.164 149.84); /* #149E4A */
+  --color-whatsapp-soft: oklch(73.59% 0.1642 155.38); /* #34C77B */
+  --color-selection: oklch(90.86% 0.0528 355.74); /* #FFD3E2 */
+  --color-hero-2: oklch(33.51% 0.0946 278.42); /* #2D2F66 */
+  --color-hero-3: oklch(35.44% 0.108 287.33); /* #3A2F70 */
+  --color-star: oklch(84.34% 0.1625 82.7); /* #FFC02E */
+
+  /* Radius scale (favours pills + rounded cards) */
+  --radius-pill: 999px;
+  --radius-tile: 13px;
+  --radius-input: 13px;
+  --radius-btn: 13px;
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
+  --radius-card-xl: 30px;
+
+  /* Shadows */
+  --shadow-card: 0 8px 22px rgba(30, 35, 72, 0.05);
+  --shadow-card-hover: 0 16px 34px rgba(30, 35, 72, 0.1);
+  --shadow-badge: 0 14px 30px rgba(30, 35, 72, 0.12);
+  --shadow-dropdown: 0 18px 44px rgba(30, 35, 72, 0.18);
+  --shadow-modal: 0 24px 60px rgba(30, 35, 72, 0.3);
+  --shadow-revenue: 0 18px 40px rgba(30, 35, 72, 0.22);
+  --shadow-logo: 0 6px 16px rgba(139, 108, 240, 0.35);
+  --shadow-cta: 0 12px 28px rgba(139, 108, 240, 0.4);
+  --shadow-wa: 0 6px 16px rgba(37, 211, 102, 0.32);
+}
+
+/* Gradients (raw values; used in inline backgrounds and components). */
+:root {
+  --brand-gradient: linear-gradient(135deg, #8b6cf0, #ff7aa8 60%, #ffa94d);
+  --brand-gradient-pp: linear-gradient(135deg, #8b6cf0, #ff7aa8);
+  --green-gradient: linear-gradient(135deg, #34c77b, #25d366);
+  --hero-dark-gradient: linear-gradient(135deg, #1e2348 0%, #2d2f66 55%, #3a2f70 100%);
+  --dashed-stripes: repeating-linear-gradient(
+    45deg,
+    #fbf8ff,
+    #fbf8ff 10px,
+    #f4f0fe 10px,
+    #f4f0fe 20px
+  );
+}
+
+/* Base ------------------------------------------------------------- */
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg-app);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #ffd3e2;
+}
+
+/* Thin lavender scrollbar for horizontal table wrappers. */
+.hz-scroll {
+  overflow-x: auto;
+}
+.hz-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.hz-scroll::-webkit-scrollbar-thumb {
+  background: #e0dcee;
+  border-radius: 999px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Marketing keyframes ---------------------------------------------- */
+@keyframes hzfloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes hzfloat2 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-4deg);
+  }
+}
+@keyframes hzpop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hz-float {
+  animation: hzfloat 4s ease-in-out infinite;
+}
+.hz-float2 {
+  animation: hzfloat2 5s ease-in-out infinite;
+}
+.hz-pop {
+  animation: hzpop 0.18s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hz-float,
+  .hz-float2,
+  .hz-pop {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
