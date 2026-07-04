@@ -1,8 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import IconTile from '~/components/ui/IconTile.vue'
 
 const open = ref(false)
+const root = ref<HTMLElement | null>(null)
+
+function onDocClick(e: MouseEvent) {
+  if (root.value && !root.value.contains(e.target as Node)) open.value = false
+}
+function onKey(e: KeyboardEvent) {
+  if (e.key === 'Escape') open.value = false
+}
+
+onMounted(() => {
+  document.addEventListener('click', onDocClick)
+  document.addEventListener('keydown', onKey)
+})
+onBeforeUnmount(() => {
+  document.removeEventListener('click', onDocClick)
+  document.removeEventListener('keydown', onKey)
+})
+
 const portals = [
   { to: '/admin', icon: '🛠️', tone: 'violet' as const, title: 'Dashboard Admin', sub: 'Urus pelajar, kelas & bayaran' },
   { to: '/tutor', icon: '🧑‍🏫', tone: 'pink' as const, title: 'Portal Tutor', sub: 'Jadual, kehadiran & gaji' },
@@ -11,7 +29,7 @@ const portals = [
 </script>
 
 <template>
-  <div class="relative" @mouseleave="open = false">
+  <div ref="root" class="relative">
     <button
       class="inline-flex items-center gap-2 font-bold text-ink cursor-pointer"
       :style="{ padding: '9px 16px', borderRadius: '999px', background: '#fff', border: '1.5px solid var(--color-border-input)', fontSize: '13.5px' }"
