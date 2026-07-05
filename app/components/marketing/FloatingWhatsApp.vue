@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useAcademy } from '~/composables/useAcademy'
 
-// Mobile-only floating action button. On desktop the WhatsApp CTAs in the hero,
-// CTA banner and footer cover this, so the FAB stays hidden there (sm:hidden).
+// Mobile-only floating action button. On desktop the header carries a
+// "WhatsApp Kami" button, so this stays hidden there (sm:hidden).
 const { academy } = useAcademy()
 const wa = `https://wa.me/${academy.contact.whatsapp}`
 </script>
