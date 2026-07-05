@@ -4,7 +4,9 @@ import { useRoute } from 'vue-router'
 import LogoMark from './LogoMark.vue'
 import IconTile from './IconTile.vue'
 import DemoWatermark from './DemoWatermark.vue'
+import NotificationDropdown from './NotificationDropdown.vue'
 import type { NavItem } from '~/composables/usePortalNav'
+import type { AppNotification } from '~/composables/useNotifications'
 import type { PillTone } from '~/utils/status'
 import { pillStyle } from '~/utils/status'
 
@@ -18,6 +20,7 @@ const props = defineProps<{
   avatarGradient?: boolean
   avatarInitial: string
   avatarTone?: PillTone
+  notifications?: AppNotification[]
 }>()
 
 const route = useRoute()
@@ -153,17 +156,7 @@ const activeItem = computed(
             style="font-size: 13px"
           />
         </div>
-        <button
-          class="relative grid place-items-center"
-          aria-label="Notifikasi"
-          :style="{ width: '40px', height: '40px', borderRadius: '12px', background: 'var(--color-bg-app)' }"
-        >
-          <span style="font-size: 16px">🔔</span>
-          <span
-            class="absolute"
-            :style="{ top: '9px', right: '10px', width: '7px', height: '7px', borderRadius: '999px', background: 'var(--color-accent-pink)' }"
-          />
-        </button>
+        <NotificationDropdown :items="notifications ?? []" />
         <div
           v-if="avatarGradient"
           class="grid place-items-center font-bold text-white"

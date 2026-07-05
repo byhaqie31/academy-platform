@@ -5,7 +5,7 @@ import SubjectGrid from '~/components/marketing/SubjectGrid.vue'
 import BranchGrid from '~/components/marketing/BranchGrid.vue'
 import HowToSteps from '~/components/marketing/HowToSteps.vue'
 import Testimonials from '~/components/marketing/Testimonials.vue'
-import RecommendedSolution from '~/components/marketing/RecommendedSolution.vue'
+import WhyChooseUs from '~/components/marketing/WhyChooseUs.vue'
 import CtaBanner from '~/components/marketing/CtaBanner.vue'
 
 definePageMeta({ layout: 'marketing' })
@@ -18,6 +18,6 @@ definePageMeta({ layout: 'marketing' })
   <BranchGrid />
   <HowToSteps />
   <Testimonials />
-  <RecommendedSolution />
+  <WhyChooseUs />
   <CtaBanner />
 </template>

@@ -98,6 +98,7 @@
 :root {
   --brand-gradient: linear-gradient(135deg, #8b6cf0, #ff7aa8 60%, #ffa94d);
   --brand-gradient-pp: linear-gradient(135deg, #8b6cf0, #ff7aa8);
+  --pink-gradient: linear-gradient(160deg, #ff7aa8 0%, #e0457e 100%);
   --green-gradient: linear-gradient(135deg, #34c77b, #25d366);
   --hero-dark-gradient: linear-gradient(135deg, #1e2348 0%, #2d2f66 55%, #3a2f70 100%);
   --dashed-stripes: repeating-linear-gradient(
