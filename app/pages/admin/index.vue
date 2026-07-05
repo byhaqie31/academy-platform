@@ -6,10 +6,12 @@ import ScheduleToday from '~/components/admin/ScheduleToday.vue'
 import EnquiryList from '~/components/admin/EnquiryList.vue'
 import OutstandingList from '~/components/admin/OutstandingList.vue'
 import { useAdminMetrics } from '~/composables/useAdminMetrics'
+import { useGreeting } from '~/composables/useGreeting'
 import { formatRM } from '~/utils/money'
 
 definePageMeta({ layout: 'admin' })
 
+const { greeting, dateLabel } = useGreeting()
 const m = useAdminMetrics()
 const stats = [
   { icon: '✨', tone: 'pink' as const, value: String(m.enquiries), label: 'New enquiries', sub: 'Enquiry baru', delta: '+5 hari ni' },
@@ -24,9 +26,9 @@ const stats = [
     <header class="flex items-end justify-between gap-4 flex-wrap">
       <div>
         <h1 class="font-display font-bold text-ink" style="font-size: 30px; line-height: 1.1">
-          Selamat pagi, Admin 👋
+          {{ greeting }}, Admin 👋
         </h1>
-        <p class="text-muted mt-1" style="font-size: 14px">Ahad, 28 Jun 2026 · Ringkasan operasi hari ini</p>
+        <p class="text-muted mt-1" style="font-size: 14px">{{ dateLabel }} · Ringkasan operasi hari ini</p>
       </div>
       <AppButton variant="dark">+ Daftar pelajar baru</AppButton>
     </header>

@@ -7,10 +7,12 @@ import EarningsMini from '~/components/tutor/EarningsMini.vue'
 import PlansThisWeek from '~/components/tutor/PlansThisWeek.vue'
 import { useEducators } from '~/composables/useEducators'
 import { useClasses } from '~/composables/useClasses'
+import { useGreeting } from '~/composables/useGreeting'
 import { formatRM } from '~/utils/money'
 
 definePageMeta({ layout: 'tutor' })
 
+const { greeting, dateLabel } = useGreeting()
 const { self, estimatedPay } = useEducators()
 const me = self()
 const myClasses = useClasses().forEducator(me.id)
@@ -33,9 +35,9 @@ const stats = computed(() => [
     <header class="flex items-end justify-between gap-4 flex-wrap">
       <div>
         <h1 class="font-display font-bold text-ink" style="font-size: 30px; line-height: 1.1">
-          Selamat petang, Cikgu Hafiz 👋
+          {{ greeting }}, Cikgu Hafiz 👋
         </h1>
-        <p class="text-muted mt-1" style="font-size: 14px">Ahad, 28 Jun 2026 · 2 kelas hari ini</p>
+        <p class="text-muted mt-1" style="font-size: 14px">{{ dateLabel }} · {{ todayCount }} kelas hari ini</p>
       </div>
       <AppButton variant="dark" to="/tutor/pendapatan">Lihat pendapatan saya →</AppButton>
     </header>
