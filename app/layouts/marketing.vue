@@ -2,6 +2,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import SiteHeader from '~/components/marketing/SiteHeader.vue'
 import SiteFooter from '~/components/marketing/SiteFooter.vue'
+import FloatingWhatsApp from '~/components/marketing/FloatingWhatsApp.vue'
 
 // Motion lives on the marketing surface only. Dashboards stay calm and fast.
 const mainEl = ref<HTMLElement | null>(null)
@@ -57,6 +58,7 @@ onBeforeUnmount(() => cleanup?.())
       <slot />
     </main>
     <SiteFooter />
+    <FloatingWhatsApp />
   </div>
 </template>
 

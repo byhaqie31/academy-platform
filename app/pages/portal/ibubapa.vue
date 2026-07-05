@@ -79,7 +79,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
       :style="{ background: '#fff', borderBottom: '1px solid var(--color-border-marketing)' }"
     >
       <div
-        class="mx-auto flex items-center flex-wrap"
+        class="mx-auto flex flex-col items-center sm:flex-row"
         :style="{ maxWidth: '880px', padding: '12px 22px', gap: '14px' }"
       >
         <NuxtLink to="/" class="flex items-center no-underline" :style="{ gap: '10px', flex: 'none' }">
@@ -97,7 +97,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
           </div>
         </NuxtLink>
 
-        <div class="flex items-center" :style="{ gap: '12px', marginLeft: 'auto' }">
+        <div class="flex items-center sm:ml-auto" :style="{ gap: '12px' }">
           <div class="flex items-center" :style="{ gap: '9px' }">
             <IconTile :icon="guardianInitial" tone="pink" :size="36" :radius="999" />
             <div :style="{ lineHeight: '1.1' }">
@@ -127,7 +127,10 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
 
     <!-- Content -->
     <main :style="{ background: 'linear-gradient(180deg, #FBF8FF, #FFFFFF)' }">
-      <div class="mx-auto" :style="{ maxWidth: '880px', padding: '46px 22px 70px' }">
+      <div
+        class="mx-auto px-4 pt-8 pb-14 sm:px-[22px] sm:pt-[46px] sm:pb-[70px]"
+        :style="{ maxWidth: '880px' }"
+      >
         <div class="flex items-center" :style="{ gap: '8px', marginBottom: '10px' }">
           <StatusPill tone="violet" label="Pratonton · Portal Ibu Bapa" />
         </div>
@@ -142,14 +145,16 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
           Lihat perkembangan {{ student.first }} dengan tenang, semuanya di satu tempat ✨
         </p>
 
-        <div class="grid items-start" :style="{ gridTemplateColumns: '1.5fr 1fr', gap: '18px' }">
+        <div
+          class="grid items-start grid-cols-1 md:grid-cols-[1.5fr_1fr]"
+          :style="{ gap: '18px' }"
+        >
           <!-- Student card (full width) -->
           <section
-            class="bg-surface"
+            class="bg-surface p-5 sm:p-[26px]"
             :style="{
               border: '1px solid var(--color-border-marketing)',
               borderRadius: '24px',
-              padding: '26px',
               boxShadow: '0 10px 28px rgba(30,35,72,.06)',
               gridColumn: '1 / -1',
             }"
@@ -213,11 +218,10 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
 
           <!-- Schedule card -->
           <section
-            class="bg-surface"
+            class="bg-surface p-5 sm:p-[24px]"
             :style="{
               border: '1px solid var(--color-border-marketing)',
               borderRadius: '24px',
-              padding: '24px',
               boxShadow: '0 10px 28px rgba(30,35,72,.06)',
             }"
           >
@@ -252,11 +256,11 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
           <!-- Payment reminder + announcement -->
           <div class="flex flex-col" :style="{ gap: '18px' }">
             <section
+              class="p-5 sm:p-[24px]"
               :style="{
                 background: 'linear-gradient(135deg, var(--color-tile-amber), #FFE9C7)',
                 border: '1px solid #F5E3B8',
                 borderRadius: '24px',
-                padding: '24px',
               }"
             >
               <div
@@ -273,11 +277,10 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
             </section>
 
             <section
-              class="bg-surface"
+              class="bg-surface p-5 sm:p-[24px]"
               :style="{
                 border: '1px solid var(--color-border-marketing)',
                 borderRadius: '24px',
-                padding: '24px',
                 boxShadow: '0 10px 28px rgba(30,35,72,.06)',
               }"
             >

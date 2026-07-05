@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import LogoMark from '~/components/ui/LogoMark.vue'
-import AppButton from '~/components/ui/AppButton.vue'
 import LoginDropdown from './LoginDropdown.vue'
 import { useAcademy } from '~/composables/useAcademy'
 
 const { academy } = useAcademy()
-const wa = `https://wa.me/${academy.contact.whatsapp}`
 </script>
 
 <template>
@@ -43,11 +41,8 @@ const wa = `https://wa.me/${academy.contact.whatsapp}`
         </NuxtLink>
       </nav>
 
-      <div class="ml-auto flex items-center gap-2.5">
+      <div class="ml-auto flex items-center">
         <LoginDropdown />
-        <AppButton :to="wa" variant="whatsapp" size="sm" class="hidden sm:inline-flex">
-          💬 WhatsApp Kami
-        </AppButton>
       </div>
     </div>
   </header>
