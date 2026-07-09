@@ -530,15 +530,26 @@ One field removes both errors."
 
 ---
 
-### Task 5: `config/academy.ts`
+### Task 5: `config/academy.ts` and the document language
 
 **Files:**
 - Modify: `config/academy.ts:9,21-24`
+- Modify: `nuxt.config.ts:18`
 
 **Interfaces:**
 - Consumes: nothing. Produces: nothing. `Academy` type is unchanged.
 
-Change exactly two things. Leave `name: 'Hz Academy'`, `shortName`, `logoText`, `since`, and all `contact` values alone — the rebrand is a separate spec.
+Leave `name: 'Hz Academy'`, `shortName`, `logoText`, `since`, and all `contact` values alone — the rebrand is a separate spec. Leave `nuxt.config.ts`'s `title: 'Hz Academy'` alone for the same reason.
+
+- [ ] **Step 0: Set the document language**
+
+`nuxt.config.ts:18` reads `htmlAttrs: { lang: 'ms' }`. It becomes:
+
+```ts
+      htmlAttrs: { lang: 'en' },
+```
+
+This is not cosmetic. `lang` tells screen readers which pronunciation rules to use and tells search engines what language the page is in. An English page declaring `lang="ms"` is read aloud with Malay phonetics.
 
 - [ ] **Step 1: Translate the tagline and hours**
 
@@ -559,9 +570,11 @@ Branch `name`, `short`, and `area` are Malaysian place names and stay exactly as
 
 Run: `npm run typecheck && npm test`
 
+Then `npm run dev` and confirm the served document's root element carries `lang="en"`.
+
 ```bash
-git add config/academy.ts
-git commit -m "refactor: English tagline and branch hours"
+git add config/academy.ts nuxt.config.ts
+git commit -m "refactor: English tagline, branch hours, and document lang"
 ```
 
 ---
