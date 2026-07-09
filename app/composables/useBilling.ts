@@ -34,22 +34,22 @@ export function useBilling() {
     const amount = inv?.amount ?? store.metrics.defaultFee
     if (inv?.status === 'Overdue') {
       return [
-        { period: 'Jun 2026', amount, status: 'Overdue', proofLabel: 'Tiada bukti · tertunggak', hasProof: false },
-        { period: 'Mei 2026', amount, status: 'Paid', proofLabel: 'Resit · 03 Mei', hasProof: true },
-        { period: 'Apr 2026', amount, status: 'Paid', proofLabel: 'Resit · 02 Apr', hasProof: true },
+        { period: 'Jun 2026', amount, status: 'Overdue', proofLabel: 'No proof · overdue', hasProof: false },
+        { period: 'May 2026', amount, status: 'Paid', proofLabel: 'Receipt · 03 May', hasProof: true },
+        { period: 'Apr 2026', amount, status: 'Paid', proofLabel: 'Receipt · 02 Apr', hasProof: true },
       ]
     }
     if (inv?.status === 'Pending') {
       return [
-        { period: 'Jun 2026', amount, status: 'Pending', proofLabel: 'Menunggu bukti bayaran', hasProof: false },
-        { period: 'Mei 2026', amount, status: 'Paid', proofLabel: 'Resit · 04 Mei', hasProof: true },
-        { period: 'Apr 2026', amount, status: 'Paid', proofLabel: 'Resit · 01 Apr', hasProof: true },
+        { period: 'Jun 2026', amount, status: 'Pending', proofLabel: 'Awaiting payment proof', hasProof: false },
+        { period: 'May 2026', amount, status: 'Paid', proofLabel: 'Receipt · 04 May', hasProof: true },
+        { period: 'Apr 2026', amount, status: 'Paid', proofLabel: 'Receipt · 01 Apr', hasProof: true },
       ]
     }
     return [
-      { period: 'Jun 2026', amount, status: 'Paid', proofLabel: 'Resit · 02 Jun', hasProof: true },
-      { period: 'Mei 2026', amount, status: 'Paid', proofLabel: 'Resit · 03 Mei', hasProof: true },
-      { period: 'Apr 2026', amount, status: 'Paid', proofLabel: 'Resit · 01 Apr', hasProof: true },
+      { period: 'Jun 2026', amount, status: 'Paid', proofLabel: 'Receipt · 02 Jun', hasProof: true },
+      { period: 'May 2026', amount, status: 'Paid', proofLabel: 'Receipt · 03 May', hasProof: true },
+      { period: 'Apr 2026', amount, status: 'Paid', proofLabel: 'Receipt · 01 Apr', hasProof: true },
     ]
   }
 

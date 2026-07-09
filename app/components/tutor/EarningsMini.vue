@@ -19,7 +19,7 @@ const { estimatedPay } = useEducators()
         class="inline-flex items-center uppercase font-bold"
         :style="{ padding: '6px 12px', borderRadius: '999px', fontSize: '10.5px', letterSpacing: '0.06em', background: 'rgba(255,255,255,.1)', color: '#D8D5F2' }"
       >
-        Anggaran gaji Jun
+        Estimated pay, June
       </span>
       <div class="font-display font-bold mt-3" style="font-size: 38px; line-height: 1">
         {{ formatRM(estimatedPay('hafiz')) }}
@@ -29,7 +29,7 @@ const { estimatedPay } = useEducators()
         class="inline-flex items-center no-underline font-bold mt-4"
         style="font-size: 12.5px; color: #fff"
       >
-        Pecahan jam →
+        Hours breakdown →
       </NuxtLink>
     </div>
   </section>

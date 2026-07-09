@@ -26,10 +26,10 @@ import type {
 
 const WEEK_STARTS = ['2026-06-02', '2026-06-09', '2026-06-16', '2026-06-23'] as const
 export const WEEK_LABELS = [
-  'Minggu 1 · 2–8 Jun',
-  'Minggu 2 · 9–15 Jun',
-  'Minggu 3 · 16–22 Jun',
-  'Minggu 4 · 23–29 Jun',
+  'Week 1 · 2–8 June',
+  'Week 2 · 9–15 June',
+  'Week 3 · 16–22 June',
+  'Week 4 · 23–29 June',
 ]
 
 const subjects: Subject[] = [
@@ -173,10 +173,10 @@ const lessonPlans: LessonPlan[] = [
 ]
 
 const enquiries: Enquiry[] = [
-  { id: 'enq0', name: 'Puan Aisyah', ago: '12 min lalu', detail: 'Adam · Matematik, Sains · Kota Warisan', source: 'Facebook', status: 'new' },
-  { id: 'enq1', name: 'Encik Rizal', ago: '1 jam lalu', detail: 'Nur Iman · BM, BI · Kajang', source: 'TikTok', status: 'new' },
-  { id: 'enq2', name: 'Puan Mei Ling', ago: '2 jam lalu', detail: 'Wong Jia · Matematik · Taman Ixora', source: 'Facebook', status: 'pending' },
-  { id: 'enq3', name: 'Encik Suresh', ago: '3 jam lalu', detail: 'Diya · SPM Prep · Pekan', source: 'Google Ads', status: 'week' },
+  { id: 'enq0', name: 'Puan Aisyah', ago: '12 min ago', detail: 'Adam · Matematik, Sains · Kota Warisan', source: 'Facebook', status: 'new' },
+  { id: 'enq1', name: 'Encik Rizal', ago: '1 hour ago', detail: 'Nur Iman · BM, BI · Kajang', source: 'TikTok', status: 'new' },
+  { id: 'enq2', name: 'Puan Mei Ling', ago: '2 hours ago', detail: 'Wong Jia · Matematik · Taman Ixora', source: 'Facebook', status: 'pending' },
+  { id: 'enq3', name: 'Encik Suresh', ago: '3 hours ago', detail: 'Diya · SPM Prep · Pekan', source: 'Google Ads', status: 'week' },
 ]
 
 const feedback: Feedback[] = [

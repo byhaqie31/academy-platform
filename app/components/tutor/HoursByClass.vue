@@ -18,7 +18,7 @@ const { byName } = useSubjects()
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '22px' }"
   >
     <div class="font-display font-semibold text-ink" style="font-size: 17px; margin-bottom: 16px">
-      Jam mengikut kelas
+      Hours by class
     </div>
 
     <div class="flex flex-col" style="gap: 14px">
@@ -38,7 +38,7 @@ const { byName } = useSubjects()
             {{ byId(row.classId)?.cls }} · {{ branchShort(byId(row.classId)?.branchId ?? '') }}
           </div>
           <div class="text-muted" style="font-size: 12px; font-weight: 600; margin-top: 2px">
-            {{ row.hours }} j
+            {{ row.hours }} h
           </div>
         </div>
         <span class="font-display font-bold shrink-0" :style="{ fontSize: '15px', color: 'var(--color-fg-green)' }">
