@@ -25,7 +25,7 @@ const rows = computed(() =>
   >
     <div class="flex items-center justify-between mb-4">
       <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Kelas hari ini</h2>
-      <NuxtLink to="/tutor/jadual" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
+      <NuxtLink to="/tutor/schedule" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
         Lihat jadual →
       </NuxtLink>
     </div>
@@ -51,7 +51,7 @@ const rows = computed(() =>
             {{ c.roster.length }} pelajar · {{ branchShort(c.branchId) }} · {{ c.dur }}j
           </div>
         </div>
-        <AppButton variant="soft" size="sm" :to="`/tutor/kelas/${c.id}`">Tanda kehadiran →</AppButton>
+        <AppButton variant="soft" size="sm" :to="`/tutor/classes/${c.id}`">Tanda kehadiran →</AppButton>
       </li>
     </ul>
   </section>

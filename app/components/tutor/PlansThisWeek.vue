@@ -13,7 +13,7 @@ const plans = computed(() => useLessonPlans().forEducator('hafiz').slice(0, 3))
   >
     <div class="flex items-center justify-between mb-4">
       <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Rancangan minggu ini</h2>
-      <NuxtLink to="/tutor/rancangan" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
+      <NuxtLink to="/tutor/lesson-plans" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
         Semua →
       </NuxtLink>
     </div>

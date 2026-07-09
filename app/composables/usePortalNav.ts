@@ -20,8 +20,8 @@ export const adminNav: NavItem[] = [
 
 export const tutorNav: NavItem[] = [
   { to: '/tutor', icon: '📊', en: 'Dashboard', ms: 'Papan pemuka' },
-  { to: '/tutor/jadual', icon: '🗓️', en: 'Jadual Saya', ms: 'My schedule' },
-  { to: '/tutor/kelas', icon: '📚', en: 'Kelas & Pelajar', ms: 'Classes' },
-  { to: '/tutor/rancangan', icon: '📝', en: 'Rancangan', ms: 'Lesson plans' },
-  { to: '/tutor/pendapatan', icon: '💰', en: 'Pendapatan', ms: 'My earnings' },
+  { to: '/tutor/schedule', icon: '🗓️', en: 'Jadual Saya', ms: 'My schedule' },
+  { to: '/tutor/classes', icon: '📚', en: 'Kelas & Pelajar', ms: 'Classes' },
+  { to: '/tutor/lesson-plans', icon: '📝', en: 'Rancangan', ms: 'Lesson plans' },
+  { to: '/tutor/earnings', icon: '💰', en: 'Pendapatan', ms: 'My earnings' },
 ]

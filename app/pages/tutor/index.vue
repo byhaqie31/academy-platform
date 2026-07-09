@@ -39,7 +39,7 @@ const stats = computed(() => [
         </h1>
         <p class="text-muted mt-1" style="font-size: 14px">{{ dateLabel }} · {{ todayCount }} kelas hari ini</p>
       </div>
-      <AppButton variant="dark" to="/tutor/pendapatan">Lihat pendapatan saya →</AppButton>
+      <AppButton variant="dark" to="/tutor/earnings">Lihat pendapatan saya →</AppButton>
     </header>
 
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

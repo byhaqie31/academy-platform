@@ -9,7 +9,7 @@ const { branchShort } = useAcademy()
 
 <template>
   <NuxtLink
-    :to="`/tutor/kelas/${props.cls.id}`"
+    :to="`/tutor/classes/${props.cls.id}`"
     class="block no-underline bg-surface transition-all duration-150 hover:-translate-y-px"
     :style="{
       border: '1px solid var(--color-border)',

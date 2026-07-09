@@ -23,7 +23,7 @@ const wa = `https://wa.me/${academy.contact.whatsapp}`
         </p>
         <div class="flex flex-wrap justify-center" style="gap: 13px">
           <NuxtLink
-            to="/daftar"
+            to="/register"
             class="inline-flex items-center justify-center no-underline transition-transform duration-150 hover:-translate-y-px"
             :style="{ padding: '16px 30px', borderRadius: '999px', background: '#fff', color: '#7A4FE0', fontWeight: '800', fontSize: '15.5px', boxShadow: '0 10px 24px rgba(0,0,0,.16)' }"
           >

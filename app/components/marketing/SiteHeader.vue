@@ -35,7 +35,7 @@ const wa = `https://wa.me/${academy.contact.whatsapp}`
           Utama
         </NuxtLink>
         <NuxtLink
-          to="/daftar"
+          to="/register"
           class="no-underline font-bold text-ink-soft transition-colors hover:text-ink"
           :style="{ padding: '8px 14px', borderRadius: '999px', fontSize: '13.5px' }"
         >

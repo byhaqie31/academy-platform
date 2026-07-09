@@ -55,7 +55,7 @@ const stats = [
         </p>
 
         <div class="flex flex-wrap items-center" style="gap: 13px">
-          <AppButton to="/daftar" variant="gradient">Daftar Minat Sekarang →</AppButton>
+          <AppButton to="/register" variant="gradient">Daftar Minat Sekarang →</AppButton>
           <AppButton :to="wa" variant="outline">💬 WhatsApp Kami</AppButton>
         </div>
 

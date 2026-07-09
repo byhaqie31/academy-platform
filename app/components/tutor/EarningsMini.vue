@@ -25,7 +25,7 @@ const { estimatedPay } = useEducators()
         {{ formatRM(estimatedPay('hafiz')) }}
       </div>
       <NuxtLink
-        to="/tutor/pendapatan"
+        to="/tutor/earnings"
         class="inline-flex items-center no-underline font-bold mt-4"
         style="font-size: 12.5px; color: #fff"
       >

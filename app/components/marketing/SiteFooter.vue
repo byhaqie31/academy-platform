@@ -26,8 +26,8 @@ const { academy, branches } = useAcademy()
         <div class="font-display font-semibold mb-4" style="font-size: 14px">Akademi</div>
         <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
           <NuxtLink to="/" class="no-underline" style="color: #9ca0be">Utama</NuxtLink>
-          <NuxtLink to="/daftar" class="no-underline" style="color: #9ca0be">Daftar Minat</NuxtLink>
-          <NuxtLink to="/portal/ibubapa" class="no-underline" style="color: #9ca0be">Portal Ibu Bapa</NuxtLink>
+          <NuxtLink to="/register" class="no-underline" style="color: #9ca0be">Daftar Minat</NuxtLink>
+          <NuxtLink to="/portal/parents" class="no-underline" style="color: #9ca0be">Portal Ibu Bapa</NuxtLink>
         </div>
       </div>
 

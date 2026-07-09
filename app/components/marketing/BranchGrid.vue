@@ -64,8 +64,8 @@ const { branches } = useAcademy()
 
         <!-- Stacked call to action: primary above, directions below. -->
         <div class="flex flex-col" style="gap: 9px; margin-top: auto">
-          <AppButton to="/daftar" variant="dark" block>Lihat kelas</AppButton>
-          <AppButton to="/daftar" variant="outline" block>Dapatkan arah</AppButton>
+          <AppButton to="/register" variant="dark" block>Lihat kelas</AppButton>
+          <AppButton to="/register" variant="outline" block>Dapatkan arah</AppButton>
         </div>
       </div>
     </div>

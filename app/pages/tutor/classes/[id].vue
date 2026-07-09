@@ -43,7 +43,7 @@ const summaryPills = computed(() => [
 <template>
   <div v-if="cls" class="flex flex-col gap-[18px]">
     <NuxtLink
-      to="/tutor/kelas"
+      to="/tutor/classes"
       class="no-underline font-bold text-brand-deep self-start"
       style="font-size: 13px"
     >
@@ -123,7 +123,7 @@ const summaryPills = computed(() => [
 
   <div v-else class="flex flex-col gap-4 items-start">
     <NuxtLink
-      to="/tutor/kelas"
+      to="/tutor/classes"
       class="no-underline font-bold text-brand-deep"
       style="font-size: 13px"
     >
