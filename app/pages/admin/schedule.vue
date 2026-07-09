@@ -25,9 +25,8 @@ const modalOpen = ref(false)
         <h1 class="font-display font-bold text-ink" :style="{ fontSize: '30px', lineHeight: '1.1' }">
           Schedule
         </h1>
-        <p class="text-muted" :style="{ fontSize: '14px', marginTop: '4px' }">Jadual</p>
       </div>
-      <AppButton variant="dark" @click="modalOpen = true">+ Tetapkan kelas</AppButton>
+      <AppButton variant="dark" @click="modalOpen = true">+ Assign class</AppButton>
     </header>
 
     <!-- Subject legend -->

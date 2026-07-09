@@ -14,10 +14,10 @@ definePageMeta({ layout: 'admin' })
 const { greeting, dateLabel } = useGreeting()
 const m = useAdminMetrics()
 const stats = [
-  { icon: '✨', tone: 'pink' as const, value: String(m.enquiries), label: 'New enquiries', sub: 'Enquiry baru', delta: '+5 hari ni' },
-  { icon: '🧑‍🎓', tone: 'blue' as const, value: String(m.activeStudents), label: 'Active students', sub: 'Pelajar aktif', delta: '+12 bln ni' },
-  { icon: '📚', tone: 'violet' as const, value: String(m.classesToday), label: 'Classes today', sub: 'Kelas hari ini', delta: '3 akan datang' },
-  { icon: '💳', tone: 'amber' as const, value: formatRM(m.outstanding), label: 'Outstanding', sub: 'Bayaran tertunggak', delta: `${m.outstandingCount} pelajar` },
+  { icon: '✨', tone: 'pink' as const, value: String(m.enquiries), label: 'New enquiries', delta: '+5 today' },
+  { icon: '🧑‍🎓', tone: 'blue' as const, value: String(m.activeStudents), label: 'Active students', delta: '+12 this month' },
+  { icon: '📚', tone: 'violet' as const, value: String(m.classesToday), label: 'Classes today', delta: '3 upcoming' },
+  { icon: '💳', tone: 'amber' as const, value: formatRM(m.outstanding), label: 'Outstanding', delta: `${m.outstandingCount} students` },
 ]
 </script>
 
@@ -28,9 +28,9 @@ const stats = [
         <h1 class="font-display font-bold text-ink" style="font-size: 30px; line-height: 1.1">
           {{ greeting }}, Admin 👋
         </h1>
-        <p class="text-muted mt-1" style="font-size: 14px">{{ dateLabel }} · Ringkasan operasi hari ini</p>
+        <p class="text-muted mt-1" style="font-size: 14px">{{ dateLabel }} · Today's operations summary</p>
       </div>
-      <AppButton variant="dark">+ Daftar pelajar baru</AppButton>
+      <AppButton variant="dark">+ Register new student</AppButton>
     </header>
 
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

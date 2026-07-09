@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
   <div ref="root" class="relative">
     <button
       class="relative grid place-items-center cursor-pointer"
-      aria-label="Notifikasi"
+      aria-label="Notifications"
       :aria-expanded="open"
       :style="{ width: '40px', height: '40px', borderRadius: '12px', background: 'var(--color-bg-app)' }"
       @click="open = !open"
@@ -60,13 +60,13 @@ onBeforeUnmount(() => {
     >
       <div class="flex items-center justify-between px-3 pt-2 pb-1">
         <div class="flex items-center gap-2">
-          <span class="font-display font-bold text-ink" style="font-size: 14px">Notifikasi</span>
+          <span class="font-display font-bold text-ink" style="font-size: 14px">Notifications</span>
           <span
             v-if="unread"
             class="font-bold text-white"
             :style="{ padding: '2px 8px', borderRadius: '999px', fontSize: '11px', background: 'var(--color-accent-pink)' }"
           >
-            {{ unread }} baharu
+            {{ unread }} new
           </span>
         </div>
         <button
@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
           :style="{ fontSize: '11.5px', color: 'var(--color-brand-deep)', background: 'transparent' }"
           @click="markAll"
         >
-          Tanda semua dibaca
+          Mark all as read
         </button>
       </div>
 
@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
         :style="{ padding: '10px', borderRadius: '12px', fontSize: '12.5px', background: 'transparent' }"
         @click="open = false"
       >
-        Lihat semua notifikasi
+        See all notifications
       </button>
     </div>
   </div>

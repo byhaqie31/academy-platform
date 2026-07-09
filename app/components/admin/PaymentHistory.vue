@@ -18,9 +18,9 @@ const fee = computed(() => rows.value[0]?.amount ?? 0)
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '22px' }"
   >
     <div class="flex items-center justify-between mb-4">
-      <h2 class="font-display font-semibold text-ink" style="font-size: 17px">Sejarah bayaran</h2>
+      <h2 class="font-display font-semibold text-ink" style="font-size: 17px">Payment history</h2>
       <span class="text-faint" style="font-size: 12px; font-weight: 600">
-        Yuran {{ formatRM(fee) }} / bulan
+        Fee {{ formatRM(fee) }} / month
       </span>
     </div>
 
@@ -46,7 +46,7 @@ const fee = computed(() => rows.value[0]?.amount ?? 0)
           {{ p.hasProof ? '🧾' : '—' }}
         </div>
         <div class="min-w-0 flex-1">
-          <div class="font-bold text-ink" style="font-size: 13px">Invois {{ p.period }}</div>
+          <div class="font-bold text-ink" style="font-size: 13px">Invoice {{ p.period }}</div>
           <div class="text-faint truncate" style="font-size: 11.5px; font-weight: 600">
             {{ p.proofLabel }}
           </div>

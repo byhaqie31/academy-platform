@@ -16,7 +16,7 @@ defineProps<{
   <div class="flex flex-col gap-6">
     <header>
       <h1 class="font-display font-bold text-ink" style="font-size: 30px; line-height: 1.1">
-        {{ title }} <span class="text-muted">/ {{ malay }}</span>
+        {{ title }}
       </h1>
     </header>
 
@@ -24,6 +24,6 @@ defineProps<{
       <StatCard v-for="s in stats" :key="s.label" v-bind="s" />
     </div>
 
-    <EmptyState :icon="icon" :title="`${malay} sedang dibina`" :desc="desc" />
+    <EmptyState :icon="icon" :title="`${malay} is coming soon`" :desc="desc" />
   </div>
 </template>

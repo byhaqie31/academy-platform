@@ -27,7 +27,7 @@ const cards = computed(() =>
 <template>
   <section>
     <h2 class="font-display font-bold text-ink" :style="{ fontSize: '18px', marginBottom: '14px' }">
-      Rancangan pengajaran minggu ini
+      This week's lesson plans
     </h2>
 
     <div
@@ -71,7 +71,7 @@ const cards = computed(() =>
           {{ card.topic }}
         </div>
         <div class="text-muted" :style="{ fontSize: '12px', marginTop: '6px' }">
-          Rujukan KPM: {{ card.ref }}
+          KPM reference: {{ card.ref }}
         </div>
 
         <!-- Attached material chip, or a dashed attach button. -->
@@ -106,7 +106,7 @@ const cards = computed(() =>
             border: '1.5px dashed var(--color-border-input)',
           }"
         >
-          + Lampirkan bahan
+          + Attach material
         </button>
       </article>
     </div>

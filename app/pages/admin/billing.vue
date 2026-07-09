@@ -25,10 +25,10 @@ const cards = computed(() => [
   {
     icon: '✅',
     tone: 'green' as const,
-    label: 'Sudah bayar',
+    label: 'Paid',
     value: formatRM(summary.paid),
     valueColor: 'var(--color-fg-green)',
-    sub: `${paidCount.value} invois selesai`,
+    sub: `${paidCount.value} invoices settled`,
   },
   {
     icon: '⏳',
@@ -36,7 +36,7 @@ const cards = computed(() => [
     label: 'Pending',
     value: formatRM(summary.pending),
     valueColor: 'var(--color-fg-amber)',
-    sub: `${pendingCount.value} menunggu bukti`,
+    sub: `${pendingCount.value} awaiting proof`,
   },
   {
     icon: '⚠️',
@@ -44,13 +44,13 @@ const cards = computed(() => [
     label: 'Overdue',
     value: formatRM(summary.overdue),
     valueColor: 'var(--color-fg-overdue)',
-    sub: `${overdueCount.value} tertunggak`,
+    sub: `${overdueCount.value} overdue`,
   },
 ])
 
 const tabs: { key: BillingFilter; label: string }[] = [
-  { key: 'all', label: 'Semua' },
-  { key: 'paid', label: 'Sudah bayar' },
+  { key: 'all', label: 'All' },
+  { key: 'paid', label: 'Paid' },
   { key: 'pending', label: 'Pending' },
   { key: 'overdue', label: 'Overdue' },
 ]
@@ -58,12 +58,12 @@ const active = ref<BillingFilter>('all')
 const rows = computed(() => billing.filter(active.value))
 
 const columns: Column[] = [
-  { key: 'pelajar', label: 'Pelajar' },
-  { key: 'tempoh', label: 'Tempoh' },
-  { key: 'jumlah', label: 'Jumlah', align: 'right' },
-  { key: 'bukti', label: 'Bukti bayaran' },
+  { key: 'student', label: 'Student' },
+  { key: 'period', label: 'Period' },
+  { key: 'amount', label: 'Amount', align: 'right' },
+  { key: 'proof', label: 'Proof of payment' },
   { key: 'status', label: 'Status' },
-  { key: 'tindakan', label: 'Tindakan', align: 'right' },
+  { key: 'action', label: 'Action', align: 'right' },
 ]
 </script>
 
@@ -71,10 +71,10 @@ const columns: Column[] = [
   <div class="flex flex-col gap-5">
     <header>
       <h1 class="font-display font-bold text-ink" style="font-size: 28px; line-height: 1.1">
-        Billing <span class="text-faint font-semibold" style="font-size: 18px">/ Bil &amp; yuran</span>
+        Billing
       </h1>
       <p class="text-muted mt-1" style="font-size: 13.5px; font-weight: 600">
-        Langganan &amp; invois pelajar · semakan bukti bayaran manual
+        Student subscriptions and invoices · manual proof-of-payment review
       </p>
     </header>
 
@@ -120,7 +120,7 @@ const columns: Column[] = [
     </div>
 
     <DataTable :columns="columns" :rows="rows" row-key="id">
-      <template #cell-pelajar="{ row }">
+      <template #cell-student="{ row }">
         <div class="flex items-center gap-2.5">
           <IconTile
             :icon="row.name.charAt(0)"
@@ -137,24 +137,24 @@ const columns: Column[] = [
         </div>
       </template>
 
-      <template #cell-tempoh="{ row }">
+      <template #cell-period="{ row }">
         <span class="text-text-body" style="font-size: 12.5px; font-weight: 600">{{ row.period }}</span>
       </template>
 
-      <template #cell-jumlah="{ row }">
+      <template #cell-amount="{ row }">
         <span class="font-display font-bold text-ink" style="font-size: 13.5px">{{ formatRM(row.amount) }}</span>
       </template>
 
-      <template #cell-bukti="{ row }">
+      <template #cell-proof="{ row }">
         <ProofThumb v-if="row.proof" />
-        <span v-else class="text-faint" style="font-size: 11.5px; font-weight: 700">— Belum ada</span>
+        <span v-else class="text-faint" style="font-size: 11.5px; font-weight: 700">— None yet</span>
       </template>
 
       <template #cell-status="{ row }">
         <StatusPill :tone="payTone(row.status)" :label="row.status" />
       </template>
 
-      <template #cell-tindakan="{ row }">
+      <template #cell-action="{ row }">
         <button
           v-if="row.status !== 'Paid'"
           type="button"
@@ -168,7 +168,7 @@ const columns: Column[] = [
             boxShadow: 'var(--shadow-wa)',
           }"
         >
-          ✓ Tandakan dibayar
+          ✓ Mark as paid
         </button>
         <button
           v-else
@@ -182,7 +182,7 @@ const columns: Column[] = [
             fontSize: '11.5px',
           }"
         >
-          Lihat resit
+          View receipt
         </button>
       </template>
     </DataTable>

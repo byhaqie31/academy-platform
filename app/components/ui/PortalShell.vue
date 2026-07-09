@@ -96,7 +96,7 @@ const activeItem = computed(
           class="block text-center no-underline font-bold text-ink-soft transition-colors hover:text-ink"
           :style="{ padding: '10px', borderRadius: '12px', border: '1.5px solid var(--color-border-input)', fontSize: '12.5px' }"
         >
-          ← Keluar ke laman web
+          ← Back to website
         </NuxtLink>
       </div>
     </aside>
@@ -111,7 +111,7 @@ const activeItem = computed(
           <LogoMark :size="34" />
           <span class="font-display font-bold text-ink" style="font-size: 15px">{{ brandName }}</span>
         </div>
-        <NuxtLink to="/" class="text-ink-soft no-underline font-bold" style="font-size: 12px">← Laman web</NuxtLink>
+        <NuxtLink to="/" class="text-ink-soft no-underline font-bold" style="font-size: 12px">← Website</NuxtLink>
       </div>
       <div class="hz-scroll px-3 pb-3 flex gap-2">
         <NuxtLink
@@ -148,7 +148,7 @@ const activeItem = computed(
           <span style="font-size: 14px">🔍</span>
           <input
             type="text"
-            placeholder="Cari pelajar, kelas, tutor..."
+            placeholder="Search students, classes, tutors..."
             class="bg-transparent outline-none w-full text-text-body"
             style="font-size: 13px"
           />

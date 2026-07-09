@@ -28,12 +28,12 @@ const toneFor = (id: string) => toneByIndex(students.indexOf(id))
 const guardianName = (id: string) => guardians.forStudent(id)?.name ?? ''
 
 const columns: Column[] = [
-  { key: 'pelajar', label: 'Pelajar' },
-  { key: 'tahap', label: 'Tahap' },
-  { key: 'cawangan', label: 'Cawangan' },
-  { key: 'subjek', label: 'Subjek' },
-  { key: 'pendaftaran', label: 'Pendaftaran' },
-  { key: 'bayaran', label: 'Bayaran' },
+  { key: 'student', label: 'Student' },
+  { key: 'level', label: 'Level' },
+  { key: 'branch', label: 'Branch' },
+  { key: 'subject', label: 'Subject' },
+  { key: 'enrolment', label: 'Enrolment' },
+  { key: 'payment', label: 'Payment' },
   { key: 'action', label: '', align: 'right' },
 ]
 
@@ -46,17 +46,17 @@ function open(s: Student) {
   <div class="flex flex-col gap-6">
     <header>
       <h1 class="font-display font-bold text-ink" style="font-size: 30px; line-height: 1.1">
-        Students <span class="text-muted">/ Pelajar</span>
+        Students
       </h1>
       <p class="text-muted mt-1" style="font-size: 14px">
-        {{ metrics.activeStudents }} pelajar aktif merentas semua cawangan
+        {{ metrics.activeStudents }} active students across all branches
       </p>
     </header>
 
     <StudentFilters @change="filter = $event" />
 
     <DataTable :columns="columns" :rows="rows" row-key="id" :min-width="900" @row-click="open">
-      <template #cell-pelajar="{ row }">
+      <template #cell-student="{ row }">
         <div class="flex items-center gap-3">
           <IconTile :icon="row.name.charAt(0)" :tone="toneFor(row.id)" :size="40" :radius="12" />
           <div class="min-w-0">
@@ -68,33 +68,33 @@ function open(s: Student) {
         </div>
       </template>
 
-      <template #cell-tahap="{ row }">
+      <template #cell-level="{ row }">
         <span class="font-bold text-ink" style="font-size: 13px">{{ row.level }}</span>
       </template>
 
-      <template #cell-cawangan="{ row }">
+      <template #cell-branch="{ row }">
         <span class="text-ink-soft" style="font-size: 13px; font-weight: 600">
           {{ branchShort(row.branchId) }}
         </span>
       </template>
 
-      <template #cell-subjek="{ row }">
+      <template #cell-subject="{ row }">
         <div class="flex flex-wrap gap-1">
           <SubjectChip v-for="sub in row.subjects" :key="sub" :subject="sub" size="sm" />
         </div>
       </template>
 
-      <template #cell-pendaftaran="{ row }">
+      <template #cell-enrolment="{ row }">
         <StatusPill :tone="enrolTone(row.enrol)" :label="row.enrol" />
       </template>
 
-      <template #cell-bayaran="{ row }">
+      <template #cell-payment="{ row }">
         <StatusPill :tone="payTone(row.pay)" :label="row.pay" />
       </template>
 
       <template #cell-action>
         <span class="font-bold text-brand-deep whitespace-nowrap" style="font-size: 12px">
-          Lihat →
+          View →
         </span>
       </template>
     </DataTable>

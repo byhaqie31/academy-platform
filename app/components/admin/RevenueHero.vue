@@ -25,7 +25,7 @@ const m = useAdminMetrics()
           class="inline-flex items-center uppercase font-bold"
           :style="{ padding: '6px 12px', borderRadius: '999px', fontSize: '10.5px', letterSpacing: '0.06em', background: 'rgba(255,255,255,.1)', color: '#D8D5F2' }"
         >
-          Margin bulan ini
+          This month's margin
         </span>
         <div class="font-display font-bold mt-3" style="font-size: 52px; line-height: 1">
           {{ formatRM(m.margin) }}
@@ -37,15 +37,15 @@ const m = useAdminMetrics()
           ↑ {{ m.marginPct }}% margin
         </span>
         <p class="mt-4" style="font-size: 13.5px; color: #B7B6D8; line-height: 1.6; max-width: 340px">
-          Pendapatan {{ formatRM(m.revenue) }} tolak kos tutor {{ formatRM(m.cost) }}. Margin sihat
-          merentas {{ m.branchesActive }} cawangan untuk Jun 2026.
+          Revenue {{ formatRM(m.revenue) }} minus tutor cost {{ formatRM(m.cost) }}. Healthy margin
+          across {{ m.branchesActive }} branches for Jun 2026.
         </p>
       </div>
 
       <div>
         <div class="flex items-center justify-between mb-2" style="font-size: 11.5px; color: #B7B6D8; font-weight: 600">
           <span>Margin {{ m.marginPct }}%</span>
-          <span>Kos {{ (100 - m.marginPct).toFixed(1) }}%</span>
+          <span>Cost {{ (100 - m.marginPct).toFixed(1) }}%</span>
         </div>
         <div class="overflow-hidden flex" :style="{ height: '14px', borderRadius: '999px', background: 'rgba(255,255,255,.12)' }">
           <div :style="{ width: m.marginPct + '%', background: 'var(--brand-gradient)' }" />
@@ -56,7 +56,7 @@ const m = useAdminMetrics()
             <div class="font-display font-bold mt-1" style="font-size: 22px">{{ formatRM(m.margin) }}</div>
           </div>
           <div :style="{ background: 'rgba(255,255,255,.06)', borderRadius: '16px', padding: '14px' }">
-            <div style="font-size: 10.5px; color: #B7B6D8; font-weight: 700; letter-spacing: 0.04em" class="uppercase">Kos tutor</div>
+            <div style="font-size: 10.5px; color: #B7B6D8; font-weight: 700; letter-spacing: 0.04em" class="uppercase">Tutor cost</div>
             <div class="font-display font-bold mt-1" style="font-size: 22px">{{ formatRM(m.cost) }}</div>
           </div>
         </div>

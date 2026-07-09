@@ -6,18 +6,18 @@ import { formatRM } from '~/utils/money'
 definePageMeta({ layout: 'admin' })
 const m = useAdminMetrics()
 const stats = [
-  { icon: '💰', tone: 'green' as const, value: formatRM(m.payrollTotal), label: 'Jumlah gaji Jun', sub: 'Semua tutor' },
-  { icon: '🧑‍🏫', tone: 'blue' as const, value: '6', label: 'Tutor aktif', sub: 'Bulan ini' },
-  { icon: '⏱️', tone: 'violet' as const, value: `${m.totalHours} j`, label: 'Jam direkod', sub: 'Jun 2026' },
+  { icon: '💰', tone: 'green' as const, value: formatRM(m.payrollTotal), label: 'June payroll total', sub: 'All tutors' },
+  { icon: '🧑‍🏫', tone: 'blue' as const, value: '6', label: 'Active tutors', sub: 'This month' },
+  { icon: '⏱️', tone: 'violet' as const, value: `${m.totalHours} h`, label: 'Hours logged', sub: 'Jun 2026' },
 ]
 </script>
 
 <template>
   <StubScreen
     title="Payroll"
-    malay="Gaji tutor"
+    malay="Payroll"
     icon="💰"
-    desc="Senarai gaji untuk semua tutor, slip gaji boleh muat turun, dan potongan akan disediakan di sini. Setiap angka dikira dari jam mengajar yang direkod."
+    desc="Payroll for all tutors, downloadable payslips, and deductions will live here. Every figure is calculated from recorded teaching hours."
     :stats="stats"
   />
 </template>

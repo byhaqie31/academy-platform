@@ -27,14 +27,14 @@ const waLink = computed(() => {
     class="bg-surface"
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '22px' }"
   >
-    <h2 class="font-display font-semibold text-ink" style="font-size: 17px">Penjaga / Guardian</h2>
+    <h2 class="font-display font-semibold text-ink" style="font-size: 17px">Guardian</h2>
 
     <div class="flex items-center gap-3 mt-4 mb-4">
       <IconTile :icon="initial" tone="pink" :size="46" :radius="14" />
       <div class="min-w-0">
         <div class="font-bold text-ink" style="font-size: 14.5px">{{ guardian.name }}</div>
         <div class="text-faint" style="font-size: 12px; font-weight: 600">
-          Ibu / bapa kepada {{ firstName }}
+          Parent/guardian of {{ firstName }}
         </div>
       </div>
     </div>
@@ -51,11 +51,11 @@ const waLink = computed(() => {
       >
         <span style="font-size: 15px">📞</span>
         <div>
-          <div class="font-bold text-faint uppercase" style="font-size: 10.5px">Telefon</div>
+          <div class="font-bold text-faint uppercase" style="font-size: 10.5px">Phone</div>
           <div class="font-bold text-ink" style="font-size: 13px">{{ guardian.phone }}</div>
         </div>
       </div>
-      <AppButton variant="whatsapp" :to="waLink" block>💬 WhatsApp penjaga</AppButton>
+      <AppButton variant="whatsapp" :to="waLink" block>💬 WhatsApp guardian</AppButton>
     </div>
   </section>
 </template>

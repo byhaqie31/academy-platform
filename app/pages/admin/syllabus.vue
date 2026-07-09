@@ -34,7 +34,7 @@ const selMeta = computed(() => subjects.byName(selName.value))
 const classList = computed(() =>
   stageDef.value.levels.map((lv, k) => ({
     name: `${selName.value} · ${lv}`,
-    note: `${3 + (k % 3)} kelas · ${2 + (k % 2)} bahan dilampirkan`,
+    note: `${3 + (k % 3)} classes · ${2 + (k % 2)} materials attached`,
   })),
 )
 </script>
@@ -44,10 +44,9 @@ const classList = computed(() =>
     <header>
       <h1 class="font-display font-bold text-ink" style="font-size: 28px; line-height: 1.1">
         Syllabus
-        <span class="text-faint font-semibold" style="font-size: 18px">/ Silibus</span>
       </h1>
       <p class="text-muted font-semibold mt-1" style="font-size: 13.5px">
-        Susunan mengikut peringkat, subjek dan kelas
+        Organised by stage, subject and class
       </p>
     </header>
 
@@ -109,7 +108,7 @@ const classList = computed(() =>
               <div class="font-bold text-ink" style="font-size: 13px">{{ cl.name }}</div>
               <div class="text-muted font-semibold" style="font-size: 11px">{{ cl.note }}</div>
             </div>
-            <AppButton variant="outline" size="sm">📎 Bahan</AppButton>
+            <AppButton variant="outline" size="sm">📎 Materials</AppButton>
           </div>
         </div>
 
@@ -125,7 +124,7 @@ const classList = computed(() =>
             fontSize: '12.5px',
           }"
         >
-          + Lampirkan bahan
+          + Attach material
         </button>
       </section>
     </div>

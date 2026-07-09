@@ -6,18 +6,18 @@ import { formatRM } from '~/utils/money'
 definePageMeta({ layout: 'admin' })
 const m = useAdminMetrics()
 const stats = [
-  { icon: '👥', tone: 'amber' as const, value: String(m.adminAccounts), label: 'Akaun admin', sub: 'Akses penuh' },
-  { icon: '💬', tone: 'green' as const, value: 'WhatsApp', label: 'Integrasi aktif', sub: 'Zoom, Microsoft akan datang' },
-  { icon: '🏷️', tone: 'blue' as const, value: formatRM(m.defaultFee), label: 'Yuran lalai', sub: 'Sebulan' },
+  { icon: '👥', tone: 'amber' as const, value: String(m.adminAccounts), label: 'Admin accounts', sub: 'Full access' },
+  { icon: '💬', tone: 'green' as const, value: 'WhatsApp', label: 'Active integration', sub: 'Zoom, Microsoft coming soon' },
+  { icon: '🏷️', tone: 'blue' as const, value: formatRM(m.defaultFee), label: 'Default fee', sub: 'Per month' },
 ]
 </script>
 
 <template>
   <StubScreen
     title="Settings"
-    malay="Tetapan"
+    malay="Settings"
     icon="⚙️"
-    desc="Tetapan profil akademi, pengguna admin, kadar yuran lalai, dan integrasi WhatsApp, Zoom dan Microsoft akan berada di sini."
+    desc="Academy profile settings, admin users, default fee rates, and WhatsApp, Zoom and Microsoft integrations will live here."
     :stats="stats"
   />
 </template>

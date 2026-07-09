@@ -39,7 +39,7 @@ const subjects = useSubjects()
         {{ name }}
       </div>
       <div class="text-muted font-semibold" style="font-size: 11.5px">
-        {{ classes }} kelas · {{ materials }} bahan
+        {{ classes }} classes · {{ materials }} materials
       </div>
     </button>
   </div>
