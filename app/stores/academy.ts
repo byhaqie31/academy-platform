@@ -53,15 +53,15 @@ export interface MarketingSubject {
   tone: SubjectTone
 }
 const marketingSubjects: MarketingSubject[] = [
-  { icon: '📐', name: 'Matematik', desc: 'Konsep kira-kira kukuh & teknik menjawab pantas.', level: 'Tahun 1 to SPM', tone: 'pink' },
-  { icon: '📖', name: 'Bahasa Melayu', desc: 'Karangan, tatabahasa & pemahaman cemerlang.', level: 'Tahun 1 to SPM', tone: 'green' },
+  { icon: '📐', name: 'Matematik', desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM', tone: 'pink' },
+  { icon: '📖', name: 'Bahasa Melayu', desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM', tone: 'green' },
   { icon: '🔤', name: 'Bahasa Inggeris', desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM', tone: 'blue' },
-  { icon: '🔬', name: 'Sains', desc: 'Eksperimen seronok & fakta mudah diingat.', level: 'Tahun 1 to SPM', tone: 'violet' },
-  { icon: '📜', name: 'Sejarah', desc: 'Teknik hafalan & nota ringkas berstruktur.', level: 'Menengah', tone: 'amber' },
-  { icon: '🕌', name: 'Pendidikan Islam', desc: 'Jawi, tajwid & akhlak dengan penuh sabar.', level: 'Tahun 1 to SPM', tone: 'green' },
-  { icon: '🎒', name: 'Sekolah Rendah', desc: 'Tahun 1 to 6, asas kukuh & study habit awal.', level: 'UPSR ready', tone: 'blue' },
-  { icon: '✏️', name: 'Menengah Rendah', desc: 'Tingkatan 1 to 3, persediaan PT3 yang mantap.', level: 'PT3', tone: 'pink' },
-  { icon: '🎓', name: 'SPM Preparation', desc: 'Tingkatan 4 to 5, fokus skor A & teknik exam.', level: 'SPM', tone: 'violet' },
+  { icon: '🔬', name: 'Sains', desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM', tone: 'violet' },
+  { icon: '📜', name: 'Sejarah', desc: 'Memory techniques & neat, structured notes.', level: 'Menengah', tone: 'amber' },
+  { icon: '🕌', name: 'Pendidikan Islam', desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM', tone: 'green' },
+  { icon: '🎒', name: 'Sekolah Rendah', desc: 'Tahun 1 to 6, strong foundations & early study habits.', level: 'UPSR ready', tone: 'blue' },
+  { icon: '✏️', name: 'Menengah Rendah', desc: 'Tingkatan 1 to 3, solid PT3 preparation.', level: 'PT3', tone: 'pink' },
+  { icon: '🎓', name: 'SPM Preparation', desc: 'Tingkatan 4 to 5, focused on A scores & exam technique.', level: 'SPM', tone: 'violet' },
 ]
 
 const guardians: Guardian[] = [
@@ -164,12 +164,12 @@ const invoices: Invoice[] = [
 ]
 
 const lessonPlans: LessonPlan[] = [
-  { id: 'lp0', classId: 'c0', cls: 'Tahun 4 Bestari', week: 'Minggu 26', topic: 'Pecahan & perpuluhan', ref: 'KSSR Thn 4 · 4.2', material: 'Nota_Pecahan.pdf', attached: true },
-  { id: 'lp1', classId: 'c1', cls: 'Tingkatan 3 Cerdik', week: 'Minggu 26', topic: 'Indeks & hukum kuasa', ref: 'KSSM Tkt 3 · 1.3', material: 'Latihan_Indeks.pdf', attached: true },
-  { id: 'lp2', classId: 'c2', cls: 'Tahun 1 Jujur', week: 'Minggu 26', topic: 'Nombor hingga 100', ref: 'KSSR Thn 1 · 1.1', material: null, attached: false },
-  { id: 'lp3', classId: 'c3', cls: 'Tingkatan 5 Gigih', week: 'Minggu 26', topic: 'Janjang aritmetik', ref: 'KSSM Tkt 5 · 5.1', material: null, attached: false },
-  { id: 'lp4', classId: 'cc0', cls: 'Tingkatan 2 Amanah', week: 'Minggu 26', topic: 'Sistem suria', ref: 'KSSM Tkt 2 · 9.1', material: 'Slaid_SistemSuria.pdf', attached: true },
-  { id: 'lp5', classId: 'cc4', cls: 'Tingkatan 4 Wira', week: 'Minggu 26', topic: 'Kesultanan Melayu Melaka', ref: 'KSSM Tkt 4 · Bab 5', material: 'Peta_Minda_Melaka.pdf', attached: true },
+  { id: 'lp0', classId: 'c0', cls: 'Tahun 4 Bestari', week: 'Week 26', topic: 'Pecahan & perpuluhan', ref: 'KSSR Thn 4 · 4.2', material: 'Nota_Pecahan.pdf', attached: true },
+  { id: 'lp1', classId: 'c1', cls: 'Tingkatan 3 Cerdik', week: 'Week 26', topic: 'Indeks & hukum kuasa', ref: 'KSSM Tkt 3 · 1.3', material: 'Latihan_Indeks.pdf', attached: true },
+  { id: 'lp2', classId: 'c2', cls: 'Tahun 1 Jujur', week: 'Week 26', topic: 'Nombor hingga 100', ref: 'KSSR Thn 1 · 1.1', material: null, attached: false },
+  { id: 'lp3', classId: 'c3', cls: 'Tingkatan 5 Gigih', week: 'Week 26', topic: 'Janjang aritmetik', ref: 'KSSM Tkt 5 · 5.1', material: null, attached: false },
+  { id: 'lp4', classId: 'cc0', cls: 'Tingkatan 2 Amanah', week: 'Week 26', topic: 'Sistem suria', ref: 'KSSM Tkt 2 · 9.1', material: 'Slaid_SistemSuria.pdf', attached: true },
+  { id: 'lp5', classId: 'cc4', cls: 'Tingkatan 4 Wira', week: 'Week 26', topic: 'Kesultanan Melayu Melaka', ref: 'KSSM Tkt 4 · Bab 5', material: 'Peta_Minda_Melaka.pdf', attached: true },
 ]
 
 const enquiries: Enquiry[] = [
@@ -210,7 +210,7 @@ const syllabusBank: Record<Stage, SyllabusRow[]> = {
 
 // Which tutor + slot teaches a subject (for the student detail view).
 const subjectTutor: Record<string, string> = { Matematik: 'Cikgu Hafiz', Sains: 'Cikgu Mei Ling', 'Bahasa Inggeris': 'Cikgu Suresh', 'Bahasa Melayu': 'Cikgu Aishah', Sejarah: 'Cikgu Aishah', Geografi: 'Cikgu Suresh', STEM: 'Cikgu Daniel', TVET: 'Cikgu Daniel', 'Pendidikan Islam': 'Cikgu Aishah' }
-const subjectSchedule: Record<string, string> = { Matematik: 'Isnin · 3:00 PM', Sains: 'Rabu · 5:00 PM', 'Bahasa Inggeris': 'Sabtu · 10:00 AM', 'Bahasa Melayu': 'Selasa · 4:30 PM', Sejarah: 'Khamis · 6:00 PM', Geografi: 'Jumaat · 5:00 PM', STEM: 'Sabtu · 2:00 PM', TVET: 'Ahad · 2:00 PM', 'Pendidikan Islam': 'Ahad · 10:00 AM' }
+const subjectSchedule: Record<string, string> = { Matematik: 'Mon · 3:00 PM', Sains: 'Wed · 5:00 PM', 'Bahasa Inggeris': 'Sat · 10:00 AM', 'Bahasa Melayu': 'Tue · 4:30 PM', Sejarah: 'Thu · 6:00 PM', Geografi: 'Fri · 5:00 PM', STEM: 'Sat · 2:00 PM', TVET: 'Sun · 2:00 PM', 'Pendidikan Islam': 'Sun · 10:00 AM' }
 
 // Centre-wide headline metrics. Larger than the detailed seed slice on
 // purpose: the demo shows full scale while the slice stays inspectable.

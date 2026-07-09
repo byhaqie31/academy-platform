@@ -2,7 +2,7 @@
 import { tonePair } from '~/utils/tone'
 import type { SubjectTone } from '~/types'
 
-// pure presentation content from the prototype "Kata ibu bapa" section
+// pure presentation content from the prototype "What parents say" section
 const testimonials: { quote: string; name: string; role: string; initial: string; tone: SubjectTone }[] = [
   {
     quote: 'My child is so much more confident with Matematik now. The tutors are patient and the classes are fun.',
@@ -12,14 +12,14 @@ const testimonials: { quote: string; name: string; role: string; initial: string
     tone: 'pink',
   },
   {
-    quote: 'Registration was easy and the admin team replies fast on WhatsApp. My child’s PT3 scores went up a lot.',
+    quote: 'Registration was easy and the admin team replies fast on WhatsApp. My child\'s PT3 scores went up a lot.',
     name: 'Encik Faizal',
     role: 'Father of a Tingkatan 3 student',
     initial: 'F',
     tone: 'blue',
   },
   {
-    quote: 'The branch is close to home and the schedule is flexible. My child doesn’t feel stressed at all.',
+    quote: 'The branch is close to home and the schedule is flexible. My child doesn\'t feel stressed at all.',
     name: 'Puan Sufiah',
     role: 'Mother of an SPM student',
     initial: 'S',

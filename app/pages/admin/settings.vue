@@ -15,7 +15,6 @@ const stats = [
 <template>
   <StubScreen
     title="Settings"
-    malay="Settings"
     icon="⚙️"
     desc="Academy profile settings, admin users, default fee rates, and WhatsApp, Zoom and Microsoft integrations will live here."
     :stats="stats"

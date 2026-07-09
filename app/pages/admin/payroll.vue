@@ -15,7 +15,6 @@ const stats = [
 <template>
   <StubScreen
     title="Payroll"
-    malay="Payroll"
     icon="💰"
     desc="Payroll for all tutors, downloadable payslips, and deductions will live here. Every figure is calculated from recorded teaching hours."
     :stats="stats"

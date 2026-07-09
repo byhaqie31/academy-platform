@@ -5,7 +5,6 @@ import type { PillTone } from '~/utils/status'
 
 defineProps<{
   title: string
-  malay: string
   icon: string
   desc: string
   stats: { icon: string; tone: PillTone; value: string; label: string; sub?: string }[]
@@ -24,6 +23,6 @@ defineProps<{
       <StatCard v-for="s in stats" :key="s.label" v-bind="s" />
     </div>
 
-    <EmptyState :icon="icon" :title="`${malay} is coming soon`" :desc="desc" />
+    <EmptyState :icon="icon" :title="`${title} is coming soon`" :desc="desc" />
   </div>
 </template>

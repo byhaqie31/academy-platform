@@ -14,7 +14,6 @@ const stats = [
 <template>
   <StubScreen
     title="Branches"
-    malay="Branches"
     icon="📍"
     desc="Full details for each branch, student and tutor counts, and performance per location will live here."
     :stats="stats"

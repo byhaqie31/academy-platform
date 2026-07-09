@@ -36,7 +36,7 @@ const guardianInitial = computed(() => guardianFirst.value.charAt(0) || '?')
 // Adam's home branch, spelled out (e.g. "Kota Warisan, Sepang").
 const branchName = computed(() => branchById(student.value.branchId)?.name ?? student.value.branchId)
 
-// Subject chips for the SUBJEK info tile (Matematik · Sains · BI).
+// Subject chips for the Subjects info tile (Matematik · Sains · BI).
 const subjectShort = computed(() =>
   student.value.subjects.map((name) => subjects.byName(name)?.short ?? name).join(' · '),
 )

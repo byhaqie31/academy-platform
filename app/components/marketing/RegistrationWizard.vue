@@ -112,7 +112,7 @@ const branchNames = computed(() =>
           </div>
         </div>
 
-        <!-- STEP 0 — Ibu bapa -->
+        <!-- STEP 0: Parent -->
         <div
           v-if="step === 0"
           style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px"
@@ -137,7 +137,7 @@ const branchNames = computed(() =>
           </label>
         </div>
 
-        <!-- STEP 1 — Pelajar -->
+        <!-- STEP 1: Student -->
         <div
           v-else-if="step === 1"
           style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px"
@@ -159,7 +159,7 @@ const branchNames = computed(() =>
           </label>
         </div>
 
-        <!-- STEP 2 — Cawangan -->
+        <!-- STEP 2: Branch -->
         <div
           v-else-if="step === 2"
           style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px"
@@ -199,7 +199,7 @@ const branchNames = computed(() =>
           </div>
         </div>
 
-        <!-- STEP 3 — Subjek -->
+        <!-- STEP 3: Subjects -->
         <div v-else-if="step === 3" style="display: flex; gap: 10px; flex-wrap: wrap">
           <span
             v-for="s in subjects"
@@ -229,7 +229,7 @@ const branchNames = computed(() =>
           </span>
         </div>
 
-        <!-- STEP 4 — Jadual -->
+        <!-- STEP 4: Schedule -->
         <div v-else-if="step === 4">
           <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px">
             <span
@@ -267,7 +267,7 @@ const branchNames = computed(() =>
           </label>
         </div>
 
-        <!-- STEP 5 — Semak -->
+        <!-- STEP 5: Review -->
         <div
           v-else-if="step === 5"
           :style="{ background: 'var(--color-surface-lavender)', borderRadius: '16px', padding: '20px' }"
