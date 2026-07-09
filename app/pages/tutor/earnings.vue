@@ -21,11 +21,11 @@ const run = payroll.runFor(self.id, 'Jun 2026')
     <header class="flex items-end justify-between gap-4 flex-wrap">
       <div>
         <h1 class="font-display font-bold text-ink" :style="{ fontSize: '30px', lineHeight: '1.1' }">
-          Pendapatan
+          Earnings
         </h1>
         <p class="text-muted" :style="{ fontSize: '14px', marginTop: '4px' }">My earnings</p>
       </div>
-      <AppButton variant="outline">⬇ Muat turun slip</AppButton>
+      <AppButton variant="outline">⬇ Download payslip</AppButton>
     </header>
 
     <EarningsHero :hours="run.hours" :rate="run.rate" :amount="run.amount" />

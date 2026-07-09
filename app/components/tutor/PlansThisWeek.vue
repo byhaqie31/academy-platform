@@ -12,9 +12,9 @@ const plans = computed(() => useLessonPlans().forEducator('hafiz').slice(0, 3))
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '20px' }"
   >
     <div class="flex items-center justify-between mb-4">
-      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Rancangan minggu ini</h2>
+      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">This week's plans</h2>
       <NuxtLink to="/tutor/lesson-plans" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
-        Semua →
+        All →
       </NuxtLink>
     </div>
 
@@ -32,12 +32,12 @@ const plans = computed(() => useLessonPlans().forEducator('hafiz').slice(0, 3))
         <StatusPill
           v-if="p.attached"
           tone="green"
-          label="Siap"
+          label="Done"
         />
         <StatusPill
           v-else
           tone="amber"
-          label="Perlu"
+          label="Needed"
         />
       </li>
     </ul>

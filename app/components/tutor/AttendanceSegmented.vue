@@ -33,16 +33,16 @@ const styleFor = (kind: AttendanceStatus) => {
 }
 
 const BUTTONS: { kind: AttendanceStatus; label: string; aria: string }[] = [
-  { kind: 'present', label: '✓ Hadir', aria: 'Hadir' },
-  { kind: 'late', label: '◐ Lewat', aria: 'Lewat' },
-  { kind: 'absent', label: '✕ Tidak', aria: 'Tidak hadir' },
+  { kind: 'present', label: '✓ Present', aria: 'Present' },
+  { kind: 'late', label: '◐ Late', aria: 'Late' },
+  { kind: 'absent', label: '✕ Absent', aria: 'Absent' },
 ]
 </script>
 
 <template>
   <div
     role="group"
-    :aria-label="`Kehadiran ${props.student}`"
+    :aria-label="`Attendance ${props.student}`"
     class="flex gap-1.5 shrink-0"
   >
     <button

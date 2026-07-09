@@ -24,9 +24,9 @@ const rows = computed(() =>
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '20px' }"
   >
     <div class="flex items-center justify-between mb-4">
-      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Kelas hari ini</h2>
+      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Today's classes</h2>
       <NuxtLink to="/tutor/schedule" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
-        Lihat jadual →
+        View schedule →
       </NuxtLink>
     </div>
 
@@ -48,10 +48,10 @@ const rows = computed(() =>
             <span class="font-bold text-ink truncate" style="font-size: 13.5px">{{ c.cls }}</span>
           </div>
           <div class="text-faint mt-0.5" style="font-size: 11.5px; font-weight: 600">
-            {{ c.roster.length }} pelajar · {{ branchShort(c.branchId) }} · {{ c.dur }}j
+            {{ c.roster.length }} students · {{ branchShort(c.branchId) }} · {{ c.dur }}h
           </div>
         </div>
-        <AppButton variant="soft" size="sm" :to="`/tutor/classes/${c.id}`">Tanda kehadiran →</AppButton>
+        <AppButton variant="soft" size="sm" :to="`/tutor/classes/${c.id}`">Mark attendance →</AppButton>
       </li>
     </ul>
   </section>

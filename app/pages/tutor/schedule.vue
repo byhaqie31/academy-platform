@@ -20,7 +20,7 @@ const branchLegend = [
   <div class="flex flex-col gap-6">
     <header>
       <h1 class="font-display font-bold text-ink" :style="{ fontSize: '30px', lineHeight: '1.1' }">
-        Jadual Saya
+        My schedule
       </h1>
       <p class="text-muted" :style="{ fontSize: '14px', marginTop: '4px' }">My schedule</p>
     </header>
@@ -52,7 +52,7 @@ const branchLegend = [
     </section>
 
     <p class="text-muted" :style="{ fontSize: '13px' }">
-      Klik mana-mana kelas untuk tanda kehadiran.
+      Click any class to mark attendance.
     </p>
   </div>
 </template>

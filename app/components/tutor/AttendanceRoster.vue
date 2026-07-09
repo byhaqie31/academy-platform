@@ -35,7 +35,7 @@ const onSet = (student: string, status: AttendanceStatus) => {
       <div class="min-w-0 flex-1">
         <div class="font-bold text-ink" style="font-size: 13.5px">{{ name }}</div>
         <slot name="level" :name="name" :index="i">
-          <div class="text-muted" style="font-size: 11px; font-weight: 600">Pelajar</div>
+          <div class="text-muted" style="font-size: 11px; font-weight: 600">Student</div>
         </slot>
       </div>
       <AttendanceSegmented

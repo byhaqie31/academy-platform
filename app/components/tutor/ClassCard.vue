@@ -28,7 +28,7 @@ const { branchShort } = useAcademy()
           fontSize: '11px',
         }"
       >
-        {{ props.cls.roster.length }} pelajar
+        {{ props.cls.roster.length }} students
       </span>
     </div>
 
@@ -47,7 +47,7 @@ const { branchShort } = useAcademy()
         borderTop: '1px solid var(--color-divider)',
       }"
     >
-      <span class="text-muted" style="font-size: 12px; font-weight: 600">Kehadiran purata</span>
+      <span class="text-muted" style="font-size: 12px; font-weight: 600">Average attendance</span>
       <span class="font-display font-bold" style="font-size: 15px; color: var(--color-fg-green)">
         {{ props.cls.attendPct }}%
       </span>
