@@ -689,18 +689,134 @@ git commit -m "copy: English tutor portal"
 ```
 
 ---
+### Task 9: Data-layer chrome, remaining tutor components, and layouts
 
-### Task 9: Admin portal, shared UI, and notifications
+**Why this task exists.** Tasks 6 to 8 swept components and pages, but Malay chrome also lives in the
+store, in composables, and in a layout. This is the same class of bug as `Class.ampm`: a string that
+looks like data but is rendered raw as a label. The original plan's file lists were built from an
+ad-hoc Malay keyword regex and missed these entirely.
 
-**Files:** modify
-`app/pages/admin/index.vue`, `students/index.vue`, `students/[id].vue`, `educators/index.vue`, `educators/[id].vue`, `schedule.vue`, `syllabus.vue`, `billing.vue`, `payroll.vue`, `branches.vue`, `settings.vue`, and `app/components/admin/LessonPlanCards.vue`, `RevenueHero.vue`, `OutstandingList.vue`, `ScheduleToday.vue`, `AssignClassModal.vue`, `PaymentHistory.vue`, and `app/components/ui/NotificationDropdown.vue`, `PortalShell.vue`, and `app/composables/useNotifications.ts`.
+**Files:**
+- Modify: `app/stores/academy.ts` (`WEEK_LABELS` at `:28-33`, enquiry `ago:` at `:176-179`)
+- Modify: `app/composables/useBilling.ts` (`proofLabel:` at `:37-39,44`)
+- Modify: `app/composables/useNotifications.ts` (Malay `title:` and `desc:` strings)
+- Modify: `app/layouts/tutor.vue:16`
+- Modify: `app/components/tutor/EarningsMini.vue`, `WeeklyHoursBars.vue`, `HoursByClass.vue`
+
+Check `app/layouts/admin.vue` and `app/layouts/marketing.vue` for Malay too. Fix what you find.
+
+**Interfaces:** none. No signature changes.
+
+Exact strings:
+
+`app/stores/academy.ts:28-33` — `WEEK_LABELS`:
+
+```ts
+export const WEEK_LABELS = [
+  'Week 1 · 2–8 June',
+  'Week 2 · 9–15 June',
+  'Week 3 · 16–22 June',
+  'Week 4 · 23–29 June',
+]
+```
+
+`app/stores/academy.ts:176-179` — enquiry `ago:` values: `'12 min lalu'` → `'12 min ago'`,
+`'1 jam lalu'` → `'1 hour ago'`, `'2 jam lalu'` → `'2 hours ago'`, `'3 jam lalu'` → `'3 hours ago'`.
+Leave `name`, `detail`, and `source` untouched: `Encik Rizal`, `Nur Iman · BM, BI · Kajang`, `TikTok`.
+
+`app/composables/useBilling.ts`:
+- `:37` `proofLabel: 'Tiada bukti · tertunggak'` → `'No proof · overdue'`
+- `:38` `proofLabel: 'Resit · 03 Mei'` → `'Receipt · 03 May'`
+- `:39` `proofLabel: 'Resit · 02 Apr'` → `'Receipt · 02 Apr'`
+- `:44` `proofLabel: 'Menunggu bukti bayaran'` → `'Awaiting payment proof'`
+
+**`Mei` here is the month May, not the student `Mei Yi`.** Both exist in this codebase. Translate this
+one; never touch the student.
+
+`app/composables/useNotifications.ts`:
+- `:78` `'Lesson plan Bab 4 perlu dihantar sebelum Jumaat.'` → `'Lesson plan Bab 4 is due before Friday.'`
+  Keep `Bab 4`; it is a syllabus chapter reference, domain fact.
+- `:104` `title: 'Kehadiran direkod'` → `'Attendance recorded'`
+- `:105` `desc: 'Kehadiran kelas Sabtu berjaya disimpan.'` → `'Saturday class attendance saved.'`
+- Sweep the remaining Malay `title:` and `desc:` strings in this file with the same policy.
+
+`app/layouts/tutor.vue:16` — `sub: 'Matematik · 2 cawangan'` → `sub: 'Matematik · 2 branches'`.
+`Matematik` stays; it is a subject name.
+
+`app/components/tutor/EarningsMini.vue:32` — `Pecahan jam →` → `Hours breakdown →`
+
+`app/components/tutor/WeeklyHoursBars.vue` — `:17` `Pecahan jam mingguan` → `Weekly hours breakdown`;
+`:45` `Jumlah` → `Total`. The adjacent `{{ total }} j` uses `j` for *jam*; it becomes `{{ total }} h`.
+
+`app/components/tutor/HoursByClass.vue` — sweep any Malay chrome. Subject and class names stay.
+
+- [ ] **Step 1: Apply the strings above**
+
+- [ ] **Step 2: Verify**
+
+Run `npm run typecheck && npm test`. Both must pass, with `test/utils/validation.spec.ts`,
+`test/composables/attendance.spec.ts`, and `test/store/payroll.spec.ts` unmodified.
+
+Then `npm run dev` and check `/tutor/earnings` (weekly hours card reads `Weekly hours breakdown`,
+total row reads `Total … h`), `/admin` (enquiry list reads `1 hour ago`), and `/admin/billing`
+(payment history reads `Receipt · 03 May`).
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add app/stores/academy.ts app/composables/useBilling.ts app/composables/useNotifications.ts \
+        app/layouts/ app/components/tutor/
+git commit -m "copy: English data-layer chrome, tutor components, and layouts
+
+Week labels, relative timestamps, billing proof labels, and notification copy
+are chrome that happens to live in the store and composables, like Class.ampm."
+```
+
+---
+
+### Task 10: Admin portal and shared UI
+
+**Files:** modify every one of these.
+
+Pages: `app/pages/admin/index.vue`, `students/index.vue`, `students/[id].vue`,
+`educators/index.vue`, `educators/[id].vue`, `schedule.vue`, `syllabus.vue`, `billing.vue`,
+`payroll.vue`, `branches.vue`, `settings.vue`
+
+Components: `app/components/admin/AssignClassModal.vue`, `AttendanceDonut.vue`,
+`EducatorHoursBars.vue`, `EnquiryList.vue`, `GuardianCard.vue`, `LessonPlanCards.vue`,
+`OutstandingList.vue`, `PaymentHistory.vue`, `ProofThumb.vue`, `RevenueHero.vue`,
+`ScheduleGrid.vue`, `ScheduleToday.vue`, `StubScreen.vue`, `StudentFilters.vue`, `SyllabusBank.vue`
+
+Shared UI: `app/components/ui/NotificationDropdown.vue`, `PortalShell.vue`
+
+The original plan listed only six admin components. `AttendanceDonut`, `EducatorHoursBars`,
+`EnquiryList`, `GuardianCard`, `StudentFilters`, and `SyllabusBank` were missed. Sweep all fifteen.
 
 **Interfaces:** none.
 
-- `useNotifications.ts:78` — `'Lesson plan Bab 4 perlu dihantar sebelum Jumaat.'` → `'Lesson plan Bab 4 is due before Friday.'` Keep `Bab 4`; it is a syllabus chapter reference, domain fact.
-- `useNotifications.ts:105` — `'Kehadiran kelas Sabtu berjaya disimpan.'` → `'Saturday class attendance saved.'`
-- `ScheduleToday.vue:30` renders `r.ampm`, already English after Task 1. Do not add a translation layer in the component.
-- Admin `syllabus.vue` — KPM stage names (`Sekolah Rendah`, `Menengah Rendah`, `Menengah Atas`) and topic names are curriculum proper nouns. **They stay Malay.** Only the surrounding chrome translates.
+**Delete redundant sub-labels, do not translate them.** Several admin pages use the retiring
+`<h1>English heading</h1>` + `<p class="text-muted">Malay sub-label</p>` pattern. The governing
+decision is to drop sub-labels entirely. Translating the `<p>` turns a bilingual pair into a
+monolingual duplicate, which reads as a rendering bug. **Delete the `<p>` element** wherever it
+merely restates the `<h1>`. Keep it, in English, only where it carries information the heading does
+not. Task 8 got this wrong and needed a fix commit; do not repeat it.
+
+Known pages with the pattern: `admin/index.vue`, `students/index.vue`, `educators/index.vue`,
+`schedule.vue`, `syllabus.vue`, `billing.vue`. Check the others.
+
+Specific calls:
+
+- `app/components/admin/ScheduleToday.vue:30` renders `{{ r.ampm }}`, which is **already English**
+  (`AFTERNOON` / `EVENING`) from Task 1. Do not add a translation layer or re-translate it.
+- `app/components/admin/EducatorHoursBars.vue` — `Jumlah` → `Total`; the `j` hours abbreviation
+  becomes `h`, matching `WeeklyHoursBars.vue` from Task 9.
+- `app/components/admin/StudentFilters.vue` — the four `Semua …` filter defaults become `All …`.
+- `app/pages/admin/syllabus.vue` and `app/components/admin/SyllabusBank.vue` — KPM stage names
+  (`Sekolah Rendah`, `Menengah Rendah`, `Menengah Atas`) and topic names are curriculum proper nouns.
+  **They stay Malay.** Only the surrounding chrome translates.
+- `app/components/ui/PortalShell.vue` — the search placeholder `Cari pelajar, kelas, tutor...`
+  becomes `Search students, classes, tutors...`, and `Keluar ke laman web` becomes
+  `Back to website`. Check for a `lang="ms"` attribute and remove or correct it.
 
 - [ ] **Step 1: Sweep the files above**
 
@@ -708,28 +824,32 @@ git commit -m "copy: English tutor portal"
 
 Run `npm run typecheck && npm test`, then `npm run dev` and load all nine admin routes.
 
-Expected: `/admin` schedule card shows `AFTERNOON` / `EVENING`. `/admin/syllabus` still shows Malay stage and topic names under English headings. Notification dropdown reads English.
+Expected: `/admin` schedule card shows `AFTERNOON` / `EVENING` and the enquiry list reads
+`1 hour ago`. `/admin/syllabus` shows Malay stage and topic names under English headings.
+The notification dropdown reads English. No page shows an `<h1>` and a `<p>` with the same text.
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add app/pages/admin/ app/components/admin/ app/components/ui/ app/composables/useNotifications.ts
-git commit -m "copy: English admin portal, shared UI, and notifications"
+git add app/pages/admin/ app/components/admin/ app/components/ui/
+git commit -m "copy: English admin portal and shared UI"
 ```
 
 ---
 
-### Task 10: Documentation
+### Task 11: Documentation
 
 **Files:**
 - Modify: `CLAUDE.md`
 - Modify: `docs/superpowers/PROJECT-CONTEXT.md:270,288,387`
 
-Leave `docs/superpowers/plans/2026-06-28-*.md` and `docs/superpowers/specs/2026-06-28-*.md` untouched. They are historical records of completed work; rewriting them falsifies the archive.
+Leave `docs/superpowers/plans/2026-06-28-*.md` and `docs/superpowers/specs/2026-06-28-*.md`
+untouched. They are historical records of completed work; rewriting them falsifies the archive.
 
 - [ ] **Step 1: Update `CLAUDE.md` copy conventions**
 
-Replace the bilingual bullet. It now contradicts the code, and a future session that reads it will reintroduce Malay sub-labels.
+Replace the bilingual bullet. It now contradicts the code, and a future session that reads it will
+reintroduce Malay sub-labels.
 
 ```markdown
 ## Copy conventions
@@ -741,7 +861,8 @@ Replace the bilingual bullet. It now contradicts the code, and a future session 
 - Warm, non-corporate tone. Tagline: "Simple, effortless, human."
 ```
 
-The en-dash carve-out is not cosmetic. Without it, `CLAUDE.md` forbids the exact `hours` string Task 5 writes, and every future session reading `CLAUDE.md` would "fix" it back.
+The en-dash carve-out is not cosmetic. Without it, `CLAUDE.md` forbids the exact `hours` string
+Task 5 writes, and every future session reading `CLAUDE.md` would "fix" it back.
 
 - [ ] **Step 2: Update `PROJECT-CONTEXT.md`**
 
@@ -756,83 +877,89 @@ git commit -m "docs: English-primary copy conventions and renamed parent route"
 
 ---
 
-### Task 11: Final verification and pull request
+### Task 12: Final verification and pull request
 
-- [ ] **Step 1: Both greps must return nothing**
+- [ ] **Step 1: Routes and nav grep**
 
 ```bash
 grep -rniE 'ibubapa|ibu bapa|daftar|jadual|kelas|pendapatan|rancangan' app/ config/
 ```
 
+Expect nothing.
+
+- [ ] **Step 2: Residual Malay grep**
+
+Do not use the narrow day-and-month pattern from the original plan; it missed a dozen files. Use a
+Malay stopword sweep:
+
 ```bash
-grep -rnE 'Isnin|Selasa|Rabu|Khamis|Jumaat|Sabtu|Ahad|PETANG|MALAM|Selamat|Januari|Februari|Mac|Mei|Julai|Ogos|Oktober|Disember' app/ config/
+grep -rniE '\b(dan|atau|yang|untuk|dengan|pada|dari|dalam|tiada|belum|sudah|sila|semua|jumlah|jam|minggu|mingguan|bulanan|pelajar|guru|murid|ibu|bapa|anak|yuran|bayaran|gaji|cawangan|tetapan|silibus|kehadiran|hadir|lewat|pecahan|lihat|hantar|simpan|batal|cari|catatan|senarai|dijumpai|berjaya|perlu|dihantar|disimpan|penggal|cuti|peperiksaan|tempah|hubungi|pengumuman|peringatan|selamat|keluar|papan|pemuka|pendidik|subjek|isnin|selasa|rabu|khamis|jumaat|sabtu|ahad|petang|malam|januari|februari|mac|mei|julai|ogos|oktober|disember|resit|lalu)\b' app/ config/
 ```
 
-The second is case-sensitive on purpose. Expect one hit you must **not** act on: `Mei Yi`, a student in `app/stores/academy.ts`. Inspect every hit; delete none blindly.
+Every hit must be one of these, and you must inspect each rather than deleting blindly:
 
-- [ ] **Step 2: Full gate**
+- `Mei Yi`, a student name in `app/stores/academy.ts`
+- KPM stage names in `app/pages/admin/syllabus.vue` and `app/components/admin/SyllabusBank.vue`
+- Subject names, class names, levels, person names, branch names
+- Code comments (acceptable, but fix any that name a now-renamed UI string)
+
+If a hit is user-visible chrome, it is a bug. Fix it.
+
+- [ ] **Step 3: Full gate**
 
 Run: `npm run typecheck && npm test && npm run build`
 
 Expected: all clean. `test/utils/validation.spec.ts` unmodified throughout.
 
-- [ ] **Step 3: Drive the app**
+- [ ] **Step 4: Drive the app**
 
-Run `npm run dev` and confirm the four silent-failure surfaces from the spec:
+`npm run dev`, then confirm:
 
-1. `/tutor` shows a non-zero "Classes today".
+1. `/tutor` shows a non-zero "Classes today" and the correct weekday in the greeting.
 2. `/tutor/schedule` renders populated columns, `Mon` first.
-3. The greeting names the correct weekday for today's real date.
-4. `/portal/parents`, `/register`, and all four renamed tutor routes load; the marketing footer and login dropdown have no dead links.
+3. `/portal/parents` renders: the avatar initial resolves to `A` (it depends on the honorific regex),
+   the fee reads `RM 240`, subject chips read `Matematik · Sains · BI`, level reads `Tahun 4`.
+   **This page was never rendered during implementation. Drive it.**
+4. `/register` walks through every wizard step, including one validation error.
+5. All nine admin routes load; no `<h1>` duplicates its `<p>`.
+6. No route shows Malay chrome.
 
-- [ ] **Step 4: Push the branch and the preservation tag**
+- [ ] **Step 5: Push the branch and the preservation tag**
 
 ```bash
 git push -u origin feat/english-primary-routes-and-copy
 git push origin hz-academy-malay-demo
 ```
 
-The tag push is not optional. It is the only thing preserving the Hz Academy Malay demo once `main` moves forward.
+The tag push is not optional. It is the only thing preserving the Hz Academy Malay demo once `main`
+moves forward.
 
-- [ ] **Step 5: Open the PR**
+- [ ] **Step 6: Open the PR**
 
-```bash
-gh pr create --title "English-primary routes and copy" --body "$(cat <<'EOF'
-## Summary
-
-Makes English the primary language of the mockup: English URL paths, English UI copy, no Malay sub-labels. Groundwork for the Hz Academy to SaaS rebrand, which is deliberately **not** in this PR. `config/academy.ts` still reads `name: 'Hz Academy'`.
-
-## The load-bearing change
-
-`Class.day` was typed `string`, and four sites compared it against the literal `'Isnin'`. Renaming the seed values alone would have left all four compiling and matching nothing: "Classes today: 0", blank schedule columns, no error. Narrowing `day` to a `Day` union turned those into compile errors. Two new tests guard the surfaces that fail silently.
-
-## What did not change
-
-Malaysian domain data is untouched: subject names (`Matematik`), school levels (`Tingkatan 3`), class names (`Tahun 4 Bestari`), person names (`Puan Aisyah`), branch names. `test/utils/validation.spec.ts` asserts on `'Matematik'` and passes unmodified, which is the canary for that boundary.
-
-## Preservation
-
-The pre-pivot state is tagged `hz-academy-malay-demo` (`c54e44f`), pushed with this branch. `git checkout hz-academy-malay-demo` restores the Malay demo in full.
-
-## Verification
-
-- `npm run typecheck`, `npm test`, `npm run build` all clean
-- Both residual-Malay greps return nothing (except the known `Mei Yi` student name)
-- Drove every route; tutor dashboard and schedule grid render populated
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-EOF
-)"
-```
+Title: `English-primary routes and copy`. Body: summary, the `Day` union rationale, what did not
+change (Malaysian domain data), the preservation tag, and the verification evidence.
 
 ---
 
 ## Self-review
 
-**Spec coverage.** Section 1 (`Day` union) → Task 1. Section 2 (routes) → Task 3. Section 3 (translation policy) → Tasks 1, 2, 5, 6, 7, 8, 9. Section 4 (`NavItem`) → Task 4. Section 5 (docs) → Task 10. Verification → Task 11. Delivery and tag push → Task 11 Step 4. No gaps.
+**Spec coverage.** Spec section 1 (`Day` union) → Task 1. Section 2 (routes) → Task 3. Section 3
+(translation policy) → Tasks 1, 2, 5, 6, 7, 8, 9, 10. Section 4 (`NavItem`) → Task 4. Section 5
+(docs) → Task 11. Verification → Task 12. Delivery and tag push → Task 12 Step 5.
 
-**Placeholders.** None. Every code step shows code; every file list is enumerated rather than described as "the rest."
+**Revision history.** Tasks 9 and 10 were rewritten mid-execution. The original plan built its file
+lists from a hand-written Malay keyword regex that omitted `jam`, `Jumlah`, `Tiada`, `Semua`,
+`Belum`, and `Resit`. That hid `app/layouts/tutor.vue`, `app/composables/useBilling.ts`,
+`app/stores/academy.ts`'s week labels and relative timestamps, three tutor components, and six admin
+components. The lists above were rebuilt from a Malay stopword sweep and verified by reading each
+hit. Task 5 also gained `nuxt.config.ts`'s `htmlAttrs.lang`, which no task originally covered.
 
-**Type consistency.** `Day` is defined once in Task 1 and imported by Task 2's `useGreeting`. `Ampm` is defined in Task 1 and consumed by `AgendaRow` in the same task. `NavItem` gains `label` in Task 4, after Task 3 has settled the `to:` paths it holds, so the two never conflict.
+**Lesson recorded.** Inventory by stopword sweep, not by hand-listed keywords. A keyword list you
+write yourself only finds the words you already thought of.
 
-**Known trap, deliberately left in.** Task 11's second grep matches `Mei Yi`. Suppressing it with a narrower pattern would risk hiding a real `Mei` month string. A false positive an engineer must read is safer than a false negative they never see.
+**Type consistency.** `Day` and `Ampm` are defined once in Task 1 and imported thereafter. `NavItem`
+gains `label` in Task 4, after Task 3 settles its `to:` paths.
+
+**Known trap, deliberately left in.** Task 12's residual grep matches `Mei Yi`. Narrowing the pattern
+to suppress it would risk hiding a real `Mei` month string, and `useBilling.ts` proved one exists
+(`Resit · 03 Mei`). A false positive an engineer must read beats a false negative they never see.
