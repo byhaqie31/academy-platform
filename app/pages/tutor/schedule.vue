@@ -22,7 +22,6 @@ const branchLegend = [
       <h1 class="font-display font-bold text-ink" :style="{ fontSize: '30px', lineHeight: '1.1' }">
         My schedule
       </h1>
-      <p class="text-muted" :style="{ fontSize: '14px', marginTop: '4px' }">My schedule</p>
     </header>
 
     <!-- Branch legend -->

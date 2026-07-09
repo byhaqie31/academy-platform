@@ -17,7 +17,6 @@ const plans = useLessonPlans().forEducator(self.id)
         <h1 class="font-display font-bold text-ink" :style="{ fontSize: '30px', lineHeight: '1.1' }">
           Lesson plans
         </h1>
-        <p class="text-muted" :style="{ fontSize: '14px', marginTop: '4px' }">Lesson plans</p>
       </div>
       <AppButton variant="dark">+ New attachment</AppButton>
     </header>

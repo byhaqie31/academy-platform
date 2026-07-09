@@ -23,7 +23,6 @@ const run = payroll.runFor(self.id, 'Jun 2026')
         <h1 class="font-display font-bold text-ink" :style="{ fontSize: '30px', lineHeight: '1.1' }">
           Earnings
         </h1>
-        <p class="text-muted" :style="{ fontSize: '14px', marginTop: '4px' }">My earnings</p>
       </div>
       <AppButton variant="outline">⬇ Download payslip</AppButton>
     </header>

@@ -18,7 +18,7 @@ const studentCount = computed(() => myClasses.reduce((t, c) => t + c.roster.leng
     <header class="flex items-end justify-between gap-3.5 flex-wrap">
       <div>
         <h1 class="font-display font-bold text-ink" style="font-size: 28px; line-height: 1.1">
-          Classes & students
+          Classes and students
           <span class="text-faint font-semibold" style="font-size: 18px">/ My classes</span>
         </h1>
         <p class="text-muted" style="font-size: 13.5px; font-weight: 600; margin-top: 4px">
