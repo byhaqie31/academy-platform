@@ -33,15 +33,15 @@ export const WEEK_LABELS = [
 ]
 
 const subjects: Subject[] = [
-  { name: 'Matematik', short: 'Mat', icon: '📐', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Konsep kira-kira kukuh & teknik menjawab pantas.', level: 'Tahun 1 to SPM' },
-  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Karangan, tatabahasa & pemahaman cemerlang.', level: 'Tahun 1 to SPM' },
+  { name: 'Matematik', short: 'Mat', icon: '📐', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM' },
+  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM' },
   { name: 'Bahasa Inggeris', short: 'BI', icon: '🔤', tone: 'blue', stage: ['rendah', 'mr', 'ma'], desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM' },
-  { name: 'Sains', short: 'Sn', icon: '🔬', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Eksperimen seronok & fakta mudah diingat.', level: 'Tahun 1 to SPM' },
-  { name: 'Sejarah', short: 'Sej', icon: '📜', tone: 'amber', stage: ['mr', 'ma'], desc: 'Teknik hafalan & nota ringkas berstruktur.', level: 'Menengah' },
-  { name: 'Geografi', short: 'Geo', icon: '🌏', tone: 'orange', stage: ['mr'], desc: 'Peta, iklim & kemahiran geografi praktikal.', level: 'Menengah' },
-  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak dengan penuh sabar.', level: 'Tahun 1 to SPM' },
-  { name: 'STEM', short: 'STEM', icon: '🤖', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotik, koding & sains gunaan yang seronok.', level: 'Sekolah Rendah' },
-  { name: 'TVET', short: 'TVET', icon: '🎨', tone: 'rose', stage: ['ma'], desc: 'Kemahiran teknikal & vokasional praktikal.', level: 'Menengah Atas' },
+  { name: 'Sains', short: 'Sn', icon: '🔬', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM' },
+  { name: 'Sejarah', short: 'Sej', icon: '📜', tone: 'amber', stage: ['mr', 'ma'], desc: 'Memory techniques & neat, structured notes.', level: 'Menengah' },
+  { name: 'Geografi', short: 'Geo', icon: '🌏', tone: 'orange', stage: ['mr'], desc: 'Maps, climate & practical geography skills.', level: 'Menengah' },
+  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM' },
+  { name: 'STEM', short: 'STEM', icon: '🤖', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotics, coding & fun applied science.', level: 'Sekolah Rendah' },
+  { name: 'TVET', short: 'TVET', icon: '🎨', tone: 'rose', stage: ['ma'], desc: 'Practical technical & vocational skills.', level: 'Menengah Atas' },
 ]
 
 // The marketing landing grid mixes subjects with programme tiles, kept verbatim.
@@ -180,8 +180,8 @@ const enquiries: Enquiry[] = [
 ]
 
 const feedback: Feedback[] = [
-  { id: 'fb0', studentId: 's0', classId: 'c0', note: 'Adam menunjukkan peningkatan dalam topik pecahan.', date: '24 Jun 2026' },
-  { id: 'fb1', studentId: 's3', classId: 'c3', note: 'Diya perlu lebih latihan janjang sebelum SPM.', date: '23 Jun 2026' },
+  { id: 'fb0', studentId: 's0', classId: 'c0', note: 'Adam shows strong progress in fractions.', date: '24 Jun 2026' },
+  { id: 'fb1', studentId: 's3', classId: 'c3', note: 'Diya needs more practice with sequences before SPM.', date: '23 Jun 2026' },
 ]
 
 // The dashboard "today" agenda (curated cross-tutor snapshot).

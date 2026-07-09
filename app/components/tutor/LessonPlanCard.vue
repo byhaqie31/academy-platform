@@ -38,7 +38,7 @@ defineProps<{ plan: LessonPlan }>()
       {{ plan.topic }}
     </div>
     <div class="text-muted" :style="{ fontSize: '12px', marginTop: '6px' }">
-      Rujukan KPM: {{ plan.ref }}
+      KPM reference: {{ plan.ref }}
     </div>
 
     <!-- Attached material chip, or a full-width dashed attach button. -->
@@ -73,7 +73,7 @@ defineProps<{ plan: LessonPlan }>()
         border: '1.5px dashed var(--color-dashed)',
       }"
     >
-      + Lampirkan bahan
+      + Attach material
     </button>
   </article>
 </template>
