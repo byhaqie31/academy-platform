@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SectionHeading from '~/components/ui/SectionHeading.vue'
 
-// pure presentation content from the prototype "Cara Daftar" section
+// pure presentation content from the prototype "How to register" section
 const steps = [
   { num: 1, title: 'Register interest', desc: 'Fill in a short form in under 3 minutes.', tile: '#8B6CF0' },
   { num: 2, title: 'We reach out', desc: 'Our team WhatsApps you to confirm the details.', tile: '#FF7AA8' },
