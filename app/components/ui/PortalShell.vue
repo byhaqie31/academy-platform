@@ -74,14 +74,11 @@ const activeItem = computed(
           :class="isActive(item.to) ? '' : 'hover:bg-[var(--color-bg-app)]'"
         >
           <span class="w-5 text-center" style="font-size: 16px">{{ item.icon }}</span>
-          <span class="min-w-0">
-            <span
-              class="block font-bold leading-tight"
-              :style="{ fontSize: '13.5px', color: isActive(item.to) ? 'var(--color-brand-deep)' : 'var(--color-ink-soft)' }"
-            >
-              {{ item.en }}
-            </span>
-            <span class="block font-semibold text-faintest" style="font-size: 10px">{{ item.ms }}</span>
+          <span
+            class="block min-w-0 font-bold leading-tight"
+            :style="{ fontSize: '13.5px', color: isActive(item.to) ? 'var(--color-brand-deep)' : 'var(--color-ink-soft)' }"
+          >
+            {{ item.label }}
           </span>
         </NuxtLink>
       </nav>
@@ -130,7 +127,7 @@ const activeItem = computed(
             color: isActive(item.to) ? '#fff' : 'var(--color-ink-soft)',
           }"
         >
-          {{ item.icon }} {{ item.en }}
+          {{ item.icon }} {{ item.label }}
         </NuxtLink>
       </div>
     </div>
@@ -142,7 +139,7 @@ const activeItem = computed(
         :style="{ borderBottom: '1px solid var(--color-border)', padding: '14px 30px' }"
       >
         <h1 class="font-display font-semibold text-ink" style="font-size: 16px">
-          {{ activeItem?.en }}
+          {{ activeItem?.label }}
         </h1>
         <div
           class="ml-auto flex items-center gap-2"
