@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      htmlAttrs: { lang: 'ms' },
+      htmlAttrs: { lang: 'en' },
       title: 'Hz Academy',
       meta: [
         { charset: 'utf-8' },
