@@ -76,14 +76,14 @@ const guardians: Guardian[] = [
 ]
 
 const students: Student[] = [
-  { id: 's0', name: 'Adam Haziq', first: 'Adam', level: 'Tahun 4', branchId: 'kw', subjects: ['Matematik', 'Sains', 'Bahasa Inggeris'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g0', attendancePct: 92, school: 'SK Kota Warisan' },
-  { id: 's1', name: 'Nur Iman', first: 'Iman', level: 'Tingkatan 2', branchId: 'sk', subjects: ['Bahasa Melayu', 'Bahasa Inggeris'], enrol: 'Aktif', pay: 'Pending', guardianId: 'g1', attendancePct: 88, school: 'SMK Kajang' },
-  { id: 's2', name: 'Wong Jia Xin', first: 'Jia Xin', level: 'Tahun 6', branchId: 'ix', subjects: ['Matematik', 'Sains'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g2', attendancePct: 95, school: 'SJKC Taman Ixora' },
-  { id: 's3', name: 'Diya Suresh', first: 'Diya', level: 'Tingkatan 5', branchId: 'pk', subjects: ['Matematik', 'Sains', 'Sejarah'], enrol: 'Aktif', pay: 'Overdue', guardianId: 'g3', attendancePct: 78, school: 'SMK Pekan' },
-  { id: 's4', name: 'Aiman Farah', first: 'Aiman', level: 'Tingkatan 1', branchId: 'kw', subjects: ['Sains', 'Sejarah', 'Geografi'], enrol: 'Percubaan', pay: 'Pending', guardianId: 'g4', attendancePct: 84, school: 'SMK Kota Warisan' },
-  { id: 's5', name: 'Sofea Hafiz', first: 'Sofea', level: 'Tahun 3', branchId: 'sk', subjects: ['Matematik', 'Bahasa Inggeris'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g5', attendancePct: 93, school: 'SK Kajang' },
-  { id: 's6', name: 'Tan Wei Jie', first: 'Wei Jie', level: 'Tingkatan 4', branchId: 'ix', subjects: ['Matematik', 'STEM'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g6', attendancePct: 96, school: 'SMK Taman Ixora' },
-  { id: 's7', name: 'Hariz Danial', first: 'Hariz', level: 'Tahun 5', branchId: 'pk', subjects: ['Bahasa Melayu', 'Geografi'], enrol: 'Tidak aktif', pay: 'Pending', guardianId: 'g7', attendancePct: 71, school: 'SK Pekan' },
+  { id: 's0', name: 'Adam Haziq', first: 'Adam', level: 'Tahun 4', branchId: 'kw', subjects: ['Matematik', 'Sains', 'Bahasa Inggeris'], enrol: 'Active', pay: 'Paid', guardianId: 'g0', attendancePct: 92, school: 'SK Kota Warisan' },
+  { id: 's1', name: 'Nur Iman', first: 'Iman', level: 'Tingkatan 2', branchId: 'sk', subjects: ['Bahasa Melayu', 'Bahasa Inggeris'], enrol: 'Active', pay: 'Pending', guardianId: 'g1', attendancePct: 88, school: 'SMK Kajang' },
+  { id: 's2', name: 'Wong Jia Xin', first: 'Jia Xin', level: 'Tahun 6', branchId: 'ix', subjects: ['Matematik', 'Sains'], enrol: 'Active', pay: 'Paid', guardianId: 'g2', attendancePct: 95, school: 'SJKC Taman Ixora' },
+  { id: 's3', name: 'Diya Suresh', first: 'Diya', level: 'Tingkatan 5', branchId: 'pk', subjects: ['Matematik', 'Sains', 'Sejarah'], enrol: 'Active', pay: 'Overdue', guardianId: 'g3', attendancePct: 78, school: 'SMK Pekan' },
+  { id: 's4', name: 'Aiman Farah', first: 'Aiman', level: 'Tingkatan 1', branchId: 'kw', subjects: ['Sains', 'Sejarah', 'Geografi'], enrol: 'Trial', pay: 'Pending', guardianId: 'g4', attendancePct: 84, school: 'SMK Kota Warisan' },
+  { id: 's5', name: 'Sofea Hafiz', first: 'Sofea', level: 'Tahun 3', branchId: 'sk', subjects: ['Matematik', 'Bahasa Inggeris'], enrol: 'Active', pay: 'Paid', guardianId: 'g5', attendancePct: 93, school: 'SK Kajang' },
+  { id: 's6', name: 'Tan Wei Jie', first: 'Wei Jie', level: 'Tingkatan 4', branchId: 'ix', subjects: ['Matematik', 'STEM'], enrol: 'Active', pay: 'Paid', guardianId: 'g6', attendancePct: 96, school: 'SMK Taman Ixora' },
+  { id: 's7', name: 'Hariz Danial', first: 'Hariz', level: 'Tahun 5', branchId: 'pk', subjects: ['Bahasa Melayu', 'Geografi'], enrol: 'Inactive', pay: 'Pending', guardianId: 'g7', attendancePct: 71, school: 'SK Pekan' },
 ]
 
 const educators: Educator[] = [

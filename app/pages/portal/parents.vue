@@ -169,7 +169,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
                   {{ student.level }} · {{ student.school }}
                 </div>
               </div>
-              <StatusPill tone="green" :label="'● ' + 'Student ' + student.enrol" />
+              <StatusPill tone="green" :label="'● ' + student.enrol + ' student'" />
             </div>
 
             <div

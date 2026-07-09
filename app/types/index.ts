@@ -36,7 +36,7 @@ export interface Guardian {
   studentIds: string[]
 }
 
-export type EnrolStatus = 'Aktif' | 'Percubaan' | 'Tidak aktif'
+export type EnrolStatus = 'Active' | 'Trial' | 'Inactive'
 export type PayStatus = 'Paid' | 'Pending' | 'Overdue'
 
 export interface Student {
