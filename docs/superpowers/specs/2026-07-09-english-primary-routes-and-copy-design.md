@@ -114,6 +114,10 @@ external inbound links. Add per-route redirects only if a stale link has been sh
 
 ### 3. Translation policy
 
+The dividing line is **product language versus domain fact**, not component versus store. Some chrome
+is stored as data, and some data is a proper noun. Judge each string by what it *is*, not where it
+lives.
+
 Translate:
 
 - UI chrome, headings, buttons, labels, empty states
@@ -122,12 +126,25 @@ Translate:
 - `academy.tagline` — "Dipercayai sejak 2014" to "Trusted since 2014"
 - `academy.branches[].hours` — "Isnin–Sabtu · 3PM–9PM" to "Mon to Sat · 3PM–9PM"
 - Day names, per section 1
+- **Month names** in `useGreeting.ts` — `Januari`, `Februari`, `Mac`, `Mei`, `Jun`, `Julai`,
+  `Ogos`, `Oktober`, `Disember` to `January` … `December`
+- **Greeting strings** in `useGreeting.ts` — `Selamat pagi` / `Selamat petang` / `Selamat malam` to
+  `Good morning` / `Good afternoon` / `Good evening`, preserving the existing hour boundaries
+  (05:00–11:59, 12:00–18:59, 19:00–04:59)
+- **`Class.ampm`** — store values `'PETANG'` and `'MALAM'` become `'AFTERNOON'` and `'EVENING'`.
+  These sit in the store but are rendered raw as uppercase labels by
+  `app/components/admin/ScheduleToday.vue:30` and `app/components/tutor/TodayClasses.vue:42`. They
+  are chrome, despite living in seed data. Applies to `AgendaRow.ampm` too.
 
 Leave untouched:
 
 - **Subject names.** `Matematik`, `Sains`, `Sejarah`, `Bahasa Melayu`, `Bahasa Inggeris`,
   `Geografi`, `Pendidikan Islam`. These are KPM curriculum proper nouns. An English-speaking centre
   owner in Malaysia still teaches "Bahasa Melayu." Translating them makes the seed data wrong.
+- **School levels.** `Tahun 1`–`Tahun 6`, `Tingkatan 1`–`Tingkatan 5`. KPM curriculum terms. Do not
+  render these as "Year 4" or "Form 3", however tempting.
+- **Class names.** `Tahun 4 Bestari`, `Tingkatan 3 Cerdik`, `SPM Intensif`. Authentic Malaysian
+  class naming; part of what makes the demo credible.
 - Person names, including honorifics (`Puan Aisyah`, `Encik`, `Cik`, `Tuan`)
 - Branch names (`Kota Warisan, Sepang`, `Taman Sutera, Kajang`)
 - IC numbers, RM amounts, school names
@@ -176,9 +193,24 @@ Evidence required before claiming completion:
    - The greeting names the correct weekday.
 4. `/portal/parents`, `/register`, and every renamed tutor route load. No dead links from the
    marketing footer or login dropdown.
-5. `grep -rniE 'ibubapa|ibu bapa|daftar|jadual|kelas|pendapatan|rancangan' app/` returns nothing.
-   Scope the grep to `app/`; this spec and the historical plan docs legitimately contain the old
-   names.
+5. Both greps return nothing. Scope them to `app/` and `config/`; this spec and the historical plan
+   docs legitimately contain the old names.
+
+   Routes and nav:
+
+   ```
+   grep -rniE 'ibubapa|ibu bapa|daftar|jadual|kelas|pendapatan|rancangan' app/ config/
+   ```
+
+   Residual Malay chrome:
+
+   ```
+   grep -rnE 'Isnin|Selasa|Rabu|Khamis|Jumaat|Sabtu|Ahad|PETANG|MALAM|Selamat|Januari|Februari|Mac|Mei|Julai|Ogos|Oktober|Disember' app/ config/
+   ```
+
+   The second grep is case-sensitive on purpose. `Mac` and `Mei` are Malay months, but a
+   case-insensitive match would also hit `mac`, and `Mei Yi` is a student name that must survive.
+   Inspect any hit rather than deleting it blindly.
 
 ## Delivery
 
