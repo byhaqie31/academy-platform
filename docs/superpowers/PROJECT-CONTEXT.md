@@ -267,7 +267,7 @@ Ad-conversion page, Meta Pixel intent, WhatsApp funnel. Motion via GSAP/Lenis he
 - `pages/index.vue` — landing page (Hero, TrustStrip, SubjectGrid, HowToSteps,
   RecommendedSolution, BranchGrid, Testimonials, CtaBanner, SiteHeader/Footer, FloatingWhatsApp)
 - `pages/daftar.vue` — 6-step **RegistrationWizard** (student registration flow)
-- `pages/portal/ibubapa.vue` — **parent/student teaser** (one screen only; everything else stubbed)
+- `pages/portal/parents.vue` — **parent/student teaser** (one screen only; everything else stubbed)
 
 ### Admin portal (the meeting-winner) — `layouts/admin.vue`, nav = 9 items
 - **HERO:** Dashboard `pages/admin/index.vue`; Students+guardians `students/index.vue` and detail
@@ -285,7 +285,7 @@ Ad-conversion page, Meta Pixel intent, WhatsApp funnel. Motion via GSAP/Lenis he
   drive the RM 1,710 payroll invariant.
 
 ### Parent / student portal
-**One teaser screen only** (`portal/ibubapa.vue`). Everything else stubbed. Do not build out until
+**One teaser screen only** (`portal/parents.vue`). Everything else stubbed. Do not build out until
 admin and tutor close a deal.
 
 Reusable stub pattern lives in `app/components/admin/StubScreen.vue` (titled, styled "sedang
@@ -384,7 +384,7 @@ portal.
 | Marketing page | `app/pages/index.vue` |
 | Admin routes | `app/pages/admin/*` |
 | Tutor routes | `app/pages/tutor/*` |
-| Parent teaser | `app/pages/portal/ibubapa.vue` |
+| Parent teaser | `app/pages/portal/parents.vue` |
 | Registration wizard | `app/pages/daftar.vue` + `components/marketing/RegistrationWizard.vue` |
 | Rulebook for Claude | `CLAUDE.md` |
 | Design spec / plan | `docs/superpowers/specs/…` and `…/plans/…` |
