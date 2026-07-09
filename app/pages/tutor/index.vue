@@ -17,13 +17,13 @@ const { self, estimatedPay } = useEducators()
 const me = self()
 const myClasses = useClasses().forEducator(me.id)
 
-// Derived, never hand-entered: today is Isnin in this curated snapshot.
-const todayCount = computed(() => myClasses.filter((c) => c.day === 'Isnin').length)
+// Derived, never hand-entered: today is Mon in this curated snapshot.
+const todayCount = computed(() => myClasses.filter((c) => c.day === 'Mon').length)
 const studentCount = computed(() => myClasses.reduce((t, c) => t + c.roster.length, 0))
 const weekHours = computed(() => myClasses.reduce((t, c) => t + c.dur, 0))
 
 const stats = computed(() => [
-  { icon: '📚', tone: 'pink' as const, value: String(todayCount.value), label: 'Classes today', sub: 'Kelas hari ini', delta: 'Isnin' },
+  { icon: '📚', tone: 'pink' as const, value: String(todayCount.value), label: 'Classes today', sub: 'Kelas hari ini', delta: 'Mon' },
   { icon: '⏱️', tone: 'blue' as const, value: `${weekHours.value} j`, label: 'Hours this week', sub: 'Jam minggu ini', delta: '4 kelas' },
   { icon: '🧑‍🎓', tone: 'violet' as const, value: String(studentCount.value), label: 'My students', sub: 'Pelajar saya', delta: 'aktif' },
   { icon: '💰', tone: 'green' as const, value: formatRM(estimatedPay('hafiz')), label: 'Est. salary', sub: 'Anggaran gaji Jun', delta: '38 j' },

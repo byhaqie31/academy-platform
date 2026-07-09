@@ -10,11 +10,11 @@ import { toneFg } from '~/utils/tone'
 const self = useEducators().self()
 const { branchShort } = useAcademy()
 
-// Today is Isnin in the prototype's curated snapshot.
+// Today is Mon in the prototype's curated snapshot.
 const rows = computed(() =>
   useClasses()
     .forEducator(self.id)
-    .filter((c) => c.day === 'Isnin'),
+    .filter((c) => c.day === 'Mon'),
 )
 </script>
 

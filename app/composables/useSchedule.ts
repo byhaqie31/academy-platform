@@ -1,7 +1,7 @@
 import { useAcademyStore } from '~/stores/academy'
-import type { Class, ScheduleCell, SubjectTone } from '~/types'
+import type { Class, Day, ScheduleCell, SubjectTone } from '~/types'
 
-const DAYS = ['Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu']
+const DAYS: Day[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const ADMIN_TIMES = ['3:00 PM', '4:30 PM', '6:00 PM', '7:30 PM']
 
 function timeToMinutes(t: string): number {

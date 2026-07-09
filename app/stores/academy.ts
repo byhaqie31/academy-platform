@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { academy } from '~~/config/academy'
 import type {
+  Ampm,
   AttendanceStatus,
   Class,
   Educator,
@@ -96,22 +97,22 @@ const educators: Educator[] = [
 
 // Hafiz's four classes (the tutor persona). Rosters drive attendance.
 const hafizClasses: Class[] = [
-  { id: 'c0', subject: 'Matematik', cls: 'Tahun 4 Bestari', level: 'Tahun 4', day: 'Isnin', time: '3:00 PM', ampm: 'PETANG', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 94, roster: ['Adam Haziq', 'Sofea Hafiz', 'Aiman Farah', 'Lim Kai Xin', 'Nurin Sofia', 'Daniel Tan'] },
-  { id: 'c1', subject: 'Matematik', cls: 'Tingkatan 3 Cerdik', level: 'Tingkatan 3', day: 'Isnin', time: '5:00 PM', ampm: 'PETANG', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 89, roster: ['Iqbal Danish', 'Hana Zara', 'Arif Haikal', 'Mei Yi', 'Tasha Lina', 'Zarif Aiman'] },
-  { id: 'c2', subject: 'Matematik', cls: 'Tahun 1 Jujur', level: 'Tahun 1', day: 'Khamis', time: '4:30 PM', ampm: 'PETANG', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 96, roster: ['Qaseh Nadia', 'Luqman Hakim', 'Elya Sofea', 'Danish Iman', 'Yusuf Adam'] },
-  { id: 'c3', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', level: 'Tingkatan 5', day: 'Selasa', time: '7:30 PM', ampm: 'MALAM', branchId: 'sk', dur: 2, educatorId: 'hafiz', attendPct: 91, roster: ['Diya Suresh', 'Wong Jia Xin', 'Faris Adam', 'Nadia Rahim', 'Kavin Raj', 'Lee Wen Hao', 'Sara Iman'] },
+  { id: 'c0', subject: 'Matematik', cls: 'Tahun 4 Bestari', level: 'Tahun 4', day: 'Mon', time: '3:00 PM', ampm: 'AFTERNOON', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 94, roster: ['Adam Haziq', 'Sofea Hafiz', 'Aiman Farah', 'Lim Kai Xin', 'Nurin Sofia', 'Daniel Tan'] },
+  { id: 'c1', subject: 'Matematik', cls: 'Tingkatan 3 Cerdik', level: 'Tingkatan 3', day: 'Mon', time: '5:00 PM', ampm: 'AFTERNOON', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 89, roster: ['Iqbal Danish', 'Hana Zara', 'Arif Haikal', 'Mei Yi', 'Tasha Lina', 'Zarif Aiman'] },
+  { id: 'c2', subject: 'Matematik', cls: 'Tahun 1 Jujur', level: 'Tahun 1', day: 'Thu', time: '4:30 PM', ampm: 'AFTERNOON', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 96, roster: ['Qaseh Nadia', 'Luqman Hakim', 'Elya Sofea', 'Danish Iman', 'Yusuf Adam'] },
+  { id: 'c3', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', level: 'Tingkatan 5', day: 'Tue', time: '7:30 PM', ampm: 'EVENING', branchId: 'sk', dur: 2, educatorId: 'hafiz', attendPct: 91, roster: ['Diya Suresh', 'Wong Jia Xin', 'Faris Adam', 'Nadia Rahim', 'Kavin Raj', 'Lee Wen Hao', 'Sara Iman'] },
 ]
 
 // Other educators' classes, placed to reproduce the admin weekly grid.
 const otherClasses: Class[] = [
-  { id: 'cc0', subject: 'Sains', cls: 'Tingkatan 2 Amanah', level: 'Tingkatan 2', day: 'Rabu', time: '3:00 PM', ampm: 'PETANG', branchId: 'sk', dur: 1.5, educatorId: 'meiling', attendPct: 90, roster: [] },
-  { id: 'cc1', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', level: 'Tahun 6', day: 'Sabtu', time: '3:00 PM', ampm: 'PETANG', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 87, roster: [] },
-  { id: 'cc2', subject: 'Bahasa Melayu', cls: 'Tingkatan 3 Murni', level: 'Tingkatan 3', day: 'Selasa', time: '4:30 PM', ampm: 'PETANG', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 92, roster: [] },
-  { id: 'cc3', subject: 'Sains', cls: 'Tahun 4 Amanah', level: 'Tahun 4', day: 'Sabtu', time: '4:30 PM', ampm: 'PETANG', branchId: 'ix', dur: 1.5, educatorId: 'meiling', attendPct: 88, roster: [] },
-  { id: 'cc4', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', level: 'Tingkatan 4', day: 'Isnin', time: '6:00 PM', ampm: 'MALAM', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 85, roster: [] },
-  { id: 'cc5', subject: 'Geografi', cls: 'Tingkatan 2 Setia', level: 'Tingkatan 2', day: 'Rabu', time: '6:00 PM', ampm: 'MALAM', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 83, roster: [] },
-  { id: 'cc6', subject: 'Bahasa Inggeris', cls: 'SPM Intensif', level: 'Tingkatan 5', day: 'Khamis', time: '7:30 PM', ampm: 'MALAM', branchId: 'ix', dur: 2, educatorId: 'suresh', attendPct: 89, roster: [] },
-  { id: 'cc7', subject: 'Sains', cls: 'Tingkatan 5 Cerdas', level: 'Tingkatan 5', day: 'Jumaat', time: '7:30 PM', ampm: 'MALAM', branchId: 'sk', dur: 2, educatorId: 'meiling', attendPct: 90, roster: [] },
+  { id: 'cc0', subject: 'Sains', cls: 'Tingkatan 2 Amanah', level: 'Tingkatan 2', day: 'Wed', time: '3:00 PM', ampm: 'AFTERNOON', branchId: 'sk', dur: 1.5, educatorId: 'meiling', attendPct: 90, roster: [] },
+  { id: 'cc1', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', level: 'Tahun 6', day: 'Sat', time: '3:00 PM', ampm: 'AFTERNOON', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 87, roster: [] },
+  { id: 'cc2', subject: 'Bahasa Melayu', cls: 'Tingkatan 3 Murni', level: 'Tingkatan 3', day: 'Tue', time: '4:30 PM', ampm: 'AFTERNOON', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 92, roster: [] },
+  { id: 'cc3', subject: 'Sains', cls: 'Tahun 4 Amanah', level: 'Tahun 4', day: 'Sat', time: '4:30 PM', ampm: 'AFTERNOON', branchId: 'ix', dur: 1.5, educatorId: 'meiling', attendPct: 88, roster: [] },
+  { id: 'cc4', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', level: 'Tingkatan 4', day: 'Mon', time: '6:00 PM', ampm: 'EVENING', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 85, roster: [] },
+  { id: 'cc5', subject: 'Geografi', cls: 'Tingkatan 2 Setia', level: 'Tingkatan 2', day: 'Wed', time: '6:00 PM', ampm: 'EVENING', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 83, roster: [] },
+  { id: 'cc6', subject: 'Bahasa Inggeris', cls: 'SPM Intensif', level: 'Tingkatan 5', day: 'Thu', time: '7:30 PM', ampm: 'EVENING', branchId: 'ix', dur: 2, educatorId: 'suresh', attendPct: 89, roster: [] },
+  { id: 'cc7', subject: 'Sains', cls: 'Tingkatan 5 Cerdas', level: 'Tingkatan 5', day: 'Fri', time: '7:30 PM', ampm: 'EVENING', branchId: 'sk', dur: 2, educatorId: 'meiling', attendPct: 90, roster: [] },
 ]
 
 const classes: Class[] = [...hafizClasses, ...otherClasses]
@@ -186,18 +187,18 @@ const feedback: Feedback[] = [
 // The dashboard "today" agenda (curated cross-tutor snapshot).
 export interface AgendaRow {
   time: string
-  ampm: string
+  ampm: Ampm
   subject: string
   cls: string
   educatorId: string
   branchId: string
 }
 const agenda: AgendaRow[] = [
-  { time: '3:00', ampm: 'PETANG', subject: 'Matematik', cls: 'Tahun 4 Bestari', educatorId: 'hafiz', branchId: 'kw' },
-  { time: '4:30', ampm: 'PETANG', subject: 'Sains', cls: 'Tingkatan 2 Amanah', educatorId: 'meiling', branchId: 'sk' },
-  { time: '5:00', ampm: 'PETANG', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', educatorId: 'suresh', branchId: 'ix' },
-  { time: '7:00', ampm: 'MALAM', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', educatorId: 'aishah', branchId: 'pk' },
-  { time: '7:30', ampm: 'MALAM', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', educatorId: 'hafiz', branchId: 'kw' },
+  { time: '3:00', ampm: 'AFTERNOON', subject: 'Matematik', cls: 'Tahun 4 Bestari', educatorId: 'hafiz', branchId: 'kw' },
+  { time: '4:30', ampm: 'AFTERNOON', subject: 'Sains', cls: 'Tingkatan 2 Amanah', educatorId: 'meiling', branchId: 'sk' },
+  { time: '5:00', ampm: 'AFTERNOON', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', educatorId: 'suresh', branchId: 'ix' },
+  { time: '7:00', ampm: 'EVENING', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', educatorId: 'aishah', branchId: 'pk' },
+  { time: '7:30', ampm: 'EVENING', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', educatorId: 'hafiz', branchId: 'kw' },
 ]
 
 // Syllabus bank: stage -> [subject, classes, materials].
