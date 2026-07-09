@@ -721,11 +721,14 @@ Replace the bilingual bullet. It now contradicts the code, and a future session 
 ```markdown
 ## Copy conventions
 - Sentence case everywhere. No title case headers.
-- No em dashes. Use commas, periods, or "to" for ranges.
+- No em dashes. Use commas, periods, or "to" for word ranges ("Mon to Sat").
+  En-dashes are allowed as numeric range glyphs ("3PM–9PM").
 - English throughout the UI. No Malay sub-labels.
 - Malaysian domain data stays in Malay: subject names, school levels (Tahun, Tingkatan), class names, person names, branch names.
 - Warm, non-corporate tone. Tagline: "Simple, effortless, human."
 ```
+
+The en-dash carve-out is not cosmetic. Without it, `CLAUDE.md` forbids the exact `hours` string Task 5 writes, and every future session reading `CLAUDE.md` would "fix" it back.
 
 - [ ] **Step 2: Update `PROJECT-CONTEXT.md`**
 
