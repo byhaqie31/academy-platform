@@ -12,9 +12,9 @@ const { branches } = useAcademy()
   <section class="mx-auto" style="max-width: 1180px; padding: 64px 22px 20px">
     <SectionHeading
       center
-      label="Cawangan"
-      title="Pilih cawangan terdekat"
-      sub="Empat lokasi mesra keluarga, sentiasa berkembang untuk anak anda."
+      label="Branches"
+      title="Choose your nearest branch"
+      sub="Four family-friendly locations, always growing for your child."
       class="mb-10"
     />
 
@@ -56,7 +56,7 @@ const { branches } = useAcademy()
               class="font-bold uppercase"
               style="font-size: 10px; letter-spacing: 0.05em; color: var(--color-muted); margin-bottom: 1px"
             >
-              Waktu operasi
+              Operating hours
             </div>
             <div class="font-bold text-ink" style="font-size: 12.5px; line-height: 1.25">{{ b.hours }}</div>
           </div>
@@ -64,8 +64,8 @@ const { branches } = useAcademy()
 
         <!-- Stacked call to action: primary above, directions below. -->
         <div class="flex flex-col" style="gap: 9px; margin-top: auto">
-          <AppButton to="/register" variant="dark" block>Lihat kelas</AppButton>
-          <AppButton to="/register" variant="outline" block>Dapatkan arah</AppButton>
+          <AppButton to="/register" variant="dark" block>View classes</AppButton>
+          <AppButton to="/register" variant="outline" block>Get directions</AppButton>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { computed } from 'vue'
 const props = defineProps<{ step: number; total: number }>()
 
 // One short label per step, matching the prototype stepper.
-const labels = ['Ibu bapa', 'Pelajar', 'Cawangan', 'Subjek', 'Jadual', 'Hantar']
+const labels = ['Parent', 'Student', 'Branch', 'Subjects', 'Schedule', 'Submit']
 
 const items = computed(() =>
   Array.from({ length: props.total }, (_, i) => {
@@ -62,7 +62,7 @@ function dotStyle(it: { done: boolean; active: boolean }) {
       class="font-semibold"
       :style="{ fontSize: '12.5px', color: 'var(--color-muted)', marginTop: '4px' }"
     >
-      Langkah {{ step + 1 }} daripada {{ total }}
+      Step {{ step + 1 }} of {{ total }}
     </div>
   </div>
 </template>

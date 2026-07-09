@@ -17,34 +17,34 @@ const { academy, branches } = useAcademy()
           <span class="font-display font-bold" style="font-size: 18px">{{ academy.name }}</span>
         </div>
         <p style="font-size: 13px; color: #9ca0be; line-height: 1.6; max-width: 260px">
-          Belajar dengan yakin. Tuisyen dipercayai sejak {{ academy.since }} dengan
-          {{ branches.length }} cawangan di seluruh Selangor & Pahang.
+          Learn with confidence. Trusted tuition since {{ academy.since }}, with
+          {{ branches.length }} branches across Selangor and Pahang.
         </p>
       </div>
 
       <div>
-        <div class="font-display font-semibold mb-4" style="font-size: 14px">Akademi</div>
+        <div class="font-display font-semibold mb-4" style="font-size: 14px">Academy</div>
         <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
-          <NuxtLink to="/" class="no-underline" style="color: #9ca0be">Utama</NuxtLink>
-          <NuxtLink to="/register" class="no-underline" style="color: #9ca0be">Daftar Minat</NuxtLink>
-          <NuxtLink to="/portal/parents" class="no-underline" style="color: #9ca0be">Portal Ibu Bapa</NuxtLink>
+          <NuxtLink to="/" class="no-underline" style="color: #9ca0be">Home</NuxtLink>
+          <NuxtLink to="/register" class="no-underline" style="color: #9ca0be">Register interest</NuxtLink>
+          <NuxtLink to="/portal/parents" class="no-underline" style="color: #9ca0be">Parent portal</NuxtLink>
         </div>
       </div>
 
       <div>
-        <div class="font-display font-semibold mb-4" style="font-size: 14px">Cawangan</div>
+        <div class="font-display font-semibold mb-4" style="font-size: 14px">Branches</div>
         <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
           <span v-for="b in branches" :key="b.id">{{ b.name }}</span>
         </div>
       </div>
 
       <div>
-        <div class="font-display font-semibold mb-4" style="font-size: 14px">Hubungi</div>
+        <div class="font-display font-semibold mb-4" style="font-size: 14px">Contact</div>
         <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
           <span>📞 {{ academy.contact.phone }}</span>
           <span>✉️ {{ academy.contact.email }}</span>
           <a :href="`https://wa.me/${academy.contact.whatsapp}`" class="no-underline" style="color: #34c77b">
-            💬 WhatsApp Kami
+            💬 WhatsApp us
           </a>
         </div>
       </div>
@@ -54,7 +54,7 @@ const { academy, branches } = useAcademy()
       style="max-width: 1180px; padding: 18px 22px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #6f739a"
     >
       <span>© {{ academy.since }} to 2026 {{ academy.name }}. {{ academy.motto }}</span>
-      <span>Privasi · Terma</span>
+      <span>Privacy · Terms</span>
     </div>
   </footer>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // pure presentation copy, kept in-component
-const bullets = ['Guru bertauliah', 'Kelas kumpulan kecil', 'Nota & latihan tersusun', 'Laporan kemajuan']
+const bullets = ['Certified tutors', 'Small group classes', 'Organised notes & practice', 'Progress reports']
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const bullets = ['Guru bertauliah', 'Kelas kumpulan kecil', 'Nota & latihan ters
       style="max-width: 1180px; padding: 18px 22px; gap: 14px 34px"
     >
       <span class="font-display font-semibold" style="font-size: 14px; opacity: 0.7">
-        Ilmu hari ini, kecemerlangan esok ✨
+        Knowledge today, excellence tomorrow ✨
       </span>
       <span :style="{ width: '5px', height: '5px', borderRadius: '50%', background: '#FF7AA8' }" />
       <span v-for="b in bullets" :key="b" style="font-size: 13.5px; font-weight: 600; opacity: 0.85">{{ b }}</span>

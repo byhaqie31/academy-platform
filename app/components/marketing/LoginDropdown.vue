@@ -22,9 +22,9 @@ onBeforeUnmount(() => {
 })
 
 const portals = [
-  { to: '/admin', icon: '🛠️', tone: 'violet' as const, title: 'Dashboard Admin', sub: 'Urus pelajar, kelas & bayaran' },
-  { to: '/tutor', icon: '🧑‍🏫', tone: 'pink' as const, title: 'Portal Tutor', sub: 'Jadual, kehadiran & gaji' },
-  { to: '/portal/parents', icon: '👨‍👩‍👧', tone: 'green' as const, title: 'Portal Ibu Bapa', sub: 'Lihat info & jadual anak' },
+  { to: '/admin', icon: '🛠️', tone: 'violet' as const, title: 'Admin dashboard', sub: 'Manage students, classes, and payments' },
+  { to: '/tutor', icon: '🧑‍🏫', tone: 'pink' as const, title: 'Tutor portal', sub: 'Schedule, attendance, and pay' },
+  { to: '/portal/parents', icon: '👨‍👩‍👧', tone: 'green' as const, title: 'Parent portal', sub: "See your child's info and schedule" },
 ]
 </script>
 
@@ -36,7 +36,7 @@ const portals = [
       :aria-expanded="open"
       @click="open = !open"
     >
-      🔐 Log Masuk
+      🔐 Log in
       <span :style="{ transition: 'transform .2s', transform: open ? 'rotate(180deg)' : 'none' }">▾</span>
     </button>
 
@@ -49,7 +49,7 @@ const portals = [
         class="uppercase font-bold text-faintest px-3 py-2"
         style="font-size: 10px; letter-spacing: 0.08em"
       >
-        Pilih portal
+        Choose a portal
       </div>
       <NuxtLink
         v-for="p in portals"
