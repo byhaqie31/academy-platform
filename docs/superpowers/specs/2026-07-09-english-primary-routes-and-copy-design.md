@@ -182,4 +182,12 @@ Evidence required before claiming completion:
 
 ## Delivery
 
-Branch, commit, push, open a PR.
+Work happens on `feat/english-primary-routes-and-copy`, then merges to `main` via PR.
+
+The pre-pivot Hz Academy state is preserved as the annotated tag `hz-academy-malay-demo`
+(`c54e44f`), not as a long-lived branch. A tag cannot accidentally receive commits, it self-documents
+why that state matters, and it keeps one tree to maintain. `git checkout hz-academy-malay-demo`
+restores the Malay-primary demo in full; `git show hz-academy-malay-demo:<path>` recovers any
+individual Malay string.
+
+`main` moves forward to the English-primary product. Push the tag with the PR.
