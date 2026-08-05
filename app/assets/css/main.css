@@ -58,6 +58,12 @@
   --color-tile-rose: oklch(96.83% 0.0174 355.1); /* #FFF0F5 */
   --color-fg-rose: oklch(58.53% 0.1587 354.15); /* #C04C82 */
 
+  /* Footer / dark-band text (tints of --color-ink-footer, same violet-ink family) */
+  --color-footer-text: oklch(85.11% 0.0639 292.96); /* #CFC7F5 */
+  --color-footer-muted: oklch(78.58% 0.0509 291.55); /* #B9B4D8 */
+  --color-footer-faint: oklch(65.04% 0.0652 289.66); /* #8E89B5 */
+  --color-footer-line: oklch(36.33% 0.0873 276.91); /* #33386B */
+
   /* Status (semantic; some share subject hues) */
   --color-tile-overdue: oklch(94.79% 0.0302 351.51); /* #FFE6F0 */
   --color-fg-overdue: oklch(59.66% 0.1818 24.51); /* #D64545 */
@@ -101,6 +107,12 @@
   --pink-gradient: linear-gradient(160deg, #ff7aa8 0%, #e0457e 100%);
   --green-gradient: linear-gradient(135deg, #34c77b, #25d366);
   --hero-dark-gradient: linear-gradient(135deg, #1e2348 0%, #2d2f66 55%, #3a2f70 100%);
+  /* Marketing headline gradient: the two accent stops already used by --brand-gradient. */
+  --headline-gradient: linear-gradient(90deg, #ff7aa8 0%, #ffa94d 100%);
+  /* Marketing hero wash. Built from existing tile tokens so it introduces no new hue. */
+  --hero-wash:
+    radial-gradient(900px 460px at 82% -10%, var(--color-tile-violet) 0, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(700px 420px at 3% 15%, var(--color-tile-rose) 0, rgba(255, 255, 255, 0) 58%);
   --dashed-stripes: repeating-linear-gradient(
     45deg,
     #fbf8ff,

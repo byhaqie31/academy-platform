@@ -19,11 +19,24 @@ watch(() => route.path, () => (open.value = false))
 const tabEl = ref<HTMLButtonElement | null>(null)
 const closeEl = ref<HTMLButtonElement | null>(null)
 
-// Two suppressions, both deliberate:
-//   /demo   you are already looking at the directory
-//   /lp/*   a landing page has exactly one exit. That rule does not get an
-//           exception for our own convenience.
-const hidden = computed(() => route.path === '/demo' || route.path.startsWith('/lp/'))
+/**
+ * Whether the switcher rides on the campaign landing pages too.
+ *
+ * `true` because this is a prototype walkthrough: being stranded on a landing
+ * page with no way back is worse, for a client clicking around, than the rule
+ * it bends.
+ *
+ * ⚠️ BEFORE ANY CAMPAIGN PAGE TAKES REAL AD TRAFFIC, SET THIS TO FALSE.
+ * A landing page must have exactly one exit. This switcher is a second one, and
+ * it is the kind of thing that quietly ships and costs conversions. One flag,
+ * one edit, deliberately not scattered through the template.
+ */
+const SHOW_ON_LANDING = true
+
+// /demo is always suppressed: you are already looking at the directory.
+const hidden = computed(
+  () => route.path === '/demo' || (!SHOW_ON_LANDING && route.path.startsWith('/lp/')),
+)
 
 const isCurrent = (to?: string) => to === route.path
 
@@ -150,8 +163,28 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
               </div>
 
               <template v-for="entry in group.entries" :key="entry.label">
+                <!-- Documents are files, so a plain anchor in a new tab: a
+                     router link to a PDF navigates to a 404. -->
+                <a
+                  v-if="entry.to && entry.external"
+                  :href="entry.to"
+                  target="_blank"
+                  rel="noopener"
+                  class="flex items-center gap-2 no-underline"
+                  :style="{
+                    padding: '8px 11px',
+                    borderRadius: '10px',
+                    fontSize: '13.5px',
+                    fontWeight: '600',
+                    color: 'var(--color-text-body)',
+                  }"
+                >
+                  {{ entry.label }}
+                  <span class="ml-auto shrink-0 text-faint" style="font-size: 11px" aria-hidden="true">↗</span>
+                </a>
+
                 <NuxtLink
-                  v-if="entry.to"
+                  v-else-if="entry.to"
                   :to="entry.to"
                   class="flex items-center gap-2 no-underline"
                   :style="{

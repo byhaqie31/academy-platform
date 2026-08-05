@@ -1,14 +1,18 @@
 // Registration form shape + the gates that let the wizard advance.
+//
+// Five steps since phase 1: guardian, student, subjects, schedule, review.
+// The branch step was removed when Hz went fully online.
 export interface RegForm {
   parentName: string
   phone: string
   studentName: string
   level: string
   school: string
-  branches: string[]
   subjects: string[]
   slots: string[]
   notes: string
+  /** Unticked by default. Consent has to be a deliberate act. */
+  consent: boolean
 }
 
 export function emptyRegForm(): RegForm {
@@ -18,10 +22,10 @@ export function emptyRegForm(): RegForm {
     studentName: '',
     level: '',
     school: '',
-    branches: [],
     subjects: [],
     slots: [],
     notes: '',
+    consent: false,
   }
 }
 
@@ -39,12 +43,16 @@ export function canAdvance(step: number, form: Partial<RegForm>): boolean {
     case 1:
       return !!form.studentName?.trim() && !!form.level?.trim()
     case 2:
-      return (form.branches?.length ?? 0) >= 1
-    case 3:
       return (form.subjects?.length ?? 0) >= 1
-    case 4:
+    case 3:
       return (form.slots?.length ?? 0) >= 1
     default:
       return true
   }
+}
+
+/** The review step submits only once consent is given. */
+export function canSubmit(form: Partial<RegForm>): boolean {
+  return canAdvance(0, form) && canAdvance(1, form) && canAdvance(2, form)
+    && canAdvance(3, form) && form.consent === true
 }

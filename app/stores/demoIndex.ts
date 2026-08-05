@@ -25,7 +25,9 @@ const demoIntro = {
     { icon: '🚪', title: 'Open walks you through it', body: 'You see exactly what a parent, an admin or a tutor would see.' },
     { icon: '🗂️', title: 'See screens lists what is inside', body: 'Every screen in that module, with a line on what each one proves.' },
     { icon: '⬆️', title: 'The Screens tab follows you', body: 'It sits at the bottom of every page and brings you back here.' },
-    { icon: '🚧', title: 'Planned means quoted, not built', body: 'Those screens are specified and priced, and come in the next phase.' },
+    // Hidden once nothing is planned, so the page never explains a state it is
+    // not in.
+    { icon: '🚧', title: 'Planned means quoted, not built', body: 'Those screens are specified and priced, and come in the next phase.', whenPlanned: true },
   ],
 }
 
@@ -81,17 +83,39 @@ const archiveEntries: DemoEntry[] = [
   { label: 'v1 marketing site', to: '/v1', note: demoNotes['/v1']!, status: 'live' },
 ]
 
-// Campaign pages. Specified and designed, not built yet.
+// Client-facing paperwork, served from public/documents/. The discovery
+// questionnaire is deliberately not published here: it is a working document
+// for the engagement, not something to hand over in a walkthrough.
+const documentEntries: DemoEntry[] = [
+  {
+    label: 'Proposal',
+    to: '/documents/proposal.pdf',
+    note: 'The full proposal: scope, approach and what each phase delivers',
+    status: 'live',
+    external: true,
+  },
+  {
+    label: 'Quotation',
+    to: '/documents/quotation.pdf',
+    note: 'Three options with pricing, and the signature block',
+    status: 'live',
+    external: true,
+  },
+]
+
+// Campaign pages. One template, one data file each.
 const landingEntries: DemoEntry[] = [
   {
     label: 'Matematik SPM, Ogos',
+    to: '/lp/ma-matematik-august',
     note: 'Menengah Atas campaign. No navigation, one exit, one repeated call to action',
-    status: 'planned',
+    status: 'live',
   },
   {
     label: 'Matematik sekolah rendah, Ogos',
+    to: '/lp/rendah-matematik-august',
     note: 'Same template, different audience. A third campaign is a data file, not a build',
-    status: 'planned',
+    status: 'live',
   },
 ]
 
@@ -111,10 +135,11 @@ const demoGroups: DemoGroup[] = [
   {
     key: 'landing',
     title: 'Campaign landing pages',
-    badge: 'next',
     note: 'One page per ad campaign, driven by a data file. No navigation by design.',
     icon: '🎯',
     tone: 'pink',
+    primaryTo: '/lp/ma-matematik-august',
+    primaryLabel: 'Open the SPM campaign',
     entries: landingEntries,
   },
   {
@@ -158,6 +183,17 @@ const demoGroups: DemoGroup[] = [
     primaryTo: '/v1',
     primaryLabel: 'Open the v1 site',
     entries: archiveEntries,
+  },
+  {
+    key: 'documents',
+    title: 'Documents',
+    note: 'The proposal and the quotation, if you want them to hand.',
+    icon: '📄',
+    tone: 'rose',
+    primaryTo: '/documents/proposal.pdf',
+    primaryLabel: 'Open the proposal',
+    primaryExternal: true,
+    entries: documentEntries,
   },
 ]
 

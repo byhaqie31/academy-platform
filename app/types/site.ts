@@ -131,6 +131,8 @@ export interface DemoEntry {
   /** one line saying what this screen proves. */
   note: string
   status: DemoStatus
+  /** a file rather than a route: opens in a new tab, not via the router. */
+  external?: boolean
 }
 
 export interface DemoGroup {
@@ -144,6 +146,8 @@ export interface DemoGroup {
   /** where "open this module" goes. Absent when the module is not built yet. */
   primaryTo?: string
   primaryLabel?: string
+  /** primaryTo is a file rather than a route. */
+  primaryExternal?: boolean
   entries: DemoEntry[]
 }
 

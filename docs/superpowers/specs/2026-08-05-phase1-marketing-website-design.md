@@ -10,8 +10,9 @@ Replace the single-page marketing site with a six-page Malay website, freeze the
 a browsable v1 archive, split the portal login out of the site header, and drop the registration
 wizard from six steps to five.
 
-The landing page system (`/lp/[slug]`, `useLandings()`, campaign data files) and the `/demo`
-directory page are **spec B**. They are not built here.
+The landing page system (`/lp/[slug]`, `useLandings()`, campaign data files) is **spec B**, now
+built: see `2026-08-05-phase1-landing-pages-design.md`. The `/demo` directory was pulled forward
+into this spec's work.
 
 ## Decisions taken during brainstorming
 

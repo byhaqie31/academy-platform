@@ -1,60 +1,136 @@
 <script setup lang="ts">
 import LogoMark from '~/components/ui/LogoMark.vue'
 import { useAcademy } from '~/composables/useAcademy'
+import { useSiteNav } from '~/composables/useSiteNav'
 
-const { academy, branches } = useAcademy()
+// The portal link lives here and only here. Keeping it out of the header is the
+// point: phase 1 is a marketing build, the portal is a phase 2 product that
+// happens to have a door on the same domain.
+const { academy } = useAcademy()
+const { cta, brandSub, footerColumns, footerBlurb, portalLink } = useSiteNav()
+
+// Contact links are built from config/academy.ts, never seeded twice.
+const wa = `https://wa.me/${academy.contact.whatsapp}`
+const mail = `mailto:${academy.contact.email}`
 </script>
 
 <template>
-  <footer :style="{ background: 'var(--color-ink-footer)' }" class="text-white">
+  <footer
+    :style="{ background: 'var(--color-ink-footer)', color: 'var(--color-footer-text)' }"
+  >
     <div
-      class="mx-auto grid gap-10 md:grid-cols-4"
-      style="max-width: 1180px; padding: 54px 22px 30px"
+      class="mx-auto grid gap-9 sm:grid-cols-2 lg:grid-cols-4"
+      style="max-width: 1120px; padding: 54px 22px 30px"
     >
       <div>
         <div class="flex items-center gap-3 mb-4">
-          <LogoMark :size="38" />
-          <span class="font-display font-bold" style="font-size: 18px">{{ academy.name }}</span>
+          <LogoMark :size="40" />
+          <span>
+            <span class="block font-display font-bold text-white" style="font-size: 18px">
+              {{ academy.name }}
+            </span>
+            <span
+              class="block font-bold"
+              :style="{
+                fontSize: '10px',
+                letterSpacing: '.16em',
+                textTransform: 'uppercase',
+                marginTop: '-2px',
+                color: 'var(--color-footer-faint)',
+              }"
+            >
+              {{ brandSub }}
+            </span>
+          </span>
         </div>
-        <p style="font-size: 13px; color: #9ca0be; line-height: 1.6; max-width: 260px">
-          Learn with confidence. Trusted tuition since {{ academy.since }}, with
-          {{ branches.length }} branches across Selangor and Pahang.
+        <p
+          :style="{ fontSize: '14.5px', lineHeight: '1.65', maxWidth: '26em', color: 'var(--color-footer-muted)' }"
+        >
+          {{ footerBlurb }}
         </p>
       </div>
 
-      <div>
-        <div class="font-display font-semibold mb-4" style="font-size: 14px">Academy</div>
-        <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
-          <NuxtLink to="/" class="no-underline" style="color: #9ca0be">Home</NuxtLink>
-          <NuxtLink to="/register" class="no-underline" style="color: #9ca0be">Register interest</NuxtLink>
-          <NuxtLink to="/portal/parents" class="no-underline" style="color: #9ca0be">Parent portal</NuxtLink>
+      <div v-for="col in footerColumns" :key="col.title">
+        <h2 class="font-display font-semibold text-white mb-4" style="font-size: 13px; letter-spacing: .1em; text-transform: uppercase">
+          {{ col.title }}
+        </h2>
+        <div class="flex flex-col gap-2.5">
+          <NuxtLink
+            v-for="link in col.links"
+            :key="link.to"
+            :to="link.to"
+            class="no-underline hover:text-white transition-colors"
+            :style="{ fontSize: '14.5px', color: 'var(--color-footer-muted)' }"
+          >
+            {{ link.label }}
+          </NuxtLink>
         </div>
       </div>
 
       <div>
-        <div class="font-display font-semibold mb-4" style="font-size: 14px">Branches</div>
-        <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
-          <span v-for="b in branches" :key="b.id">{{ b.name }}</span>
-        </div>
-      </div>
-
-      <div>
-        <div class="font-display font-semibold mb-4" style="font-size: 14px">Contact</div>
-        <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
-          <span>📞 {{ academy.contact.phone }}</span>
-          <span>✉️ {{ academy.contact.email }}</span>
-          <a :href="`https://wa.me/${academy.contact.whatsapp}`" class="no-underline" style="color: #34c77b">
-            💬 WhatsApp us
+        <h2 class="font-display font-semibold text-white mb-4" style="font-size: 13px; letter-spacing: .1em; text-transform: uppercase">
+          Hubungi
+        </h2>
+        <div class="flex flex-col gap-2.5">
+          <NuxtLink
+            :to="cta.to"
+            class="no-underline hover:text-white transition-colors"
+            :style="{ fontSize: '14.5px', color: 'var(--color-footer-muted)' }"
+          >
+            {{ cta.label }}
+          </NuxtLink>
+          <a
+            :href="wa"
+            class="no-underline hover:text-white transition-colors"
+            :style="{ fontSize: '14.5px', color: 'var(--color-footer-muted)' }"
+          >
+            WhatsApp
+          </a>
+          <a
+            :href="mail"
+            class="no-underline hover:text-white transition-colors"
+            :style="{ fontSize: '14.5px', color: 'var(--color-footer-muted)' }"
+          >
+            {{ academy.contact.email }}
           </a>
         </div>
       </div>
+
+      <div>
+        <h2 class="font-display font-semibold text-white mb-4" style="font-size: 13px; letter-spacing: .1em; text-transform: uppercase">
+          {{ portalLink.title }}
+        </h2>
+        <NuxtLink
+          :to="portalLink.to"
+          class="inline-flex items-center gap-2 no-underline hover:text-white transition-colors"
+          :style="{
+            fontSize: '13.5px',
+            padding: '8px 16px',
+            borderRadius: 'var(--radius-pill)',
+            border: '1px solid var(--color-footer-line)',
+            color: 'var(--color-footer-text)',
+          }"
+        >
+          {{ portalLink.label }} <span aria-hidden="true">→</span>
+        </NuxtLink>
+        <p :style="{ fontSize: '13px', marginTop: '12px', lineHeight: '1.6', color: 'var(--color-footer-faint)' }">
+          {{ portalLink.note }}
+        </p>
+      </div>
     </div>
+
     <div
       class="mx-auto flex flex-wrap items-center justify-between gap-3"
-      style="max-width: 1180px; padding: 18px 22px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #6f739a"
+      :style="{
+        maxWidth: '1120px',
+        padding: '18px 22px',
+        borderTop: '1px solid var(--color-footer-line)',
+        fontSize: '13px',
+        color: 'var(--color-footer-faint)',
+      }"
     >
       <span>© {{ academy.since }} to 2026 {{ academy.name }}. {{ academy.motto }}</span>
-      <span>Privacy · Terms</span>
+      <span>Privasi · Terma</span>
     </div>
   </footer>
 </template>

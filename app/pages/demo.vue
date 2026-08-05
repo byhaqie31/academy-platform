@@ -5,7 +5,7 @@ import IconTile from '~/components/ui/IconTile.vue'
 import AppButton from '~/components/ui/AppButton.vue'
 import { useAcademy } from '~/composables/useAcademy'
 import { useDemoIndex } from '~/composables/useDemoIndex'
-import type { DemoGroup } from '~/types'
+import type { DemoEntry, DemoGroup } from '~/types'
 
 // Two states, one page.
 //   grid     six module cards. What the client sees first, so the prototype
@@ -20,6 +20,11 @@ const expandedKey = ref<string | null>(null)
 const expanded = computed(() => groups.find((g) => g.key === expandedKey.value) ?? null)
 
 const title = computed(() => intro.titleTemplate.replace('{academy}', academy.name))
+
+// Tips flagged whenPlanned only make sense while something is still planned.
+const visibleTips = computed(() =>
+  intro.tips.filter((tip) => !tip.whenPlanned || plannedCount > 0),
+)
 
 // Motion, on a showcase surface only. CLAUDE.md keeps GSAP off the portals and
 // the rule holds: /demo is neither a dashboard nor a page a parent ever sees.
@@ -158,6 +163,17 @@ onBeforeUnmount(() => ctx?.revert())
 
 const NuxtLinkComponent = resolveComponent('NuxtLink')
 
+/**
+ * A route entry takes `to` (NuxtLink); a document entry takes `href` on a plain
+ * anchor. Passing `to` to an <a> renders a link that silently goes nowhere.
+ */
+function entryLink(entry: DemoEntry): Record<string, unknown> {
+  if (!entry.to) return {}
+  return entry.external
+    ? { href: entry.to, target: '_blank', rel: 'noopener' }
+    : { to: entry.to }
+}
+
 /** "7 screens", "1 screen", or "2 planned" when nothing in the module is built. */
 function countLabel(group: DemoGroup): string {
   const live = group.entries.filter((e) => e.status === 'live').length
@@ -172,7 +188,7 @@ useHead({
 </script>
 
 <template>
-  <div ref="wrapEl" class="mx-auto" style="max-width: 1100px; padding: 44px 22px 90px">
+  <div class="mx-auto" style="max-width: 1100px; padding: 44px 22px 90px">
     <header style="margin-bottom: 34px">
       <div class="flex items-center gap-3" style="margin-bottom: 24px">
         <LogoMark :size="40" />
@@ -211,6 +227,7 @@ useHead({
           }"
         >{{ liveCount }} screens live</span>
         <span
+          v-if="plannedCount > 0"
           class="font-bold"
           :style="{
             padding: '6px 14px',
@@ -234,7 +251,7 @@ useHead({
         v-if="!expanded"
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px 22px; margin: 0 0 30px"
       >
-        <div v-for="tip in intro.tips" :key="tip.title" class="flex items-start gap-2.5">
+        <div v-for="tip in visibleTips" :key="tip.title" class="flex items-start gap-2.5">
           <span aria-hidden="true" style="font-size: 15px; line-height: 1.45">{{ tip.icon }}</span>
           <div>
             <dt class="font-bold text-ink" style="font-size: 13.5px">{{ tip.title }}</dt>
@@ -295,7 +312,14 @@ useHead({
         </p>
 
         <div class="flex flex-wrap gap-2.5">
-          <AppButton v-if="group.primaryTo" :to="group.primaryTo" variant="gradient" size="sm" pill>
+          <AppButton
+            v-if="group.primaryTo"
+            :to="group.primaryTo"
+            :external="group.primaryExternal"
+            variant="gradient"
+            size="sm"
+            pill
+          >
             Open
           </AppButton>
           <AppButton variant="outline" size="sm" pill @click="setExpanded(group.key)">
@@ -380,6 +404,7 @@ useHead({
           <AppButton
             v-if="expanded.primaryTo"
             :to="expanded.primaryTo"
+            :external="expanded.primaryExternal"
             variant="gradient"
             size="sm"
             pill
@@ -391,10 +416,10 @@ useHead({
 
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px">
           <component
-            :is="entry.to ? NuxtLinkComponent : 'div'"
+            :is="entry.to ? (entry.external ? 'a' : NuxtLinkComponent) : 'div'"
             v-for="entry in expanded.entries"
             :key="entry.label"
-            :to="entry.to"
+            v-bind="entryLink(entry)"
             class="block no-underline"
             :style="{
               background: 'var(--color-surface)',

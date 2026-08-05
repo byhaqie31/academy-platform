@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import { academy } from '~~/config/academy'
+import { siteContent } from './siteContent'
+import { demoIndex } from './demoIndex'
 import type {
   Ampm,
   AttendanceStatus,
@@ -251,6 +253,10 @@ export const useAcademyStore = defineStore('academy', {
     subjectTutor,
     subjectSchedule,
     metrics,
+    // Public marketing website copy, seeded in siteContent.ts. Still one store.
+    ...siteContent,
+    // The internal /demo directory. Not linked from the public site.
+    ...demoIndex,
     weekStarts: [...WEEK_STARTS],
     weekLabels: [...WEEK_LABELS],
     /** id of the tutor whose portal we render (Cikgu Hafiz). */

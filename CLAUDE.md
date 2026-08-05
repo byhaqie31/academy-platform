@@ -38,8 +38,15 @@ Source palette (convert to OKLCH in `@theme`):
 - Sentence case everywhere. No title case headers.
 - No em dashes. Use commas, periods, or "to" for word ranges ("Mon to Sat").
   En-dashes are allowed as numeric range glyphs ("3PM–9PM").
-- English throughout the UI. No Malay sub-labels.
+- **Language split.** Malay for what a visitor reads on the public marketing surfaces
+  (`/`, `/subjects`, `/how-it-works`, `/tutors`, `/fees`, `/contact`, `/register`, `/portal/login`,
+  and the landing pages). English for the admin and tutor portals, which are product chrome.
+  No bilingual sub-labels anywhere: pick the language for the surface, not for the label.
+- **English for everything a developer touches**, on every surface: routes, filenames, component
+  names, types, composables, props, store keys, comments, tests. A Malay page is built out of
+  English identifiers.
 - Malaysian domain data stays in Malay: subject names, school levels (Tahun, Tingkatan), class names, person names, branch names.
+- `academy.motto` stays English; it is the product motto, not page copy.
 - Warm, non-corporate tone. Tagline: "Simple, effortless, human."
 
 ## Data model (the spine)

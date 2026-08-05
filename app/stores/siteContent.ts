@@ -159,7 +159,106 @@ const siteTestimonials: SiteTestimonial[] = [
     meta: 'Ibu kepada Wong Jia, Tingkatan 4',
     tone: 'blue',
   },
+  // Sekolah Rendah voices. A campaign picks the set that matches its audience:
+  // an SPM parent and a Tahun 4 parent are not reassured by the same thing.
+  {
+    id: 'aisyah-rendah',
+    quote: 'Anak saya umur sembilan tahun, saya ingat mesti tak boleh duduk diam. Rupanya sebab kelas kecil, cikgu panggil nama dia selalu.',
+    name: 'Puan Aisyah',
+    meta: 'Ibu kepada Adam, Tahun 4',
+    tone: 'violet',
+  },
+  {
+    id: 'rizal-rendah',
+    quote: 'Saya tengok rakaman kelas sekali, terus faham cara cikgu ajar. Senang nak bantu anak buat kerja rumah lepas tu.',
+    name: 'Encik Rizal',
+    meta: 'Bapa kepada Nur Iman, Tahun 5',
+    tone: 'pink',
+  },
+  {
+    id: 'meiling-rendah',
+    quote: 'Dulu anak saya tak berani angkat tangan di sekolah. Dalam kelas lapan orang ni dia mula bertanya sendiri.',
+    name: 'Puan Mei Ling',
+    meta: 'Ibu kepada Wong Jia, Tahun 6',
+    tone: 'blue',
+  },
 ]
+
+/* Landing pages ---------------------------------------------------- */
+
+// Chrome shared by every campaign. Anything that differs per campaign lives in
+// the campaign's own file under app/content/landings/, never here.
+const landingTrustClaims: string[] = [
+  'Cikgu bertauliah',
+  'Kumpulan kecil 8 pelajar',
+  'Rakaman setiap kelas',
+  'Laporan kehadiran mingguan',
+]
+
+/** Hero headline numbers, keyed so a campaign names the three it wants. */
+const landingStats: Record<string, { value: string, label: string }> = {
+  since2014: { value: '2014', label: 'Dipercayai sejak' },
+  students: { value: '700+', label: 'Pelajar aktif' },
+  classSize: { value: '8', label: 'Pelajar satu kelas' },
+  recorded: { value: '100%', label: 'Kelas dirakam' },
+}
+
+const landingHowSection: SiteSection = {
+  eyebrow: 'Cara ia berjalan',
+  title: 'Empat langkah, tiada yang rumit',
+  lede: 'Kelas online masih baharu untuk ramai ibu bapa. Ini apa yang berlaku selepas anda daftar.',
+}
+
+const landingHowSteps: SiteStep[] = [
+  { n: '1', title: 'Daftar minat', body: 'Isi nama dan nombor telefon. Ambil masa kurang satu minit.', tone: 'violet' },
+  { n: '2', title: 'Kami WhatsApp anda', body: 'Dalam masa 15 minit pada waktu pejabat. Kami sahkan tahap anak dan jadual yang sesuai.', tone: 'blue' },
+  { n: '3', title: 'Kelas percubaan percuma', body: 'Satu kelas penuh bersama kumpulan sebenar. Tiada bayaran, tiada komitmen.', tone: 'green' },
+  { n: '4', title: 'Mula kelas mingguan', body: 'Kalau anak anda selesa, barulah kita teruskan. Kalau tidak, tiada apa yang perlu dibayar.', tone: 'pink' },
+]
+
+const landingIncludedSection: SiteSection = {
+  eyebrow: 'Apa yang termasuk',
+  title: 'Semua sekali, satu yuran',
+  lede:
+    'Tiada bayaran tersembunyi untuk nota, rakaman atau laporan. Yuran bulanan meliputi semuanya '
+    + 'di sebelah.',
+}
+
+const landingOfferCopy = {
+  title: 'Cuba satu kelas dahulu, percuma',
+  body:
+    'Kami tidak minta anda percaya begitu sahaja. Sertai satu kelas penuh bersama kumpulan '
+    + 'sebenar, lihat sendiri cara cikgu mengajar, kemudian baru buat keputusan.',
+  freeLabel: 'Percuma',
+  freeNote: 'untuk kelas pertama',
+  ctaLabel: 'Daftar sekarang',
+  fineprint: 'Tiada kad kredit diperlukan',
+}
+
+const landingFinalSection: SiteSection = {
+  eyebrow: 'Langkah terakhir',
+  title: 'Daftar kelas percubaan percuma',
+  lede: 'Isi ruangan di bawah, atau terus WhatsApp kami kalau lebih selesa berbual.',
+}
+
+const landingFormLabels = {
+  name: 'Nama ibu atau bapa',
+  namePlaceholder: 'Cth: Puan Aisyah',
+  phone: 'No. telefon (WhatsApp)',
+  phonePlaceholder: 'Cth: 012-345 6789',
+  level: 'Tahap anak',
+  or: 'atau',
+  whatsapp: 'WhatsApp kami terus',
+  reply: 'Kami biasanya membalas dalam masa 15 minit pada waktu pejabat.',
+  sentTitle: 'Terima kasih',
+  sentBody: 'Kami akan WhatsApp anda, biasanya dalam 15 minit pada waktu pejabat.',
+  incomplete: 'Isi nama, nombor telefon dan tandakan kebenaran untuk menghantar.',
+}
+
+const landingFooterNote = 'Tuisyen online, dipercayai sejak 2014.'
+
+/** Seat counter wording, e.g. "13 daripada 18 penuh". */
+const landingSeatsLabel = 'Tempat ambilan'
 
 const siteHomeCta = {
   title: 'Cuba satu kelas dahulu, percuma',
@@ -328,6 +427,20 @@ const faqs: Record<string, Faq> = {
       'Telefon pintar sudah memadai. Tablet atau komputer riba lebih selesa untuk menulis nota, ' +
       'tetapi bukan satu kewajipan.',
   },
+  // Sekolah Rendah campaigns face a different worry entirely: not "is it
+  // effective" but "can a nine year old do this at all".
+  'can-young-child-learn-online': {
+    q: 'Anak saya baru sepuluh tahun. Boleh ke dia belajar online?',
+    a:
+      'Boleh. Kelas hanya satu jam, kumpulan kecil, dan cikgu panggil nama setiap pelajar supaya ' +
+      'tiada siapa duduk diam sepanjang kelas. Pada minggu pertama kami bantu anak anda masuk kelas.',
+  },
+  'must-parent-sit-in': {
+    q: 'Perlu saya duduk sebelah anak sepanjang kelas?',
+    a:
+      'Tidak perlu. Kebanyakan ibu bapa hanya bantu buka kelas pada minggu pertama. Selepas itu ' +
+      'anak anda boleh masuk sendiri, dan anda terima laporan kehadiran setiap minggu.',
+  },
 }
 
 /** Named sets. The website uses 'website'; spec B's campaigns pick their own keys. */
@@ -470,4 +583,14 @@ export const siteContent = {
   siteWhatsAppMessage,
   siteEnquiryLevels,
   siteConsentLabel,
+  landingTrustClaims,
+  landingStats,
+  landingHowSection,
+  landingHowSteps,
+  landingIncludedSection,
+  landingOfferCopy,
+  landingFinalSection,
+  landingFormLabels,
+  landingFooterNote,
+  landingSeatsLabel,
 }
