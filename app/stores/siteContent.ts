@@ -99,7 +99,7 @@ const siteHero: SiteHero = {
 
 const siteTrustClaims: string[] = [
   'Kelas langsung',
-  'Maksimum 8 pelajar',
+  'Maksimum 12 pelajar',
   'Rakaman setiap kelas',
   'Laporan kehadiran',
 ]
@@ -342,7 +342,7 @@ const siteHowPoints: SitePoint[] = [
       'Ini bukan video rakaman lama.',
   },
   {
-    lead: 'Kumpulan kecil, maksimum 8 pelajar.',
+    lead: 'Kumpulan kecil, Maksimum 12 pelajar.',
     body: 'Cukup kecil untuk cikgu tahu siapa yang diam dan siapa yang faham.',
   },
   {
@@ -493,7 +493,7 @@ const feeTiers: FeeTier[] = [
 
 const feeIncludes: string[] = [
   '4 kelas langsung sebulan',
-  'Kumpulan maksimum 8 pelajar',
+  'Kumpulan Maksimum 12 pelajar',
   'Rakaman setiap kelas',
   'Nota dan latihan mengikut KPM',
   'Laporan kehadiran mingguan',

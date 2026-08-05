@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import AppButton from '~/components/ui/AppButton.vue'
 import { useDemoIndex } from '~/composables/useDemoIndex'
+import { toneTile } from '~/utils/tone'
+import type { DemoGroup } from '~/types'
 
 // Floating screen switcher for the prototype walkthrough. It rides on top of
 // whatever page you are on, so the client can jump between the website, the
@@ -41,9 +43,66 @@ const hidden = computed(
 const isCurrent = (to?: string) => to === route.path
 
 /** The module the current page belongs to, so the sheet opens oriented. */
-const currentGroup = computed(
-  () => groups.find((g) => g.entries.some((e) => e.to === route.path))?.title ?? null,
+const currentGroupKey = computed(
+  () => groups.find((g) => g.entries.some((e) => e.to === route.path))?.key ?? null,
 )
+const currentGroup = computed(
+  () => groups.find((g) => g.key === currentGroupKey.value)?.title ?? null,
+)
+
+/* Colour and collapse ----------------------------------------------- *
+ * Wide: every group is open, and each carries a tinted heading bar in its
+ * own tone so the eye can find a module without reading.
+ *
+ * The tint is on the bar, not the text. Measured first: of the eight tone
+ * foregrounds, only blue, violet and indigo clear 4.5:1 for small text;
+ * pink, green and orange fail on both tile and white. So the colour is
+ * carried by a surface and the label stays ink. Never a side stripe.
+ *
+ * Narrow: the sheet is one long scroll, so groups collapse to their bars
+ * and only the module you are currently in opens.                       */
+const NARROW = '(max-width: 719px)'
+const isNarrow = ref(false)
+let mq: MediaQueryList | null = null
+const onMq = (e: MediaQueryListEvent) => (isNarrow.value = e.matches)
+
+onMounted(() => {
+  mq = window.matchMedia(NARROW)
+  isNarrow.value = mq.matches
+  mq.addEventListener('change', onMq)
+})
+
+const openGroups = ref(new Set<string>())
+
+/** Wide screens ignore the collapse state entirely. */
+const isGroupOpen = (key: string) => !isNarrow.value || openGroups.value.has(key)
+
+function toggleGroup(key: string) {
+  const next = new Set(openGroups.value)
+  if (next.has(key)) next.delete(key)
+  else next.add(key)
+  openGroups.value = next
+}
+
+const liveCountOf = (key: string) =>
+  groups.find((g) => g.key === key)?.entries.filter((e) => e.status === 'live').length ?? 0
+
+// The heading is a link to the module's own landing screen, so the title is a
+// shortcut and not just a label. Resolved once: resolveComponent is only valid
+// during setup or render, not inside a helper called per group.
+const NuxtLinkComponent = resolveComponent('NuxtLink')
+
+function groupLinkTag(group: DemoGroup) {
+  if (!group.primaryTo) return 'span'
+  return group.primaryExternal ? 'a' : NuxtLinkComponent
+}
+
+function groupLinkAttrs(group: DemoGroup): Record<string, unknown> {
+  if (!group.primaryTo) return {}
+  return group.primaryExternal
+    ? { href: group.primaryTo, target: '_blank', rel: 'noopener' }
+    : { to: group.primaryTo }
+}
 
 // Escape has to be bound on the document. Bound to the overlay it never fires,
 // because the overlay is not focusable and keydown goes to the focused element.
@@ -53,6 +112,10 @@ function onKeydown(e: KeyboardEvent) {
 
 watch(open, async (isOpen) => {
   if (isOpen) {
+    // Open oriented: on a narrow screen only the module you are standing in
+    // is expanded, so the sheet starts as a short list of seven bars rather
+    // than a 29-item scroll.
+    openGroups.value = new Set(currentGroupKey.value ? [currentGroupKey.value] : [])
     document.addEventListener('keydown', onKeydown)
     await nextTick()
     closeEl.value?.focus()
@@ -63,7 +126,10 @@ watch(open, async (isOpen) => {
   }
 })
 
-onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', onKeydown)
+  mq?.removeEventListener('change', onMq)
+})
 </script>
 
 <template>
@@ -154,13 +220,56 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
             class="grow overflow-y-auto demo-sheet-cols"
             style="padding: 16px 22px 24px"
           >
-            <section v-for="group in groups" :key="group.key" style="break-inside: avoid; margin-bottom: 14px">
+            <section v-for="group in groups" :key="group.key">
+              <!-- The tinted bar IS the group's colour. Two targets, not one:
+                   the title goes to the module's own screen, the chevron
+                   collapses the list. Making the whole bar do both meant you
+                   could not reach a module without opening its list first. -->
               <div
-                class="font-bold text-muted"
-                style="font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; padding: 4px 4px 7px"
+                class="flex items-center gap-1"
+                :style="{
+                  padding: '2px',
+                  borderRadius: '10px',
+                  background: toneTile(group.tone),
+                  marginBottom: '6px',
+                }"
               >
-                {{ group.icon }} {{ group.title }}
+                <component
+                  :is="groupLinkTag(group)"
+                  v-bind="groupLinkAttrs(group)"
+                  class="flex items-center gap-2 grow min-w-0 no-underline font-bold text-ink"
+                  :style="{
+                    fontSize: '12.5px',
+                    padding: '6px 8px',
+                    borderRadius: '8px',
+                    cursor: group.primaryTo ? 'pointer' : 'default',
+                  }"
+                >
+                  <span aria-hidden="true" style="font-size: 12px">{{ group.icon }}</span>
+                  <span class="min-w-0 truncate">{{ group.title }}</span>
+                  <span
+                    v-if="group.primaryTo"
+                    aria-hidden="true"
+                    class="ml-auto shrink-0"
+                    style="font-size: 11px"
+                  >{{ group.primaryExternal ? '↗' : '→' }}</span>
+                </component>
+
+                <button
+                  v-if="isNarrow"
+                  type="button"
+                  class="shrink-0 font-bold text-ink"
+                  :aria-expanded="isGroupOpen(group.key)"
+                  :aria-controls="`demo-group-${group.key}`"
+                  :aria-label="`${isGroupOpen(group.key) ? 'Collapse' : 'Expand'} ${group.title}`"
+                  style="font-size: 10px; padding: 7px 9px; border-radius: 8px"
+                  @click="toggleGroup(group.key)"
+                >
+                  {{ liveCountOf(group.key) }} {{ isGroupOpen(group.key) ? '▾' : '▸' }}
+                </button>
               </div>
+
+              <div v-if="isGroupOpen(group.key)" :id="`demo-group-${group.key}`">
 
               <template v-for="entry in group.entries" :key="entry.label">
                 <!-- Documents are files, so a plain anchor in a new tab: a
@@ -192,8 +301,10 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                     borderRadius: '10px',
                     fontSize: '13.5px',
                     fontWeight: isCurrent(entry.to) ? '800' : '600',
-                    background: isCurrent(entry.to) ? 'var(--color-tile-violet)' : 'transparent',
-                    color: isCurrent(entry.to) ? 'var(--color-fg-violet)' : 'var(--color-text-body)',
+                    // Tinted in its own module's tone, with ink text: the tone
+                    // foregrounds do not all clear 4.5:1 at this size.
+                    background: isCurrent(entry.to) ? toneTile(group.tone) : 'transparent',
+                    color: isCurrent(entry.to) ? 'var(--color-ink)' : 'var(--color-text-body)',
                   }"
                 >
                   {{ entry.label }}
@@ -224,6 +335,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                   >planned</span>
                 </div>
               </template>
+              </div>
             </section>
           </div>
         </aside>
@@ -233,9 +345,14 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
 </template>
 
 <style scoped>
+/* Grid, not CSS columns. Column flow packed sections wherever they fit, so a
+   short module ended up stacked under a tall one and the eye had to hunt for
+   where a group started. One section, one column, full width of that column. */
 .demo-sheet-cols {
-  columns: 210px;
-  column-gap: 22px;
+  display: grid;
+  gap: var(--space-md) 18px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  align-content: start;
 }
 
 .demo-sheet-enter-active .demo-sheet-panel,

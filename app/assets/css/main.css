@@ -7,7 +7,19 @@
  * Warm, friendly education brand: rounded pills, rounded cards,
  * soft shadows, 1px tint borders.
  * ------------------------------------------------------------------ */
-@theme {
+/* `static` is load-bearing, not decoration.
+ *
+ * Tailwind v4 only emits theme variables it can see referenced in markup. Every
+ * tone in this file is looked up at RUNTIME instead: `toneTile(tone)` builds
+ * `var(--color-tile-${tone})` from seeded data, which no build-time scan can
+ * follow. Without `static`, Tailwind dropped --color-tile-indigo, -orange and
+ * --color-fg-indigo, -rose, -orange from the bundle, so STEM, TVET, Geografi
+ * and Cikgu Daniel rendered with transparent tiles across the portals.
+ *
+ * The failure is invisible in review: `var()` on a missing token falls back to
+ * nothing and the element just looks pale. Do not remove `static` unless every
+ * tone lookup becomes a literal class name. */
+@theme static {
   /* Fonts (resolved to @font-face by @nuxt/fonts via the family names). */
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-display: "Fredoka", system-ui, sans-serif;
@@ -78,6 +90,17 @@
   --color-hero-2: oklch(33.51% 0.0946 278.42); /* #2D2F66 */
   --color-hero-3: oklch(35.44% 0.108 287.33); /* #3A2F70 */
   --color-star: oklch(84.34% 0.1625 82.7); /* #FFC02E */
+
+  /* Spacing scale (4pt base). Values come from this set, never ad hoc.
+     8pt alone is too coarse: 12 and 20 get needed constantly. */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
 
   /* Radius scale (favours pills + rounded cards) */
   --radius-pill: 999px;

@@ -148,6 +148,8 @@ export interface DemoGroup {
   primaryLabel?: string
   /** primaryTo is a file rather than a route. */
   primaryExternal?: boolean
+  /** The lead module: spans two columns so the grid is not seven equal tiles. */
+  feature?: boolean
   entries: DemoEntry[]
 }
 

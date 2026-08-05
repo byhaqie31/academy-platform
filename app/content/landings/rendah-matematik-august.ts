@@ -42,7 +42,7 @@ export const campaign: LandingCampaign = {
 
   included: [
     '4 kelas langsung sebulan, 1 jam',
-    'Kumpulan maksimum 8 pelajar',
+    'Kumpulan Maksimum 12 pelajar',
     'Rakaman setiap kelas',
     'Lembaran kerja KSSR',
     'Latihan mingguan bertanda',

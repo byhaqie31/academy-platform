@@ -130,6 +130,7 @@ const demoGroups: DemoGroup[] = [
     tone: 'violet',
     primaryTo: '/',
     primaryLabel: 'Open the website',
+    feature: true,
     entries: marketingEntries,
   },
   {
