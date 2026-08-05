@@ -7,7 +7,19 @@
  * Warm, friendly education brand: rounded pills, rounded cards,
  * soft shadows, 1px tint borders.
  * ------------------------------------------------------------------ */
-@theme {
+/* `static` is load-bearing, not decoration.
+ *
+ * Tailwind v4 only emits theme variables it can see referenced in markup. Every
+ * tone in this file is looked up at RUNTIME instead: `toneTile(tone)` builds
+ * `var(--color-tile-${tone})` from seeded data, which no build-time scan can
+ * follow. Without `static`, Tailwind dropped --color-tile-indigo, -orange and
+ * --color-fg-indigo, -rose, -orange from the bundle, so STEM, TVET, Geografi
+ * and Cikgu Daniel rendered with transparent tiles across the portals.
+ *
+ * The failure is invisible in review: `var()` on a missing token falls back to
+ * nothing and the element just looks pale. Do not remove `static` unless every
+ * tone lookup becomes a literal class name. */
+@theme static {
   /* Fonts (resolved to @font-face by @nuxt/fonts via the family names). */
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-display: "Fredoka", system-ui, sans-serif;
@@ -58,6 +70,12 @@
   --color-tile-rose: oklch(96.83% 0.0174 355.1); /* #FFF0F5 */
   --color-fg-rose: oklch(58.53% 0.1587 354.15); /* #C04C82 */
 
+  /* Footer / dark-band text (tints of --color-ink-footer, same violet-ink family) */
+  --color-footer-text: oklch(85.11% 0.0639 292.96); /* #CFC7F5 */
+  --color-footer-muted: oklch(78.58% 0.0509 291.55); /* #B9B4D8 */
+  --color-footer-faint: oklch(65.04% 0.0652 289.66); /* #8E89B5 */
+  --color-footer-line: oklch(36.33% 0.0873 276.91); /* #33386B */
+
   /* Status (semantic; some share subject hues) */
   --color-tile-overdue: oklch(94.79% 0.0302 351.51); /* #FFE6F0 */
   --color-fg-overdue: oklch(59.66% 0.1818 24.51); /* #D64545 */
@@ -72,6 +90,17 @@
   --color-hero-2: oklch(33.51% 0.0946 278.42); /* #2D2F66 */
   --color-hero-3: oklch(35.44% 0.108 287.33); /* #3A2F70 */
   --color-star: oklch(84.34% 0.1625 82.7); /* #FFC02E */
+
+  /* Spacing scale (4pt base). Values come from this set, never ad hoc.
+     8pt alone is too coarse: 12 and 20 get needed constantly. */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
 
   /* Radius scale (favours pills + rounded cards) */
   --radius-pill: 999px;
@@ -101,6 +130,12 @@
   --pink-gradient: linear-gradient(160deg, #ff7aa8 0%, #e0457e 100%);
   --green-gradient: linear-gradient(135deg, #34c77b, #25d366);
   --hero-dark-gradient: linear-gradient(135deg, #1e2348 0%, #2d2f66 55%, #3a2f70 100%);
+  /* Marketing headline gradient: the two accent stops already used by --brand-gradient. */
+  --headline-gradient: linear-gradient(90deg, #ff7aa8 0%, #ffa94d 100%);
+  /* Marketing hero wash. Built from existing tile tokens so it introduces no new hue. */
+  --hero-wash:
+    radial-gradient(900px 460px at 82% -10%, var(--color-tile-violet) 0, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(700px 420px at 3% 15%, var(--color-tile-rose) 0, rgba(255, 255, 255, 0) 58%);
   --dashed-stripes: repeating-linear-gradient(
     45deg,
     #fbf8ff,

@@ -19,8 +19,8 @@ const wa = `https://wa.me/${academy.contact.whatsapp}`
       bottom: 'calc(18px + env(safe-area-inset-bottom, 0px))',
       width: '56px',
       height: '56px',
-      borderRadius: '999px',
-      background: '#25D366',
+      borderRadius: 'var(--radius-pill)',
+      background: 'var(--color-whatsapp)',
       boxShadow: 'var(--shadow-wa)',
     }"
   >

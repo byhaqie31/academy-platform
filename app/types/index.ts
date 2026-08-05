@@ -3,6 +3,43 @@
 
 export type { Academy, Branch, AcademyContact } from './academy'
 
+// Campaign landing page types.
+export type {
+  LandingCampaign,
+  LandingCta,
+  LandingForm,
+  LandingOffer,
+  LandingProof,
+  LandingSeo,
+  LandingSlug,
+  LandingStat,
+  LandingTrial,
+} from './landing'
+
+// Marketing website content types (Malay copy, English structure).
+export type {
+  DemoEntry,
+  DemoGroup,
+  DemoStatus,
+  Faq,
+  FeeDiscount,
+  FeeTier,
+  PublicEducator,
+  SiteClassRow,
+  SiteCta,
+  SiteFooterColumn,
+  SiteHero,
+  SiteNavItem,
+  SitePill,
+  SitePoint,
+  SiteSection,
+  SiteStageGroup,
+  SiteStat,
+  SiteStep,
+  SiteSubjectCard,
+  SiteTestimonial,
+} from './site'
+
 export type Stage = 'rendah' | 'mr' | 'ma'
 
 /** A KPM-flavoured subject with its tile colour pairing and the stages it spans. */

@@ -1,115 +1,127 @@
 <script setup lang="ts">
 import AppButton from '~/components/ui/AppButton.vue'
-import { useAcademy } from '~/composables/useAcademy'
+import { useSiteContent } from '~/composables/useSiteContent'
+import { toneFg } from '~/utils/tone'
 
-const { academy } = useAcademy()
-const wa = `https://wa.me/${academy.contact.whatsapp}`
-
-// pure presentation content (badges + stats), kept in-component like SiteFooter copy
-const badges = [
-  { icon: '⭐', text: 'Trusted since 2014', bg: '#FFF4D6', color: '#9A6B00' },
-  { icon: '📍', text: '4 branches', bg: '#EAF3FF', color: '#1F6FB8' },
-  { icon: '🎓', text: 'Tahun 1 to Tingkatan 5', bg: '#F1ECFF', color: '#6B4BD6' },
-]
-const stats = [
-  { value: '1,000+', label: 'Students mentored' },
-  { value: '50+', label: 'Experienced tutors' },
-  { value: '10 yrs', label: 'Trusted track record' },
-]
+const { home } = useSiteContent()
+const hero = home.hero
 </script>
 
 <template>
-  <section class="relative overflow-hidden" :style="{ background: 'linear-gradient(180deg, #FBF8FF 0%, #FFFFFF 100%)' }">
-    <div :style="{ position: 'absolute', top: '-90px', right: '-60px', width: '340px', height: '340px', borderRadius: '50%', background: 'radial-gradient(circle, #FFE0EC, transparent 70%)' }" />
-    <div :style="{ position: 'absolute', bottom: '-120px', left: '-80px', width: '380px', height: '380px', borderRadius: '50%', background: 'radial-gradient(circle, #E3F6EC, transparent 70%)' }" />
-
+  <section :style="{ background: 'var(--hero-wash)' }">
     <div
-      class="relative mx-auto flex flex-wrap items-center"
-      style="max-width: 1180px; padding: 54px 22px 64px; gap: 48px"
+      class="mx-auto grid gap-12 lg:grid-cols-[1.05fr_.95fr] items-center"
+      style="max-width: 1120px; padding: 56px 22px 68px"
     >
-      <!-- LEFT -->
-      <div style="flex: 1 1 420px; min-width: 300px">
-        <div class="flex flex-wrap" style="gap: 8px; margin-bottom: 22px">
+      <div>
+        <div class="flex flex-wrap gap-2.5 mb-6">
           <span
-            v-for="b in badges"
-            :key="b.text"
-            class="inline-flex items-center font-bold"
-            :style="{ gap: '6px', padding: '7px 13px', borderRadius: '999px', background: b.bg, color: b.color, fontSize: '12.5px' }"
+            v-for="pill in hero.pills"
+            :key="pill.label"
+            class="font-bold"
+            :style="{
+              padding: '7px 15px',
+              borderRadius: 'var(--radius-pill)',
+              fontSize: '13px',
+              background: pill.hot ? 'var(--color-tile-pink)' : 'var(--color-tile-violet)',
+              color: pill.hot ? 'var(--color-fg-pink)' : 'var(--color-fg-violet)',
+            }"
           >
-            {{ b.icon }} {{ b.text }}
+            {{ pill.label }}
           </span>
         </div>
 
         <h1
-          class="font-display font-bold text-ink"
-          style="font-size: clamp(2.3rem, 5vw, 3.7rem); line-height: 1.06; letter-spacing: -0.01em; margin: 0 0 18px; text-wrap: balance"
+          class="font-display font-semibold text-ink"
+          style="font-size: clamp(2.05rem, 5vw, 3.5rem); line-height: 1.14; letter-spacing: -.01em"
         >
-          Learning made fun,<br>
-          <span :style="{ background: 'var(--brand-gradient)', '-webkit-background-clip': 'text', backgroundClip: 'text', color: 'transparent' }">
-            future made bright
-          </span>
+          {{ hero.headline }}<br >
+          <span
+            :style="{
+              background: 'var(--headline-gradient)',
+              backgroundClip: 'text',
+              color: 'transparent',
+            }"
+          >{{ hero.headlineAccent }}</span>
         </h1>
 
-        <p style="font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; color: var(--color-ink-soft); max-width: 520px; margin: 0 0 30px">
-          {{ academy.name }}'s digital platform for student registration, class info, and parent enquiries, all in one place.
+        <p
+          class="text-text-body"
+          style="font-size: 17.5px; line-height: 1.65; margin: 20px 0 28px; max-width: 30em"
+        >
+          {{ hero.lede }}
         </p>
 
-        <div class="flex flex-wrap items-center" style="gap: 13px">
-          <AppButton to="/register" variant="gradient">Register interest now →</AppButton>
-          <AppButton :to="wa" variant="outline">💬 WhatsApp us</AppButton>
+        <div class="flex flex-wrap gap-3">
+          <AppButton :to="hero.primary.to" variant="gradient" size="lg" pill>
+            {{ hero.primary.label }}
+          </AppButton>
+          <AppButton :to="hero.secondary.to" variant="outline" size="lg" pill>
+            {{ hero.secondary.label }}
+          </AppButton>
         </div>
 
-        <div class="flex flex-wrap" style="gap: 26px; margin-top: 34px">
-          <div v-for="s in stats" :key="s.label">
-            <div class="font-display font-bold text-ink" style="font-size: 26px">{{ s.value }}</div>
-            <div style="font-size: 12.5px; color: var(--color-muted); font-weight: 600">{{ s.label }}</div>
+        <dl class="flex flex-wrap gap-7 mt-8">
+          <div v-for="stat in hero.stats" :key="stat.label">
+            <dt class="font-display font-semibold text-ink" style="font-size: 25px; line-height: 1.1">
+              {{ stat.value }}
+            </dt>
+            <dd class="text-muted" style="font-size: 13px">{{ stat.label }}</dd>
           </div>
-        </div>
+        </dl>
       </div>
 
-      <!-- RIGHT -->
-      <div style="flex: 1 1 380px; min-width: 300px; position: relative">
+      <!-- Illustrative timetable, not seeded sessions. This is a marketing surface. -->
+      <div
+        :style="{
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius-card-lg)',
+          padding: '24px',
+          boxShadow: 'var(--shadow-card-hover)',
+        }"
+      >
+        <div class="flex items-center justify-between mb-1.5">
+          <b class="text-ink" style="font-size: 15px">{{ hero.todayTitle }}</b>
+          <span class="text-muted" style="font-size: 13px">{{ hero.todayDay }}</span>
+        </div>
         <div
-          class="hz-pop grid place-items-center text-center"
+          v-for="(row, i) in hero.today"
+          :key="row.time"
+          class="flex items-center gap-3"
           :style="{
-            position: 'relative',
-            borderRadius: '30px',
-            overflow: 'hidden',
-            background: 'var(--dashed-stripes)',
-            border: '2px dashed var(--color-dashed)',
-            minHeight: '380px',
+            padding: '13px 0',
+            borderBottom: i === hero.today.length - 1 ? '0' : '1px solid var(--color-border)',
           }"
         >
-          <div style="font-family: ui-monospace, monospace; font-size: 12.5px; color: #8e7bd6; padding: 20px">
-            [ hero illustration ]<br>
-            <span style="opacity: 0.7">cheerful student · books · stars</span>
-          </div>
-        </div>
-
-        <div
-          class="hz-float"
-          :style="{ position: 'absolute', top: '-18px', left: '-14px', background: '#fff', borderRadius: '18px', padding: '13px 16px', boxShadow: '0 14px 30px rgba(30,35,72,.12)' }"
-        >
-          <div class="flex items-center" style="gap: 9px">
-            <div class="grid place-items-center" :style="{ width: '34px', height: '34px', borderRadius: '11px', background: 'var(--color-tile-green)', fontSize: '17px' }">📈</div>
-            <div>
-              <div class="font-bold text-ink" style="font-size: 13px">Scores up 28%</div>
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 600">average per month</div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="hz-float2"
-          :style="{ position: 'absolute', bottom: '-16px', right: '-10px', background: '#fff', borderRadius: '18px', padding: '13px 16px', boxShadow: '0 14px 30px rgba(30,35,72,.12)' }"
-        >
-          <div class="flex items-center" style="gap: 9px">
-            <div class="grid place-items-center" :style="{ width: '34px', height: '34px', borderRadius: '11px', background: 'var(--color-tile-amber)', fontSize: '17px' }">🏅</div>
-            <div>
-              <div class="font-bold text-ink" style="font-size: 13px">Classes full of fun</div>
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 600">learning without stress</div>
-            </div>
-          </div>
+          <span class="font-bold text-muted shrink-0" style="font-size: 12px; width: 52px">
+            {{ row.time }}
+          </span>
+          <span
+            :style="{
+              width: '4px',
+              alignSelf: 'stretch',
+              borderRadius: 'var(--radius-pill)',
+              background: toneFg(row.tone),
+            }"
+          />
+          <span class="min-w-0">
+            <b class="block text-ink truncate" style="font-size: 15px">{{ row.subject }}</b>
+            <span class="block text-muted truncate" style="font-size: 12.5px">{{ row.meta }}</span>
+          </span>
+          <span
+            v-if="row.live"
+            class="ml-auto font-bold shrink-0"
+            :style="{
+              background: 'var(--color-tile-green)',
+              color: 'var(--color-fg-green)',
+              fontSize: '11px',
+              padding: '4px 10px',
+              borderRadius: 'var(--radius-pill)',
+            }"
+          >
+            Langsung
+          </span>
         </div>
       </div>
     </div>
