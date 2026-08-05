@@ -13,9 +13,9 @@ const hovered = ref<number | null>(null)
   <section class="mx-auto" style="max-width: 1180px; padding: 72px 22px 20px">
     <SectionHeading
       center
-      label="Subjek & program"
-      title="Semua subjek penting, satu bumbung"
-      sub="Kami bantu susun perjalanan pembelajaran anak anda dari sekolah rendah hingga SPM."
+      label="Subjects & programmes"
+      title="Every subject that matters, under one roof"
+      sub="We help plan your child's learning journey, from primary school all the way to SPM."
       class="mb-10"
     />
 

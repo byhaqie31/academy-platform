@@ -10,10 +10,10 @@ const { academy } = useAcademy()
   <PortalShell
     :nav="tutorNav"
     base="/tutor"
-    section-label="Ruang tutor"
+    section-label="Tutor space"
     :brand-name="`${academy.shortName} Tutor`"
     :brand-tagline="academy.name"
-    :profile="{ name: 'Cikgu Hafiz', sub: 'Matematik · 2 cawangan', initial: 'H', tone: 'pink' }"
+    :profile="{ name: 'Cikgu Hafiz', sub: 'Matematik · 2 branches', initial: 'H', tone: 'pink' }"
     :notifications="tutorNotifications"
     avatar-initial="H"
     avatar-tone="pink"

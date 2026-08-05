@@ -36,7 +36,7 @@ export interface Guardian {
   studentIds: string[]
 }
 
-export type EnrolStatus = 'Aktif' | 'Percubaan' | 'Tidak aktif'
+export type EnrolStatus = 'Active' | 'Trial' | 'Inactive'
 export type PayStatus = 'Paid' | 'Pending' | 'Overdue'
 
 export interface Student {
@@ -67,14 +67,20 @@ export interface Educator {
   tone: SubjectTone
 }
 
+/** Weekday keys. 'Sun' carries no classes; useGreeting needs all seven for Date.getDay(). */
+export type Day = 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun'
+
+/** Rendered raw as an uppercase label on schedule cards. */
+export type Ampm = 'AFTERNOON' | 'EVENING'
+
 export interface Class {
   id: string
   subject: string
   cls: string
   level: string
-  day: string
+  day: Day
   time: string
-  ampm: string
+  ampm: Ampm
   branchId: string
   /** session duration in hours. */
   dur: number

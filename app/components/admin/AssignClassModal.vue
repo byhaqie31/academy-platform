@@ -16,11 +16,11 @@ const days = useSchedule().days
 
 // Pseudo-select fields: label + the option list to render inside a styled box.
 const fields = [
-  { label: 'Subjek', options: subjects.all.map((s) => s.name) },
-  { label: 'Kelas', options: ['Tahun 4 Bestari', 'Tingkatan 3 Cerdik', 'Tingkatan 5 Gigih', 'Tahun 6'] },
+  { label: 'Subject', options: subjects.all.map((s) => s.name) },
+  { label: 'Class', options: ['Tahun 4 Bestari', 'Tingkatan 3 Cerdik', 'Tingkatan 5 Gigih', 'Tahun 6'] },
   { label: 'Tutor', options: educators.all.map((e) => e.name) },
-  { label: 'Cawangan', options: academy.branches.map((b) => b.name) },
-  { label: 'Hari', options: days },
+  { label: 'Branch', options: academy.branches.map((b) => b.name) },
+  { label: 'Day', options: days },
 ]
 
 // Time-slot chips; selection tracked in a ref.
@@ -59,15 +59,15 @@ const selectedSlot = ref<string>('4:30 PM')
       <div class="flex items-start justify-between gap-4">
         <div>
           <h2 class="font-display font-bold text-ink" :style="{ fontSize: '20px' }">
-            Tetapkan kelas baru
+            Assign new class
           </h2>
           <p class="text-muted" :style="{ fontSize: '13px', marginTop: '3px' }">
-            Isi butiran kelas dan pilih slot masa.
+            Fill in the class details and pick a time slot.
           </p>
         </div>
         <button
           type="button"
-          aria-label="Tutup"
+          aria-label="Close"
           class="grid place-items-center cursor-pointer shrink-0"
           :style="{
             width: '34px',
@@ -120,7 +120,7 @@ const selectedSlot = ref<string>('4:30 PM')
       <!-- Time-slot chips -->
       <div :style="{ marginTop: '18px' }">
         <label class="block font-bold text-ink-soft" :style="{ fontSize: '12px', marginBottom: '8px' }">
-          Slot masa
+          Time slot
         </label>
         <div class="flex flex-wrap gap-2">
           <button
@@ -156,8 +156,8 @@ const selectedSlot = ref<string>('4:30 PM')
 
       <!-- Footer -->
       <div class="flex items-center justify-end gap-3" :style="{ marginTop: '24px' }">
-        <AppButton variant="outline" @click="emit('close')">Batal</AppButton>
-        <AppButton variant="gradient" @click="emit('close')">Tetapkan kelas ✓</AppButton>
+        <AppButton variant="outline" @click="emit('close')">Cancel</AppButton>
+        <AppButton variant="gradient" @click="emit('close')">Assign class ✓</AppButton>
       </div>
     </div>
   </div>

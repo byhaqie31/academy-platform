@@ -49,7 +49,7 @@ defineProps<{ rows: ScheduleRow[]; days: string[] }>()
           <!-- Filled slot: clickable, links to class attendance -->
           <NuxtLink
             v-else
-            :to="'/tutor/kelas/' + cell.classId"
+            :to="'/tutor/classes/' + cell.classId"
             class="tutor-cell block no-underline"
             :style="{
               background: toneTile(cell.tone),

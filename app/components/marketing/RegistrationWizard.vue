@@ -17,12 +17,12 @@ const submitted = ref(false)
 
 // Per-step header meta, mirroring the prototype's stepMeta.
 const stepMeta = [
-  { title: 'Maklumat ibu bapa', icon: '👨‍👩‍👧', tone: 'pink' },
-  { title: 'Maklumat pelajar', icon: '🧑‍🎓', tone: 'blue' },
-  { title: 'Pilih cawangan', icon: '📍', tone: 'violet' },
-  { title: 'Pilih subjek', icon: '📚', tone: 'amber' },
-  { title: 'Jadual pilihan', icon: '🗓️', tone: 'green' },
-  { title: 'Semak & hantar', icon: '✅', tone: 'violet' },
+  { title: 'Parent details', icon: '👨‍👩‍👧', tone: 'pink' },
+  { title: 'Student details', icon: '🧑‍🎓', tone: 'blue' },
+  { title: 'Choose a branch', icon: '📍', tone: 'violet' },
+  { title: 'Choose subjects', icon: '📚', tone: 'amber' },
+  { title: 'Preferred schedule', icon: '🗓️', tone: 'green' },
+  { title: 'Review & submit', icon: '✅', tone: 'violet' },
 ] as const
 
 const levels = [
@@ -30,7 +30,7 @@ const levels = [
   'Tingkatan 1', 'Tingkatan 2', 'Tingkatan 3', 'Tingkatan 4', 'Tingkatan 5',
 ]
 
-const slotOptions = ['Pagi', 'Petang', 'Malam', 'Hujung minggu']
+const slotOptions = ['Morning', 'Afternoon', 'Evening', 'Weekend']
 
 const current = computed(() => stepMeta[step.value]!)
 const canBack = computed(() => step.value > 0)
@@ -107,59 +107,59 @@ const branchNames = computed(() =>
               {{ current.title }}
             </div>
             <div class="font-semibold" style="font-size: 12.5px; color: var(--color-muted)">
-              Langkah {{ step + 1 }} daripada {{ TOTAL }}
+              Step {{ step + 1 }} of {{ TOTAL }}
             </div>
           </div>
         </div>
 
-        <!-- STEP 0 — Ibu bapa -->
+        <!-- STEP 0: Parent -->
         <div
           v-if="step === 0"
           style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px"
         >
           <label style="display: block">
-            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Nama ibu / bapa</span>
-            <input v-model="form.parentName" placeholder="Cth: Puan Aisyah" :style="inputStyle" />
+            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Parent's name</span>
+            <input v-model="form.parentName" placeholder="e.g. Puan Aisyah" :style="inputStyle" />
           </label>
           <label style="display: block">
-            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">No. telefon (WhatsApp)</span>
+            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Phone number (WhatsApp)</span>
             <input
               v-model="form.phone"
-              placeholder="Cth: 012-345 6789"
+              placeholder="e.g. 012-345 6789"
               :style="{ ...inputStyle, borderColor: phoneError ? 'var(--color-fg-overdue)' : 'var(--color-border-input)' }"
             />
             <span
               v-if="phoneError"
               style="display: block; font-size: 12px; font-weight: 600; margin-top: 6px; color: var(--color-fg-overdue)"
             >
-              ⚠️ Sila masukkan nombor telefon Malaysia yang sah, cth 012-345 6789.
+              ⚠️ Please enter a valid Malaysian phone number, e.g. 012-345 6789.
             </span>
           </label>
         </div>
 
-        <!-- STEP 1 — Pelajar -->
+        <!-- STEP 1: Student -->
         <div
           v-else-if="step === 1"
           style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px"
         >
           <label style="display: block">
-            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Nama pelajar</span>
-            <input v-model="form.studentName" placeholder="Cth: Adam Haziq" :style="inputStyle" />
+            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Student's name</span>
+            <input v-model="form.studentName" placeholder="e.g. Adam Haziq" :style="inputStyle" />
           </label>
           <label style="display: block">
-            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Tahun / tingkatan persekolahan</span>
+            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">School year / form</span>
             <select v-model="form.level" :style="{ ...inputStyle, cursor: 'pointer' }">
-              <option value="" disabled>Pilih tahap</option>
+              <option value="" disabled>Select level</option>
               <option v-for="lv in levels" :key="lv" :value="lv">{{ lv }}</option>
             </select>
           </label>
           <label style="display: block; grid-column: 1 / -1">
-            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Nama sekolah</span>
-            <input v-model="form.school" placeholder="Cth: SK Kota Warisan" :style="inputStyle" />
+            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">School name</span>
+            <input v-model="form.school" placeholder="e.g. SK Kota Warisan" :style="inputStyle" />
           </label>
         </div>
 
-        <!-- STEP 2 — Cawangan -->
+        <!-- STEP 2: Branch -->
         <div
           v-else-if="step === 2"
           style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px"
@@ -199,7 +199,7 @@ const branchNames = computed(() =>
           </div>
         </div>
 
-        <!-- STEP 3 — Subjek -->
+        <!-- STEP 3: Subjects -->
         <div v-else-if="step === 3" style="display: flex; gap: 10px; flex-wrap: wrap">
           <span
             v-for="s in subjects"
@@ -229,7 +229,7 @@ const branchNames = computed(() =>
           </span>
         </div>
 
-        <!-- STEP 4 — Jadual -->
+        <!-- STEP 4: Schedule -->
         <div v-else-if="step === 4">
           <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px">
             <span
@@ -258,53 +258,53 @@ const branchNames = computed(() =>
             </span>
           </div>
           <label style="display: block">
-            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Nota tambahan (pilihan)</span>
+            <span style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; color: var(--color-text-body)">Additional notes (optional)</span>
             <textarea
               v-model="form.notes"
-              placeholder="Cth: anak perlu fokus subjek Matematik & Sains"
+              placeholder="e.g. child needs extra focus on Matematik and Sains"
               :style="{ ...inputStyle, minHeight: '90px', resize: 'vertical' }"
             ></textarea>
           </label>
         </div>
 
-        <!-- STEP 5 — Semak -->
+        <!-- STEP 5: Review -->
         <div
           v-else-if="step === 5"
           :style="{ background: 'var(--color-surface-lavender)', borderRadius: '16px', padding: '20px' }"
         >
           <div style="font-size: 13.5px; color: var(--color-ink-soft); line-height: 1.7">
-            Sahkan maklumat anda sebelum hantar. Pasukan kami akan semak dan hubungi anda dalam masa 24 jam melalui WhatsApp.
+            Please confirm your details before submitting. Our team will review and contact you within 24 hours on WhatsApp.
           </div>
           <div
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px"
           >
             <div style="background: #fff; border-radius: 12px; padding: 13px">
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">IBU BAPA</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">PARENT</div>
               <div class="text-ink" style="font-weight: 700; font-size: 14px">
                 {{ form.parentName || '—' }}<template v-if="form.phone"> · {{ form.phone }}</template>
               </div>
             </div>
             <div style="background: #fff; border-radius: 12px; padding: 13px">
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">PELAJAR</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">STUDENT</div>
               <div class="text-ink" style="font-weight: 700; font-size: 14px">
                 {{ form.studentName || '—' }}<template v-if="form.level"> · {{ form.level }}</template>
               </div>
               <div v-if="form.school" style="font-size: 12px; color: var(--color-muted); font-weight: 600; margin-top: 2px">{{ form.school }}</div>
             </div>
             <div style="background: #fff; border-radius: 12px; padding: 13px">
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">CAWANGAN</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">BRANCH</div>
               <div class="text-ink" style="font-weight: 700; font-size: 14px">{{ branchNames.join(', ') || '—' }}</div>
             </div>
             <div style="background: #fff; border-radius: 12px; padding: 13px">
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">SUBJEK</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">SUBJECTS</div>
               <div class="text-ink" style="font-weight: 700; font-size: 14px">{{ form.subjects.join(' · ') || '—' }}</div>
             </div>
             <div style="background: #fff; border-radius: 12px; padding: 13px">
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">JADUAL</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">SCHEDULE</div>
               <div class="text-ink" style="font-weight: 700; font-size: 14px">{{ form.slots.join(' · ') || '—' }}</div>
             </div>
             <div v-if="form.notes" style="background: #fff; border-radius: 12px; padding: 13px">
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">NOTA</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 700">NOTES</div>
               <div class="text-ink" style="font-weight: 600; font-size: 13.5px; line-height: 1.5">{{ form.notes }}</div>
             </div>
           </div>
@@ -312,11 +312,11 @@ const branchNames = computed(() =>
 
         <!-- nav buttons -->
         <div class="flex items-center" style="gap: 12px; margin-top: 28px">
-          <AppButton v-if="canBack" variant="outline" @click="back">← Kembali</AppButton>
+          <AppButton v-if="canBack" variant="outline" @click="back">← Back</AppButton>
 
           <div style="margin-left: auto; display: flex">
             <AppButton v-if="isLast" variant="green" @click="submit">
-              Hantar Pendaftaran ✓
+              Submit registration ✓
             </AppButton>
             <AppButton
               v-else
@@ -325,7 +325,7 @@ const branchNames = computed(() =>
               :aria-disabled="!advanceOk"
               @click="next"
             >
-              Seterusnya →
+              Next →
             </AppButton>
           </div>
         </div>
@@ -349,17 +349,17 @@ const branchNames = computed(() =>
         🎉
       </div>
       <h2 class="font-display font-bold text-ink" style="font-size: clamp(1.8rem, 3.6vw, 2.4rem); margin: 0 0 12px">
-        Pendaftaran diterima!
+        Registration received!
       </h2>
       <p
         class="mx-auto"
         style="font-size: 16px; color: var(--color-ink-soft); line-height: 1.6; max-width: 440px; margin: 0 auto 30px"
       >
-        Admin {{ academy.name }} akan hubungi anda melalui WhatsApp untuk sahkan pendaftaran dan jadual kelas anak anda.
+        The {{ academy.name }} team will contact you on WhatsApp to confirm your registration and your child's class schedule.
       </p>
       <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap">
-        <AppButton :to="waLink" variant="green">💬 Teruskan ke WhatsApp</AppButton>
-        <AppButton to="/" variant="outline">Kembali ke utama</AppButton>
+        <AppButton :to="waLink" variant="green">💬 Continue to WhatsApp</AppButton>
+        <AppButton to="/" variant="outline">Back to home</AppButton>
       </div>
     </div>
   </div>

@@ -36,7 +36,7 @@ const guardianInitial = computed(() => guardianFirst.value.charAt(0) || '?')
 // Adam's home branch, spelled out (e.g. "Kota Warisan, Sepang").
 const branchName = computed(() => branchById(student.value.branchId)?.name ?? student.value.branchId)
 
-// Subject chips for the SUBJEK info tile (Matematik · Sains · BI).
+// Subject chips for the Subjects info tile (Matematik · Sains · BI).
 const subjectShort = computed(() =>
   student.value.subjects.map((name) => subjects.byName(name)?.short ?? name).join(' · '),
 )
@@ -92,7 +92,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
               class="font-bold uppercase"
               :style="{ fontSize: '10px', color: 'var(--color-brand)', letterSpacing: '.04em' }"
             >
-              Portal Ibu Bapa
+              Parent portal
             </div>
           </div>
         </NuxtLink>
@@ -103,7 +103,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
             <div :style="{ lineHeight: '1.1' }">
               <div class="font-bold text-ink" :style="{ fontSize: '13px' }">{{ guardian?.name }}</div>
               <div class="font-semibold text-muted" :style="{ fontSize: '11px' }">
-                Ibu kepada {{ student.first }}
+                Parent of {{ student.first }}
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
               fontSize: '12.5px',
             }"
           >
-            ← Keluar
+            ← Sign out
           </NuxtLink>
         </div>
       </div>
@@ -132,17 +132,17 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
         :style="{ maxWidth: '880px' }"
       >
         <div class="flex items-center" :style="{ gap: '8px', marginBottom: '10px' }">
-          <StatusPill tone="violet" label="Pratonton · Portal Ibu Bapa" />
+          <StatusPill tone="violet" label="Preview · Parent portal" />
         </div>
 
         <h1
           class="font-display font-bold text-ink"
           :style="{ fontSize: 'clamp(1.7rem, 3.4vw, 2.3rem)', margin: '0 0 6px' }"
         >
-          Selamat datang, {{ guardian?.name }} 👋
+          Welcome, {{ guardian?.name }} 👋
         </h1>
         <p class="font-semibold text-muted" :style="{ fontSize: '14px', margin: '0 0 26px' }">
-          Lihat perkembangan {{ student.first }} dengan tenang, semuanya di satu tempat ✨
+          Follow {{ student.first }}'s progress calmly, all in one place ✨
         </p>
 
         <div
@@ -169,7 +169,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
                   {{ student.level }} · {{ student.school }}
                 </div>
               </div>
-              <StatusPill tone="green" :label="'● ' + 'Pelajar ' + student.enrol" />
+              <StatusPill tone="green" :label="'● ' + student.enrol + ' student'" />
             </div>
 
             <div
@@ -187,7 +187,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
                   class="font-bold uppercase text-muted"
                   :style="{ fontSize: '11px', marginBottom: '4px' }"
                 >
-                  Cawangan
+                  Branch
                 </div>
                 <div class="font-bold text-ink" :style="{ fontSize: '14px' }">{{ branchName }}</div>
               </div>
@@ -198,7 +198,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
                   class="font-bold uppercase text-muted"
                   :style="{ fontSize: '11px', marginBottom: '4px' }"
                 >
-                  Subjek
+                  Subjects
                 </div>
                 <div class="font-bold text-ink" :style="{ fontSize: '14px' }">{{ subjectShort }}</div>
               </div>
@@ -209,7 +209,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
                   class="font-bold uppercase text-muted"
                   :style="{ fontSize: '11px', marginBottom: '4px' }"
                 >
-                  Yuran Bulanan
+                  Monthly fee
                 </div>
                 <div class="font-bold text-ink" :style="{ fontSize: '14px' }">{{ fee }}</div>
               </div>
@@ -226,7 +226,7 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
             }"
           >
             <div class="font-display font-semibold text-ink" :style="{ fontSize: '17px', marginBottom: '16px' }">
-              📅 Jadual Kelas
+              📅 Class schedule
             </div>
             <div
               v-for="c in schedule"
@@ -267,13 +267,13 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
                 class="font-display font-semibold"
                 :style="{ fontSize: '16px', marginBottom: '8px', color: '#7A5A00' }"
               >
-                💳 Peringatan Bayaran
+                💳 Payment reminder
               </div>
               <p :style="{ fontSize: '13.5px', color: '#8A6A1A', lineHeight: '1.5', margin: '0 0 14px' }">
-                Yuran bulan Jun ialah {{ fee }}. Tarikh akhir bayaran:
-                <strong>30 Jun 2026</strong>. Terima kasih kerana sentiasa menyokong {{ student.first }}.
+                June's fee is {{ fee }}. Payment due by
+                <strong>30 June 2026</strong>. Thank you for supporting {{ student.first }}.
               </p>
-              <AppButton :to="waLink" variant="green" block>Bayar sekarang</AppButton>
+              <AppButton :to="waLink" variant="green" block>Pay now</AppButton>
             </section>
 
             <section
@@ -285,14 +285,14 @@ const waLink = computed(() => `https://wa.me/${academy.contact.whatsapp}`)
               }"
             >
               <div class="font-display font-semibold text-ink" :style="{ fontSize: '16px', marginBottom: '8px' }">
-                📣 Pengumuman
+                📣 Announcement
               </div>
               <p :style="{ fontSize: '13.5px', color: 'var(--color-ink-soft)', lineHeight: '1.5', margin: '0 0 14px' }">
-                Cuti penggal bermula 5 Julai. Kelas ulang kaji peperiksaan akan dibuka minggu hadapan,
-                tempat terhad. Hubungi kami untuk tempah tempat {{ student.first }}.
+                Term break starts 5 July. Exam revision classes open next week, places are limited.
+                Contact us to reserve a place for {{ student.first }}.
               </p>
               <AppButton :to="waLink" variant="outline" block>
-                <span>💬</span> Hubungi kami
+                <span>💬</span> Contact us
               </AppButton>
             </section>
           </div>

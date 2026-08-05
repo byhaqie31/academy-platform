@@ -56,7 +56,7 @@ const attendance = computed(() => {
       class="no-underline font-bold text-brand-deep self-start"
       style="font-size: 13px"
     >
-      ← Semua pelajar
+      ← All students
     </NuxtLink>
 
     <!-- header card -->
@@ -75,7 +75,7 @@ const attendance = computed(() => {
           </div>
         </div>
         <StatusPill :tone="enrolTone(student.enrol)" :label="'● ' + student.enrol" />
-        <StatusPill :tone="payTone(student.pay)" :label="'Bayaran: ' + student.pay" />
+        <StatusPill :tone="payTone(student.pay)" :label="'Payment: ' + student.pay" />
       </div>
     </section>
 
@@ -87,7 +87,7 @@ const attendance = computed(() => {
           :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '22px' }"
         >
           <h2 class="font-display font-semibold text-ink mb-4" style="font-size: 17px">
-            Subjek & kelas didaftarkan
+            Subjects and classes enrolled
           </h2>
           <div class="flex flex-col gap-2.5">
             <div
@@ -132,25 +132,25 @@ const attendance = computed(() => {
           :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '22px' }"
         >
           <h2 class="font-display font-semibold text-ink" style="font-size: 17px">
-            Ringkasan kehadiran
+            Attendance summary
           </h2>
           <p class="text-faint" style="font-size: 12px; font-weight: 600; margin-top: 2px">
-            30 hari terakhir
+            Last 30 days
           </p>
 
           <div class="flex items-center gap-[18px] mt-4">
             <AttendanceDonut :pct="student.attendancePct" />
             <div class="flex-1 flex flex-col gap-2.5">
               <div class="flex items-center justify-between">
-                <span class="text-ink-soft" style="font-size: 12.5px; font-weight: 600">✓ Hadir</span>
+                <span class="text-ink-soft" style="font-size: 12.5px; font-weight: 600">✓ Present</span>
                 <span class="font-extrabold text-ink" style="font-size: 13px">{{ attendance.present }}</span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-ink-soft" style="font-size: 12.5px; font-weight: 600">✕ Tidak hadir</span>
+                <span class="text-ink-soft" style="font-size: 12.5px; font-weight: 600">✕ Absent</span>
                 <span class="font-extrabold text-ink" style="font-size: 13px">{{ attendance.absent }}</span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-ink-soft" style="font-size: 12.5px; font-weight: 600">◐ Lewat</span>
+                <span class="text-ink-soft" style="font-size: 12.5px; font-weight: 600">◐ Late</span>
                 <span class="font-extrabold text-ink" style="font-size: 13px">{{ attendance.late }}</span>
               </div>
             </div>

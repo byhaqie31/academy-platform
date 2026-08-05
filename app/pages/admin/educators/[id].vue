@@ -36,7 +36,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
       class="inline-flex items-center text-muted hover:text-ink transition-colors"
       style="font-size: 13px; font-weight: 600; width: fit-content"
     >
-      ← Semua pendidik
+      ← All educators
     </NuxtLink>
 
     <div class="grid gap-5 lg:grid-cols-[340px_1fr] items-start">
@@ -51,7 +51,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
           </div>
           <div class="font-display font-bold text-ink" style="font-size: 21px">{{ e.name }}</div>
           <div class="text-faint" style="font-size: 13px; font-weight: 600; margin-bottom: 14px">
-            Pendidik · {{ e.branches }}
+            Educator · {{ e.branches }}
           </div>
           <div class="flex flex-wrap justify-center" style="gap: 5px; margin-bottom: 18px">
             <SubjectChip v-for="s in e.subjects" :key="s" :subject="s" size="full" />
@@ -61,17 +61,17 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
               class="flex-1"
               :style="{ background: 'var(--color-surface-subtle)', border: '1px solid var(--color-divider)', borderRadius: '14px', padding: '13px' }"
             >
-              <div class="text-faint" style="font-size: 10.5px; font-weight: 700">KADAR / JAM</div>
+              <div class="text-faint" style="font-size: 10.5px; font-weight: 700">RATE / HOUR</div>
               <div class="font-display font-bold text-ink" style="font-size: 18px">
-                {{ formatRM(e.rate) }} /j
+                {{ formatRM(e.rate) }} /h
               </div>
             </div>
             <div
               class="flex-1"
               :style="{ background: 'var(--color-surface-subtle)', border: '1px solid var(--color-divider)', borderRadius: '14px', padding: '13px' }"
             >
-              <div class="text-faint" style="font-size: 10.5px; font-weight: 700">JAM BLN INI</div>
-              <div class="font-display font-bold text-ink" style="font-size: 18px">{{ e.hours }} j</div>
+              <div class="text-faint" style="font-size: 10.5px; font-weight: 700">HOURS THIS MONTH</div>
+              <div class="font-display font-bold text-ink" style="font-size: 18px">{{ e.hours }} h</div>
             </div>
           </div>
         </div>
@@ -85,13 +85,13 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
             class="uppercase"
             :style="{ fontSize: '11.5px', fontWeight: 700, color: '#B9BDD6', letterSpacing: '0.05em', marginBottom: '8px' }"
           >
-            Anggaran gaji · Jun 2026
+            Estimated salary · Jun 2026
           </div>
           <div class="font-display font-bold" style="font-size: 36px; line-height: 1">
             {{ formatRM(pay) }}
           </div>
           <p style="font-size: 12.5px; color: #b9bdd6; font-weight: 600; margin: 12px 0 0; line-height: 1.5">
-            {{ e.hours }} jam × {{ formatRM(e.rate) }}/jam, dikira automatik dari sesi yang direkodkan.
+            {{ e.hours }} hours × {{ formatRM(e.rate) }}/hour, calculated automatically from recorded sessions.
           </p>
         </div>
       </div>
@@ -103,7 +103,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
           :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '22px' }"
         >
           <div class="font-display font-semibold text-ink" style="font-size: 17px; margin-bottom: 14px">
-            Kelas ditugaskan
+            Assigned classes
           </div>
           <div class="flex flex-col" style="gap: 10px">
             <div
@@ -128,7 +128,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
                 </div>
               </div>
               <span style="font-weight: 800; font-size: 13px; color: var(--color-brand-deep); flex: none">
-                {{ c.dur }}j
+                {{ c.dur }}h
               </span>
             </div>
           </div>
@@ -139,5 +139,5 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
     </div>
   </div>
 
-  <EmptyState v-else icon="🧑‍🏫" title="Pendidik tidak dijumpai" desc="Kembali ke senarai pendidik." />
+  <EmptyState v-else icon="🧑‍🏫" title="Educator not found" desc="Back to the educators list." />
 </template>

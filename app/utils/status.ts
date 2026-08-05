@@ -10,7 +10,7 @@ export function payTone(s: PayStatus): PillTone {
 }
 
 export function enrolTone(s: EnrolStatus): PillTone {
-  return s === 'Aktif' ? 'green' : s === 'Percubaan' ? 'amber' : 'inactive'
+  return s === 'Active' ? 'green' : s === 'Trial' ? 'amber' : 'inactive'
 }
 
 export function attTone(s: AttendanceStatus): PillTone {

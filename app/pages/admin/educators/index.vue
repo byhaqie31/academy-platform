@@ -12,12 +12,12 @@ const { all, estimatedPay } = useEducators()
 const { academy } = useAcademy()
 
 const columns: Column[] = [
-  { key: 'name', label: 'Pendidik' },
-  { key: 'subjects', label: 'Subjek' },
-  { key: 'branches', label: 'Cawangan' },
-  { key: 'rate', label: 'Kadar per jam', align: 'right' },
-  { key: 'hours', label: 'Jam bln ini', align: 'right' },
-  { key: 'pay', label: 'Anggaran gaji', align: 'right' },
+  { key: 'name', label: 'Educator' },
+  { key: 'subjects', label: 'Subject' },
+  { key: 'branches', label: 'Branch' },
+  { key: 'rate', label: 'Hourly rate', align: 'right' },
+  { key: 'hours', label: 'Hours this month', align: 'right' },
+  { key: 'pay', label: 'Est. salary', align: 'right' },
 ]
 
 function open(id: string) {
@@ -30,10 +30,10 @@ function open(id: string) {
     <header class="flex items-end justify-between gap-4 flex-wrap">
       <div>
         <h1 class="font-display font-bold text-ink" style="font-size: 30px; line-height: 1.1">
-          Educators <span class="text-muted" style="font-weight: 600">/ Pendidik</span>
+          Educators
         </h1>
         <p class="text-muted mt-1" style="font-size: 14px">
-          {{ all.length }} pendidik aktif merentas cawangan {{ academy.name }}
+          {{ all.length }} active educators across {{ academy.name }} branches
         </p>
       </div>
     </header>
@@ -57,11 +57,11 @@ function open(id: string) {
       </template>
 
       <template #cell-rate="{ row }">
-        <span class="font-bold text-ink" style="font-size: 13px">{{ formatRM(row.rate) }} / j</span>
+        <span class="font-bold text-ink" style="font-size: 13px">{{ formatRM(row.rate) }} / h</span>
       </template>
 
       <template #cell-hours="{ row }">
-        <span class="font-bold" style="font-size: 13px; color: #3a3f5c">{{ row.hours }} j</span>
+        <span class="font-bold" style="font-size: 13px; color: #3a3f5c">{{ row.hours }} h</span>
       </template>
 
       <template #cell-pay="{ row }">

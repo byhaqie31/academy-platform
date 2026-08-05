@@ -8,23 +8,23 @@ import type { SubjectTone } from '~/types'
 const benefits: { icon: string; title: string; desc: string; proof: string; tone: SubjectTone }[] = [
   {
     icon: '🎓',
-    title: 'Guru bertauliah & berpengalaman',
-    desc: 'Diajar guru terlatih yang faham silibus KPM dan tahu cara buat anak betul-betul faham.',
-    proof: '50+ guru berpengalaman',
+    title: 'Certified and experienced tutors',
+    desc: 'Taught by trained tutors who know the KPM syllabus and know how to make sure your child really understands.',
+    proof: '50+ experienced tutors',
     tone: 'violet',
   },
   {
     icon: '👥',
-    title: 'Kelas kumpulan kecil',
-    desc: 'Kumpulan kecil, jadi setiap anak dapat perhatian, bukan sekadar nombor dalam kelas.',
-    proof: 'Purata 8 pelajar sekelas',
+    title: 'Small group classes',
+    desc: 'Small groups, so every child gets attention, not just a number in the class.',
+    proof: 'Average of 8 students per class',
     tone: 'pink',
   },
   {
     icon: '📈',
-    title: 'Keputusan terbukti',
-    desc: 'Latihan tersusun dan pemantauan rapi. Markah naik dan keyakinan pun bertambah.',
-    proof: 'Markah naik 28% sebulan',
+    title: 'Proven results',
+    desc: 'Structured practice and close monitoring. Scores go up, and so does confidence.',
+    proof: 'Scores up 28% a month',
     tone: 'blue',
   },
 ]
@@ -35,9 +35,9 @@ const benefits: { icon: string; title: string; desc: string; proof: string; tone
     <div class="mx-auto" style="max-width: 1180px; padding: 72px 22px">
       <SectionHeading
         center
-        label="Kenapa Hz Academy"
-        title="Sebab ibu bapa percayakan kami"
-        sub="Bukan sekadar kelas tambahan, satu tempat belajar yang buat anak faham, yakin, dan seronok."
+        label="Why Hz Academy"
+        title="Why parents trust us"
+        sub="Not just another tuition class, a place where your child understands, feels confident, and enjoys learning."
         class="mb-11"
       />
 

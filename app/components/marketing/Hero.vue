@@ -7,14 +7,14 @@ const wa = `https://wa.me/${academy.contact.whatsapp}`
 
 // pure presentation content (badges + stats), kept in-component like SiteFooter copy
 const badges = [
-  { icon: '⭐', text: 'Dipercayai sejak 2014', bg: '#FFF4D6', color: '#9A6B00' },
-  { icon: '📍', text: '4 Cawangan', bg: '#EAF3FF', color: '#1F6FB8' },
-  { icon: '🎓', text: 'Tahun 1 – Tingkatan 5', bg: '#F1ECFF', color: '#6B4BD6' },
+  { icon: '⭐', text: 'Trusted since 2014', bg: '#FFF4D6', color: '#9A6B00' },
+  { icon: '📍', text: '4 branches', bg: '#EAF3FF', color: '#1F6FB8' },
+  { icon: '🎓', text: 'Tahun 1 to Tingkatan 5', bg: '#F1ECFF', color: '#6B4BD6' },
 ]
 const stats = [
-  { value: '1,000+', label: 'Pelajar dibimbing' },
-  { value: '50+', label: 'Guru berpengalaman' },
-  { value: '10 thn', label: 'Pengalaman dipercayai' },
+  { value: '1,000+', label: 'Students mentored' },
+  { value: '50+', label: 'Experienced tutors' },
+  { value: '10 yrs', label: 'Trusted track record' },
 ]
 </script>
 
@@ -44,19 +44,19 @@ const stats = [
           class="font-display font-bold text-ink"
           style="font-size: clamp(2.3rem, 5vw, 3.7rem); line-height: 1.06; letter-spacing: -0.01em; margin: 0 0 18px; text-wrap: balance"
         >
-          Belajar Lebih Seronok,<br>
+          Learning made fun,<br>
           <span :style="{ background: 'var(--brand-gradient)', '-webkit-background-clip': 'text', backgroundClip: 'text', color: 'transparent' }">
-            Masa Depan Lebih Cerah
+            future made bright
           </span>
         </h1>
 
         <p style="font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; color: var(--color-ink-soft); max-width: 520px; margin: 0 0 30px">
-          Platform digital {{ academy.name }} untuk pendaftaran pelajar, maklumat kelas, dan enquiry ibu bapa, semua dalam satu tempat.
+          {{ academy.name }}'s digital platform for student registration, class info, and parent enquiries, all in one place.
         </p>
 
         <div class="flex flex-wrap items-center" style="gap: 13px">
-          <AppButton to="/daftar" variant="gradient">Daftar Minat Sekarang →</AppButton>
-          <AppButton :to="wa" variant="outline">💬 WhatsApp Kami</AppButton>
+          <AppButton to="/register" variant="gradient">Register interest now →</AppButton>
+          <AppButton :to="wa" variant="outline">💬 WhatsApp us</AppButton>
         </div>
 
         <div class="flex flex-wrap" style="gap: 26px; margin-top: 34px">
@@ -82,7 +82,7 @@ const stats = [
         >
           <div style="font-family: ui-monospace, monospace; font-size: 12.5px; color: #8e7bd6; padding: 20px">
             [ hero illustration ]<br>
-            <span style="opacity: 0.7">pelajar ceria · buku · bintang</span>
+            <span style="opacity: 0.7">cheerful student · books · stars</span>
           </div>
         </div>
 
@@ -93,8 +93,8 @@ const stats = [
           <div class="flex items-center" style="gap: 9px">
             <div class="grid place-items-center" :style="{ width: '34px', height: '34px', borderRadius: '11px', background: 'var(--color-tile-green)', fontSize: '17px' }">📈</div>
             <div>
-              <div class="font-bold text-ink" style="font-size: 13px">Markah naik 28%</div>
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 600">purata sebulan</div>
+              <div class="font-bold text-ink" style="font-size: 13px">Scores up 28%</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 600">average per month</div>
             </div>
           </div>
         </div>
@@ -106,8 +106,8 @@ const stats = [
           <div class="flex items-center" style="gap: 9px">
             <div class="grid place-items-center" :style="{ width: '34px', height: '34px', borderRadius: '11px', background: 'var(--color-tile-amber)', fontSize: '17px' }">🏅</div>
             <div>
-              <div class="font-bold text-ink" style="font-size: 13px">Kelas penuh seronok</div>
-              <div style="font-size: 11px; color: var(--color-muted); font-weight: 600">belajar tanpa stress</div>
+              <div class="font-bold text-ink" style="font-size: 13px">Classes full of fun</div>
+              <div style="font-size: 11px; color: var(--color-muted); font-weight: 600">learning without stress</div>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ defineProps<{ hours: number; rate: number; amount: number }>()
           class="inline-flex items-center uppercase font-bold"
           :style="{ padding: '6px 12px', borderRadius: '999px', fontSize: '10.5px', letterSpacing: '0.06em', background: 'rgba(255,255,255,.1)', color: '#D8D5F2' }"
         >
-          Pendapatan Jun 2026
+          Earnings Jun 2026
         </span>
         <div class="font-display font-bold mt-3" style="font-size: 52px; line-height: 1">
           {{ formatRM(amount) }}
@@ -34,21 +34,21 @@ defineProps<{ hours: number; rate: number; amount: number }>()
           class="inline-flex items-center gap-1 font-bold mt-3"
           :style="{ padding: '5px 11px', borderRadius: '999px', fontSize: '12px', background: 'rgba(52,199,123,.18)', color: '#5BE39B' }"
         >
-          ↑ 4 jam dari Mei
+          ↑ 4 hours from May
         </span>
         <p class="mt-4" style="font-size: 13.5px; color: #B7B6D8; line-height: 1.6; max-width: 340px">
-          {{ hours }} jam × {{ formatRM(rate) }}/jam · Dibayar 5 Julai 2026
+          {{ hours }} hours × {{ formatRM(rate) }}/hr · Paid 5 July 2026
         </p>
       </div>
 
       <div class="grid grid-cols-2 gap-3">
         <div :style="{ background: 'rgba(255,255,255,.06)', borderRadius: '16px', padding: '14px' }">
-          <div style="font-size: 10.5px; color: #B7B6D8; font-weight: 700; letter-spacing: 0.04em" class="uppercase">Jam direkod</div>
-          <div class="font-display font-bold mt-1" style="font-size: 22px">{{ hours }} j</div>
+          <div style="font-size: 10.5px; color: #B7B6D8; font-weight: 700; letter-spacing: 0.04em" class="uppercase">Hours logged</div>
+          <div class="font-display font-bold mt-1" style="font-size: 22px">{{ hours }} h</div>
         </div>
         <div :style="{ background: 'rgba(255,255,255,.06)', borderRadius: '16px', padding: '14px' }">
-          <div style="font-size: 10.5px; color: #B7B6D8; font-weight: 700; letter-spacing: 0.04em" class="uppercase">Kadar</div>
-          <div class="font-display font-bold mt-1" style="font-size: 22px">{{ formatRM(rate) }}/jam</div>
+          <div style="font-size: 10.5px; color: #B7B6D8; font-weight: 700; letter-spacing: 0.04em" class="uppercase">Rate</div>
+          <div class="font-display font-bold mt-1" style="font-size: 22px">{{ formatRM(rate) }}/hr</div>
         </div>
       </div>
     </div>

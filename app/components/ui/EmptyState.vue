@@ -34,7 +34,7 @@ defineProps<{ icon: string; title: string; desc?: string }>()
         color: 'var(--color-fg-amber)',
       }"
     >
-      Sedang dibina
+      Coming soon
     </span>
   </div>
 </template>

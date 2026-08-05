@@ -6,7 +6,7 @@ import type { Academy } from '~/types/academy'
 export const academy: Academy = {
   name: 'Hz Academy',
   shortName: 'Hz',
-  tagline: 'Dipercayai sejak 2014',
+  tagline: 'Trusted since 2014',
   motto: 'Simple, effortless, human.',
   logoText: 'Hz',
   since: 2014,
@@ -18,9 +18,9 @@ export const academy: Academy = {
     web: 'axelnovaventures.com',
   },
   branches: [
-    { id: 'kw', name: 'Kota Warisan, Sepang', short: 'Kota Warisan', area: 'Sepang', hours: 'Isnin–Sabtu · 3PM–9PM' },
-    { id: 'sk', name: 'Taman Sutera, Kajang', short: 'Kajang', area: 'Kajang', hours: 'Isnin–Sabtu · 2PM–9PM' },
-    { id: 'ix', name: 'Taman Ixora', short: 'Ixora', area: 'Seri Kembangan', hours: 'Isnin–Ahad · 3PM–9PM' },
-    { id: 'pk', name: 'Pekan', short: 'Pekan', area: 'Pahang', hours: 'Isnin–Sabtu · 3PM–8PM' },
+    { id: 'kw', name: 'Kota Warisan, Sepang', short: 'Kota Warisan', area: 'Sepang', hours: 'Mon to Sat · 3PM–9PM' },
+    { id: 'sk', name: 'Taman Sutera, Kajang', short: 'Kajang', area: 'Kajang', hours: 'Mon to Sat · 2PM–9PM' },
+    { id: 'ix', name: 'Taman Ixora', short: 'Ixora', area: 'Seri Kembangan', hours: 'Mon to Sun · 3PM–9PM' },
+    { id: 'pk', name: 'Pekan', short: 'Pekan', area: 'Pahang', hours: 'Mon to Sat · 3PM–8PM' },
   ],
 }

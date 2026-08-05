@@ -52,24 +52,24 @@ const subjLabel = (name: string) => subjects.byName(name)?.name ?? name
     <input
       v-model="state.q"
       type="search"
-      placeholder="🔍 Cari nama pelajar…"
+      placeholder="🔍 Search student name…"
       class="text-ink w-full outline-none focus-visible:border-brand"
       :style="fieldStyle"
     />
     <select v-model="state.branchId" class="text-ink w-full outline-none cursor-pointer hz-select" :style="selectStyle">
-      <option value="">Semua cawangan</option>
+      <option value="">All branches</option>
       <option v-for="b in branches" :key="b.id" :value="b.id">{{ b.short }}</option>
     </select>
     <select v-model="state.level" class="text-ink w-full outline-none cursor-pointer hz-select" :style="selectStyle">
-      <option value="">Semua tahap</option>
+      <option value="">All levels</option>
       <option v-for="l in levels" :key="l" :value="l">{{ l }}</option>
     </select>
     <select v-model="state.subject" class="text-ink w-full outline-none cursor-pointer hz-select" :style="selectStyle">
-      <option value="">Semua subjek</option>
+      <option value="">All subjects</option>
       <option v-for="s in subjectNames" :key="s" :value="s">{{ subjLabel(s) }}</option>
     </select>
     <select v-model="state.pay" class="text-ink w-full outline-none cursor-pointer hz-select" :style="selectStyle">
-      <option value="">Semua bayaran</option>
+      <option value="">All payments</option>
       <option value="Paid">Paid</option>
       <option value="Pending">Pending</option>
       <option value="Overdue">Overdue</option>

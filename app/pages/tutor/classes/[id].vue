@@ -34,20 +34,20 @@ const onSave = () => {
 }
 
 const summaryPills = computed(() => [
-  { label: `✓ Hadir ${summary.value.present}`, tone: 'green' },
-  { label: `◐ Lewat ${summary.value.late}`, tone: 'amber' },
-  { label: `✕ Tidak hadir ${summary.value.absent}`, tone: 'overdue' },
+  { label: `✓ Present ${summary.value.present}`, tone: 'green' },
+  { label: `◐ Late ${summary.value.late}`, tone: 'amber' },
+  { label: `✕ Absent ${summary.value.absent}`, tone: 'overdue' },
 ])
 </script>
 
 <template>
   <div v-if="cls" class="flex flex-col gap-[18px]">
     <NuxtLink
-      to="/tutor/kelas"
+      to="/tutor/classes"
       class="no-underline font-bold text-brand-deep self-start"
       style="font-size: 13px"
     >
-      ← Semua kelas
+      ← All classes
     </NuxtLink>
 
     <!-- header card -->
@@ -62,14 +62,14 @@ const summaryPills = computed(() => [
             Matematik · {{ cls.cls }}
           </div>
           <div class="text-muted mt-0.5" style="font-size: 13.5px; font-weight: 600">
-            {{ cls.day }} · {{ cls.time }} · {{ branchShort(cls.branchId) }} · {{ cls.dur }}j
+            {{ cls.day }} · {{ cls.time }} · {{ branchShort(cls.branchId) }} · {{ cls.dur }}h
           </div>
         </div>
         <div class="text-right">
           <div class="font-display font-bold text-ink" style="font-size: 22px">
             {{ cls.roster.length }}
           </div>
-          <div class="text-muted font-bold uppercase" style="font-size: 11.5px">pelajar</div>
+          <div class="text-muted font-bold uppercase" style="font-size: 11.5px">students</div>
         </div>
       </div>
     </section>
@@ -82,10 +82,10 @@ const summaryPills = computed(() => [
       <div class="flex items-center justify-between gap-3 flex-wrap" style="margin-bottom: 16px">
         <div>
           <div class="font-display font-semibold text-ink" style="font-size: 18px">
-            Tanda kehadiran
+            Mark attendance
           </div>
           <div class="text-muted" style="font-size: 12px; font-weight: 600">
-            Sesi {{ cls.day }}, 29 Jun 2026
+            Session {{ cls.day }}, 29 June 2026
           </div>
         </div>
         <div class="flex gap-2 flex-wrap">
@@ -113,9 +113,9 @@ const summaryPills = computed(() => [
       </AttendanceRoster>
 
       <div class="flex gap-3" style="margin-top: 20px">
-        <AppButton variant="outline" @click="onReset">Set semula</AppButton>
+        <AppButton variant="outline" @click="onReset">Reset</AppButton>
         <AppButton variant="green" block @click="onSave">
-          {{ saved ? 'Kehadiran disimpan ✓' : 'Simpan kehadiran' }}
+          {{ saved ? 'Attendance saved ✓' : 'Save attendance' }}
         </AppButton>
       </div>
     </section>
@@ -123,14 +123,14 @@ const summaryPills = computed(() => [
 
   <div v-else class="flex flex-col gap-4 items-start">
     <NuxtLink
-      to="/tutor/kelas"
+      to="/tutor/classes"
       class="no-underline font-bold text-brand-deep"
       style="font-size: 13px"
     >
-      ← Semua kelas
+      ← All classes
     </NuxtLink>
     <p class="text-muted" style="font-size: 14px; font-weight: 600">
-      Kelas ini tidak dijumpai.
+      This class couldn't be found.
     </p>
   </div>
 </template>

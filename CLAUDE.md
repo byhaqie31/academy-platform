@@ -36,8 +36,10 @@ Source palette (convert to OKLCH in `@theme`):
 
 ## Copy conventions
 - Sentence case everywhere. No title case headers.
-- No em dashes. Use commas, periods, or "to" for ranges.
-- Bilingual where natural: English label with a smaller Malay sub-label.
+- No em dashes. Use commas, periods, or "to" for word ranges ("Mon to Sat").
+  En-dashes are allowed as numeric range glyphs ("3PM–9PM").
+- English throughout the UI. No Malay sub-labels.
+- Malaysian domain data stays in Malay: subject names, school levels (Tahun, Tingkatan), class names, person names, branch names.
 - Warm, non-corporate tone. Tagline: "Simple, effortless, human."
 
 ## Data model (the spine)

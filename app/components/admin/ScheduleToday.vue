@@ -12,9 +12,9 @@ const rows = useSchedule().todayAgenda()
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '20px' }"
   >
     <div class="flex items-center justify-between mb-4">
-      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Jadual hari ini</h2>
+      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Today's schedule</h2>
       <NuxtLink to="/admin/schedule" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
-        Lihat jadual penuh →
+        View full schedule →
       </NuxtLink>
     </div>
 

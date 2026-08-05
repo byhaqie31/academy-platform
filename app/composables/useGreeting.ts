@@ -1,10 +1,12 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import type { Day } from '~/types'
 
-// Malay day and month names, spelled to match the rest of the app (Jun, Julai, Ogos).
-const DAYS = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu']
+// Indexed by Date.getDay(), so this MUST start at Sunday. Not the same array
+// as useSchedule's DAYS, which is Monday-first grid column order.
+const DAYS: Day[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const MONTHS = [
-  'Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun',
-  'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember',
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
 ]
 
 /**
@@ -24,12 +26,12 @@ export function useGreeting() {
     if (timer) clearInterval(timer)
   })
 
-  // pagi 05:00–11:59 · petang 12:00–18:59 · malam 19:00–04:59
+  // morning 05:00–11:59 · afternoon 12:00–18:59 · evening 19:00–04:59
   const greeting = computed(() => {
     const h = now.value.getHours()
-    if (h >= 5 && h < 12) return 'Selamat pagi'
-    if (h >= 12 && h < 19) return 'Selamat petang'
-    return 'Selamat malam'
+    if (h >= 5 && h < 12) return 'Good morning'
+    if (h >= 12 && h < 19) return 'Good afternoon'
+    return 'Good evening'
   })
 
   const dateLabel = computed(() => {

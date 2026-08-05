@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { academy } from '~~/config/academy'
 import type {
+  Ampm,
   AttendanceStatus,
   Class,
   Educator,
@@ -25,22 +26,22 @@ import type {
 
 const WEEK_STARTS = ['2026-06-02', '2026-06-09', '2026-06-16', '2026-06-23'] as const
 export const WEEK_LABELS = [
-  'Minggu 1 · 2–8 Jun',
-  'Minggu 2 · 9–15 Jun',
-  'Minggu 3 · 16–22 Jun',
-  'Minggu 4 · 23–29 Jun',
+  'Week 1 · 2–8 June',
+  'Week 2 · 9–15 June',
+  'Week 3 · 16–22 June',
+  'Week 4 · 23–29 June',
 ]
 
 const subjects: Subject[] = [
-  { name: 'Matematik', short: 'Mat', icon: '📐', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Konsep kira-kira kukuh & teknik menjawab pantas.', level: 'Tahun 1 to SPM' },
-  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Karangan, tatabahasa & pemahaman cemerlang.', level: 'Tahun 1 to SPM' },
+  { name: 'Matematik', short: 'Mat', icon: '📐', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM' },
+  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM' },
   { name: 'Bahasa Inggeris', short: 'BI', icon: '🔤', tone: 'blue', stage: ['rendah', 'mr', 'ma'], desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM' },
-  { name: 'Sains', short: 'Sn', icon: '🔬', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Eksperimen seronok & fakta mudah diingat.', level: 'Tahun 1 to SPM' },
-  { name: 'Sejarah', short: 'Sej', icon: '📜', tone: 'amber', stage: ['mr', 'ma'], desc: 'Teknik hafalan & nota ringkas berstruktur.', level: 'Menengah' },
-  { name: 'Geografi', short: 'Geo', icon: '🌏', tone: 'orange', stage: ['mr'], desc: 'Peta, iklim & kemahiran geografi praktikal.', level: 'Menengah' },
-  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak dengan penuh sabar.', level: 'Tahun 1 to SPM' },
-  { name: 'STEM', short: 'STEM', icon: '🤖', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotik, koding & sains gunaan yang seronok.', level: 'Sekolah Rendah' },
-  { name: 'TVET', short: 'TVET', icon: '🎨', tone: 'rose', stage: ['ma'], desc: 'Kemahiran teknikal & vokasional praktikal.', level: 'Menengah Atas' },
+  { name: 'Sains', short: 'Sn', icon: '🔬', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM' },
+  { name: 'Sejarah', short: 'Sej', icon: '📜', tone: 'amber', stage: ['mr', 'ma'], desc: 'Memory techniques & neat, structured notes.', level: 'Menengah' },
+  { name: 'Geografi', short: 'Geo', icon: '🌏', tone: 'orange', stage: ['mr'], desc: 'Maps, climate & practical geography skills.', level: 'Menengah' },
+  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM' },
+  { name: 'STEM', short: 'STEM', icon: '🤖', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotics, coding & fun applied science.', level: 'Sekolah Rendah' },
+  { name: 'TVET', short: 'TVET', icon: '🎨', tone: 'rose', stage: ['ma'], desc: 'Practical technical & vocational skills.', level: 'Menengah Atas' },
 ]
 
 // The marketing landing grid mixes subjects with programme tiles, kept verbatim.
@@ -52,15 +53,15 @@ export interface MarketingSubject {
   tone: SubjectTone
 }
 const marketingSubjects: MarketingSubject[] = [
-  { icon: '📐', name: 'Matematik', desc: 'Konsep kira-kira kukuh & teknik menjawab pantas.', level: 'Tahun 1 to SPM', tone: 'pink' },
-  { icon: '📖', name: 'Bahasa Melayu', desc: 'Karangan, tatabahasa & pemahaman cemerlang.', level: 'Tahun 1 to SPM', tone: 'green' },
+  { icon: '📐', name: 'Matematik', desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM', tone: 'pink' },
+  { icon: '📖', name: 'Bahasa Melayu', desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM', tone: 'green' },
   { icon: '🔤', name: 'Bahasa Inggeris', desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM', tone: 'blue' },
-  { icon: '🔬', name: 'Sains', desc: 'Eksperimen seronok & fakta mudah diingat.', level: 'Tahun 1 to SPM', tone: 'violet' },
-  { icon: '📜', name: 'Sejarah', desc: 'Teknik hafalan & nota ringkas berstruktur.', level: 'Menengah', tone: 'amber' },
-  { icon: '🕌', name: 'Pendidikan Islam', desc: 'Jawi, tajwid & akhlak dengan penuh sabar.', level: 'Tahun 1 to SPM', tone: 'green' },
-  { icon: '🎒', name: 'Sekolah Rendah', desc: 'Tahun 1 to 6, asas kukuh & study habit awal.', level: 'UPSR ready', tone: 'blue' },
-  { icon: '✏️', name: 'Menengah Rendah', desc: 'Tingkatan 1 to 3, persediaan PT3 yang mantap.', level: 'PT3', tone: 'pink' },
-  { icon: '🎓', name: 'SPM Preparation', desc: 'Tingkatan 4 to 5, fokus skor A & teknik exam.', level: 'SPM', tone: 'violet' },
+  { icon: '🔬', name: 'Sains', desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM', tone: 'violet' },
+  { icon: '📜', name: 'Sejarah', desc: 'Memory techniques & neat, structured notes.', level: 'Menengah', tone: 'amber' },
+  { icon: '🕌', name: 'Pendidikan Islam', desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM', tone: 'green' },
+  { icon: '🎒', name: 'Sekolah Rendah', desc: 'Tahun 1 to 6, strong foundations & early study habits.', level: 'UPSR ready', tone: 'blue' },
+  { icon: '✏️', name: 'Menengah Rendah', desc: 'Tingkatan 1 to 3, solid PT3 preparation.', level: 'PT3', tone: 'pink' },
+  { icon: '🎓', name: 'SPM Preparation', desc: 'Tingkatan 4 to 5, focused on A scores & exam technique.', level: 'SPM', tone: 'violet' },
 ]
 
 const guardians: Guardian[] = [
@@ -75,14 +76,14 @@ const guardians: Guardian[] = [
 ]
 
 const students: Student[] = [
-  { id: 's0', name: 'Adam Haziq', first: 'Adam', level: 'Tahun 4', branchId: 'kw', subjects: ['Matematik', 'Sains', 'Bahasa Inggeris'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g0', attendancePct: 92, school: 'SK Kota Warisan' },
-  { id: 's1', name: 'Nur Iman', first: 'Iman', level: 'Tingkatan 2', branchId: 'sk', subjects: ['Bahasa Melayu', 'Bahasa Inggeris'], enrol: 'Aktif', pay: 'Pending', guardianId: 'g1', attendancePct: 88, school: 'SMK Kajang' },
-  { id: 's2', name: 'Wong Jia Xin', first: 'Jia Xin', level: 'Tahun 6', branchId: 'ix', subjects: ['Matematik', 'Sains'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g2', attendancePct: 95, school: 'SJKC Taman Ixora' },
-  { id: 's3', name: 'Diya Suresh', first: 'Diya', level: 'Tingkatan 5', branchId: 'pk', subjects: ['Matematik', 'Sains', 'Sejarah'], enrol: 'Aktif', pay: 'Overdue', guardianId: 'g3', attendancePct: 78, school: 'SMK Pekan' },
-  { id: 's4', name: 'Aiman Farah', first: 'Aiman', level: 'Tingkatan 1', branchId: 'kw', subjects: ['Sains', 'Sejarah', 'Geografi'], enrol: 'Percubaan', pay: 'Pending', guardianId: 'g4', attendancePct: 84, school: 'SMK Kota Warisan' },
-  { id: 's5', name: 'Sofea Hafiz', first: 'Sofea', level: 'Tahun 3', branchId: 'sk', subjects: ['Matematik', 'Bahasa Inggeris'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g5', attendancePct: 93, school: 'SK Kajang' },
-  { id: 's6', name: 'Tan Wei Jie', first: 'Wei Jie', level: 'Tingkatan 4', branchId: 'ix', subjects: ['Matematik', 'STEM'], enrol: 'Aktif', pay: 'Paid', guardianId: 'g6', attendancePct: 96, school: 'SMK Taman Ixora' },
-  { id: 's7', name: 'Hariz Danial', first: 'Hariz', level: 'Tahun 5', branchId: 'pk', subjects: ['Bahasa Melayu', 'Geografi'], enrol: 'Tidak aktif', pay: 'Pending', guardianId: 'g7', attendancePct: 71, school: 'SK Pekan' },
+  { id: 's0', name: 'Adam Haziq', first: 'Adam', level: 'Tahun 4', branchId: 'kw', subjects: ['Matematik', 'Sains', 'Bahasa Inggeris'], enrol: 'Active', pay: 'Paid', guardianId: 'g0', attendancePct: 92, school: 'SK Kota Warisan' },
+  { id: 's1', name: 'Nur Iman', first: 'Iman', level: 'Tingkatan 2', branchId: 'sk', subjects: ['Bahasa Melayu', 'Bahasa Inggeris'], enrol: 'Active', pay: 'Pending', guardianId: 'g1', attendancePct: 88, school: 'SMK Kajang' },
+  { id: 's2', name: 'Wong Jia Xin', first: 'Jia Xin', level: 'Tahun 6', branchId: 'ix', subjects: ['Matematik', 'Sains'], enrol: 'Active', pay: 'Paid', guardianId: 'g2', attendancePct: 95, school: 'SJKC Taman Ixora' },
+  { id: 's3', name: 'Diya Suresh', first: 'Diya', level: 'Tingkatan 5', branchId: 'pk', subjects: ['Matematik', 'Sains', 'Sejarah'], enrol: 'Active', pay: 'Overdue', guardianId: 'g3', attendancePct: 78, school: 'SMK Pekan' },
+  { id: 's4', name: 'Aiman Farah', first: 'Aiman', level: 'Tingkatan 1', branchId: 'kw', subjects: ['Sains', 'Sejarah', 'Geografi'], enrol: 'Trial', pay: 'Pending', guardianId: 'g4', attendancePct: 84, school: 'SMK Kota Warisan' },
+  { id: 's5', name: 'Sofea Hafiz', first: 'Sofea', level: 'Tahun 3', branchId: 'sk', subjects: ['Matematik', 'Bahasa Inggeris'], enrol: 'Active', pay: 'Paid', guardianId: 'g5', attendancePct: 93, school: 'SK Kajang' },
+  { id: 's6', name: 'Tan Wei Jie', first: 'Wei Jie', level: 'Tingkatan 4', branchId: 'ix', subjects: ['Matematik', 'STEM'], enrol: 'Active', pay: 'Paid', guardianId: 'g6', attendancePct: 96, school: 'SMK Taman Ixora' },
+  { id: 's7', name: 'Hariz Danial', first: 'Hariz', level: 'Tahun 5', branchId: 'pk', subjects: ['Bahasa Melayu', 'Geografi'], enrol: 'Inactive', pay: 'Pending', guardianId: 'g7', attendancePct: 71, school: 'SK Pekan' },
 ]
 
 const educators: Educator[] = [
@@ -96,22 +97,22 @@ const educators: Educator[] = [
 
 // Hafiz's four classes (the tutor persona). Rosters drive attendance.
 const hafizClasses: Class[] = [
-  { id: 'c0', subject: 'Matematik', cls: 'Tahun 4 Bestari', level: 'Tahun 4', day: 'Isnin', time: '3:00 PM', ampm: 'PETANG', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 94, roster: ['Adam Haziq', 'Sofea Hafiz', 'Aiman Farah', 'Lim Kai Xin', 'Nurin Sofia', 'Daniel Tan'] },
-  { id: 'c1', subject: 'Matematik', cls: 'Tingkatan 3 Cerdik', level: 'Tingkatan 3', day: 'Isnin', time: '5:00 PM', ampm: 'PETANG', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 89, roster: ['Iqbal Danish', 'Hana Zara', 'Arif Haikal', 'Mei Yi', 'Tasha Lina', 'Zarif Aiman'] },
-  { id: 'c2', subject: 'Matematik', cls: 'Tahun 1 Jujur', level: 'Tahun 1', day: 'Khamis', time: '4:30 PM', ampm: 'PETANG', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 96, roster: ['Qaseh Nadia', 'Luqman Hakim', 'Elya Sofea', 'Danish Iman', 'Yusuf Adam'] },
-  { id: 'c3', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', level: 'Tingkatan 5', day: 'Selasa', time: '7:30 PM', ampm: 'MALAM', branchId: 'sk', dur: 2, educatorId: 'hafiz', attendPct: 91, roster: ['Diya Suresh', 'Wong Jia Xin', 'Faris Adam', 'Nadia Rahim', 'Kavin Raj', 'Lee Wen Hao', 'Sara Iman'] },
+  { id: 'c0', subject: 'Matematik', cls: 'Tahun 4 Bestari', level: 'Tahun 4', day: 'Mon', time: '3:00 PM', ampm: 'AFTERNOON', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 94, roster: ['Adam Haziq', 'Sofea Hafiz', 'Aiman Farah', 'Lim Kai Xin', 'Nurin Sofia', 'Daniel Tan'] },
+  { id: 'c1', subject: 'Matematik', cls: 'Tingkatan 3 Cerdik', level: 'Tingkatan 3', day: 'Mon', time: '5:00 PM', ampm: 'AFTERNOON', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 89, roster: ['Iqbal Danish', 'Hana Zara', 'Arif Haikal', 'Mei Yi', 'Tasha Lina', 'Zarif Aiman'] },
+  { id: 'c2', subject: 'Matematik', cls: 'Tahun 1 Jujur', level: 'Tahun 1', day: 'Thu', time: '4:30 PM', ampm: 'AFTERNOON', branchId: 'kw', dur: 1.5, educatorId: 'hafiz', attendPct: 96, roster: ['Qaseh Nadia', 'Luqman Hakim', 'Elya Sofea', 'Danish Iman', 'Yusuf Adam'] },
+  { id: 'c3', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', level: 'Tingkatan 5', day: 'Tue', time: '7:30 PM', ampm: 'EVENING', branchId: 'sk', dur: 2, educatorId: 'hafiz', attendPct: 91, roster: ['Diya Suresh', 'Wong Jia Xin', 'Faris Adam', 'Nadia Rahim', 'Kavin Raj', 'Lee Wen Hao', 'Sara Iman'] },
 ]
 
 // Other educators' classes, placed to reproduce the admin weekly grid.
 const otherClasses: Class[] = [
-  { id: 'cc0', subject: 'Sains', cls: 'Tingkatan 2 Amanah', level: 'Tingkatan 2', day: 'Rabu', time: '3:00 PM', ampm: 'PETANG', branchId: 'sk', dur: 1.5, educatorId: 'meiling', attendPct: 90, roster: [] },
-  { id: 'cc1', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', level: 'Tahun 6', day: 'Sabtu', time: '3:00 PM', ampm: 'PETANG', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 87, roster: [] },
-  { id: 'cc2', subject: 'Bahasa Melayu', cls: 'Tingkatan 3 Murni', level: 'Tingkatan 3', day: 'Selasa', time: '4:30 PM', ampm: 'PETANG', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 92, roster: [] },
-  { id: 'cc3', subject: 'Sains', cls: 'Tahun 4 Amanah', level: 'Tahun 4', day: 'Sabtu', time: '4:30 PM', ampm: 'PETANG', branchId: 'ix', dur: 1.5, educatorId: 'meiling', attendPct: 88, roster: [] },
-  { id: 'cc4', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', level: 'Tingkatan 4', day: 'Isnin', time: '6:00 PM', ampm: 'MALAM', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 85, roster: [] },
-  { id: 'cc5', subject: 'Geografi', cls: 'Tingkatan 2 Setia', level: 'Tingkatan 2', day: 'Rabu', time: '6:00 PM', ampm: 'MALAM', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 83, roster: [] },
-  { id: 'cc6', subject: 'Bahasa Inggeris', cls: 'SPM Intensif', level: 'Tingkatan 5', day: 'Khamis', time: '7:30 PM', ampm: 'MALAM', branchId: 'ix', dur: 2, educatorId: 'suresh', attendPct: 89, roster: [] },
-  { id: 'cc7', subject: 'Sains', cls: 'Tingkatan 5 Cerdas', level: 'Tingkatan 5', day: 'Jumaat', time: '7:30 PM', ampm: 'MALAM', branchId: 'sk', dur: 2, educatorId: 'meiling', attendPct: 90, roster: [] },
+  { id: 'cc0', subject: 'Sains', cls: 'Tingkatan 2 Amanah', level: 'Tingkatan 2', day: 'Wed', time: '3:00 PM', ampm: 'AFTERNOON', branchId: 'sk', dur: 1.5, educatorId: 'meiling', attendPct: 90, roster: [] },
+  { id: 'cc1', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', level: 'Tahun 6', day: 'Sat', time: '3:00 PM', ampm: 'AFTERNOON', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 87, roster: [] },
+  { id: 'cc2', subject: 'Bahasa Melayu', cls: 'Tingkatan 3 Murni', level: 'Tingkatan 3', day: 'Tue', time: '4:30 PM', ampm: 'AFTERNOON', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 92, roster: [] },
+  { id: 'cc3', subject: 'Sains', cls: 'Tahun 4 Amanah', level: 'Tahun 4', day: 'Sat', time: '4:30 PM', ampm: 'AFTERNOON', branchId: 'ix', dur: 1.5, educatorId: 'meiling', attendPct: 88, roster: [] },
+  { id: 'cc4', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', level: 'Tingkatan 4', day: 'Mon', time: '6:00 PM', ampm: 'EVENING', branchId: 'pk', dur: 1.5, educatorId: 'aishah', attendPct: 85, roster: [] },
+  { id: 'cc5', subject: 'Geografi', cls: 'Tingkatan 2 Setia', level: 'Tingkatan 2', day: 'Wed', time: '6:00 PM', ampm: 'EVENING', branchId: 'ix', dur: 1.5, educatorId: 'suresh', attendPct: 83, roster: [] },
+  { id: 'cc6', subject: 'Bahasa Inggeris', cls: 'SPM Intensif', level: 'Tingkatan 5', day: 'Thu', time: '7:30 PM', ampm: 'EVENING', branchId: 'ix', dur: 2, educatorId: 'suresh', attendPct: 89, roster: [] },
+  { id: 'cc7', subject: 'Sains', cls: 'Tingkatan 5 Cerdas', level: 'Tingkatan 5', day: 'Fri', time: '7:30 PM', ampm: 'EVENING', branchId: 'sk', dur: 2, educatorId: 'meiling', attendPct: 90, roster: [] },
 ]
 
 const classes: Class[] = [...hafizClasses, ...otherClasses]
@@ -163,41 +164,41 @@ const invoices: Invoice[] = [
 ]
 
 const lessonPlans: LessonPlan[] = [
-  { id: 'lp0', classId: 'c0', cls: 'Tahun 4 Bestari', week: 'Minggu 26', topic: 'Pecahan & perpuluhan', ref: 'KSSR Thn 4 · 4.2', material: 'Nota_Pecahan.pdf', attached: true },
-  { id: 'lp1', classId: 'c1', cls: 'Tingkatan 3 Cerdik', week: 'Minggu 26', topic: 'Indeks & hukum kuasa', ref: 'KSSM Tkt 3 · 1.3', material: 'Latihan_Indeks.pdf', attached: true },
-  { id: 'lp2', classId: 'c2', cls: 'Tahun 1 Jujur', week: 'Minggu 26', topic: 'Nombor hingga 100', ref: 'KSSR Thn 1 · 1.1', material: null, attached: false },
-  { id: 'lp3', classId: 'c3', cls: 'Tingkatan 5 Gigih', week: 'Minggu 26', topic: 'Janjang aritmetik', ref: 'KSSM Tkt 5 · 5.1', material: null, attached: false },
-  { id: 'lp4', classId: 'cc0', cls: 'Tingkatan 2 Amanah', week: 'Minggu 26', topic: 'Sistem suria', ref: 'KSSM Tkt 2 · 9.1', material: 'Slaid_SistemSuria.pdf', attached: true },
-  { id: 'lp5', classId: 'cc4', cls: 'Tingkatan 4 Wira', week: 'Minggu 26', topic: 'Kesultanan Melayu Melaka', ref: 'KSSM Tkt 4 · Bab 5', material: 'Peta_Minda_Melaka.pdf', attached: true },
+  { id: 'lp0', classId: 'c0', cls: 'Tahun 4 Bestari', week: 'Week 26', topic: 'Pecahan & perpuluhan', ref: 'KSSR Thn 4 · 4.2', material: 'Nota_Pecahan.pdf', attached: true },
+  { id: 'lp1', classId: 'c1', cls: 'Tingkatan 3 Cerdik', week: 'Week 26', topic: 'Indeks & hukum kuasa', ref: 'KSSM Tkt 3 · 1.3', material: 'Latihan_Indeks.pdf', attached: true },
+  { id: 'lp2', classId: 'c2', cls: 'Tahun 1 Jujur', week: 'Week 26', topic: 'Nombor hingga 100', ref: 'KSSR Thn 1 · 1.1', material: null, attached: false },
+  { id: 'lp3', classId: 'c3', cls: 'Tingkatan 5 Gigih', week: 'Week 26', topic: 'Janjang aritmetik', ref: 'KSSM Tkt 5 · 5.1', material: null, attached: false },
+  { id: 'lp4', classId: 'cc0', cls: 'Tingkatan 2 Amanah', week: 'Week 26', topic: 'Sistem suria', ref: 'KSSM Tkt 2 · 9.1', material: 'Slaid_SistemSuria.pdf', attached: true },
+  { id: 'lp5', classId: 'cc4', cls: 'Tingkatan 4 Wira', week: 'Week 26', topic: 'Kesultanan Melayu Melaka', ref: 'KSSM Tkt 4 · Bab 5', material: 'Peta_Minda_Melaka.pdf', attached: true },
 ]
 
 const enquiries: Enquiry[] = [
-  { id: 'enq0', name: 'Puan Aisyah', ago: '12 min lalu', detail: 'Adam · Matematik, Sains · Kota Warisan', source: 'Facebook', status: 'new' },
-  { id: 'enq1', name: 'Encik Rizal', ago: '1 jam lalu', detail: 'Nur Iman · BM, BI · Kajang', source: 'TikTok', status: 'new' },
-  { id: 'enq2', name: 'Puan Mei Ling', ago: '2 jam lalu', detail: 'Wong Jia · Matematik · Taman Ixora', source: 'Facebook', status: 'pending' },
-  { id: 'enq3', name: 'Encik Suresh', ago: '3 jam lalu', detail: 'Diya · SPM Prep · Pekan', source: 'Google Ads', status: 'week' },
+  { id: 'enq0', name: 'Puan Aisyah', ago: '12 min ago', detail: 'Adam · Matematik, Sains · Kota Warisan', source: 'Facebook', status: 'new' },
+  { id: 'enq1', name: 'Encik Rizal', ago: '1 hour ago', detail: 'Nur Iman · BM, BI · Kajang', source: 'TikTok', status: 'new' },
+  { id: 'enq2', name: 'Puan Mei Ling', ago: '2 hours ago', detail: 'Wong Jia · Matematik · Taman Ixora', source: 'Facebook', status: 'pending' },
+  { id: 'enq3', name: 'Encik Suresh', ago: '3 hours ago', detail: 'Diya · SPM Prep · Pekan', source: 'Google Ads', status: 'week' },
 ]
 
 const feedback: Feedback[] = [
-  { id: 'fb0', studentId: 's0', classId: 'c0', note: 'Adam menunjukkan peningkatan dalam topik pecahan.', date: '24 Jun 2026' },
-  { id: 'fb1', studentId: 's3', classId: 'c3', note: 'Diya perlu lebih latihan janjang sebelum SPM.', date: '23 Jun 2026' },
+  { id: 'fb0', studentId: 's0', classId: 'c0', note: 'Adam shows strong progress in fractions.', date: '24 Jun 2026' },
+  { id: 'fb1', studentId: 's3', classId: 'c3', note: 'Diya needs more practice with sequences before SPM.', date: '23 Jun 2026' },
 ]
 
 // The dashboard "today" agenda (curated cross-tutor snapshot).
 export interface AgendaRow {
   time: string
-  ampm: string
+  ampm: Ampm
   subject: string
   cls: string
   educatorId: string
   branchId: string
 }
 const agenda: AgendaRow[] = [
-  { time: '3:00', ampm: 'PETANG', subject: 'Matematik', cls: 'Tahun 4 Bestari', educatorId: 'hafiz', branchId: 'kw' },
-  { time: '4:30', ampm: 'PETANG', subject: 'Sains', cls: 'Tingkatan 2 Amanah', educatorId: 'meiling', branchId: 'sk' },
-  { time: '5:00', ampm: 'PETANG', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', educatorId: 'suresh', branchId: 'ix' },
-  { time: '7:00', ampm: 'MALAM', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', educatorId: 'aishah', branchId: 'pk' },
-  { time: '7:30', ampm: 'MALAM', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', educatorId: 'hafiz', branchId: 'kw' },
+  { time: '3:00', ampm: 'AFTERNOON', subject: 'Matematik', cls: 'Tahun 4 Bestari', educatorId: 'hafiz', branchId: 'kw' },
+  { time: '4:30', ampm: 'AFTERNOON', subject: 'Sains', cls: 'Tingkatan 2 Amanah', educatorId: 'meiling', branchId: 'sk' },
+  { time: '5:00', ampm: 'AFTERNOON', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', educatorId: 'suresh', branchId: 'ix' },
+  { time: '7:00', ampm: 'EVENING', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', educatorId: 'aishah', branchId: 'pk' },
+  { time: '7:30', ampm: 'EVENING', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', educatorId: 'hafiz', branchId: 'kw' },
 ]
 
 // Syllabus bank: stage -> [subject, classes, materials].
@@ -209,7 +210,7 @@ const syllabusBank: Record<Stage, SyllabusRow[]> = {
 
 // Which tutor + slot teaches a subject (for the student detail view).
 const subjectTutor: Record<string, string> = { Matematik: 'Cikgu Hafiz', Sains: 'Cikgu Mei Ling', 'Bahasa Inggeris': 'Cikgu Suresh', 'Bahasa Melayu': 'Cikgu Aishah', Sejarah: 'Cikgu Aishah', Geografi: 'Cikgu Suresh', STEM: 'Cikgu Daniel', TVET: 'Cikgu Daniel', 'Pendidikan Islam': 'Cikgu Aishah' }
-const subjectSchedule: Record<string, string> = { Matematik: 'Isnin · 3:00 PM', Sains: 'Rabu · 5:00 PM', 'Bahasa Inggeris': 'Sabtu · 10:00 AM', 'Bahasa Melayu': 'Selasa · 4:30 PM', Sejarah: 'Khamis · 6:00 PM', Geografi: 'Jumaat · 5:00 PM', STEM: 'Sabtu · 2:00 PM', TVET: 'Ahad · 2:00 PM', 'Pendidikan Islam': 'Ahad · 10:00 AM' }
+const subjectSchedule: Record<string, string> = { Matematik: 'Mon · 3:00 PM', Sains: 'Wed · 5:00 PM', 'Bahasa Inggeris': 'Sat · 10:00 AM', 'Bahasa Melayu': 'Tue · 4:30 PM', Sejarah: 'Thu · 6:00 PM', Geografi: 'Fri · 5:00 PM', STEM: 'Sat · 2:00 PM', TVET: 'Sun · 2:00 PM', 'Pendidikan Islam': 'Sun · 10:00 AM' }
 
 // Centre-wide headline metrics. Larger than the detailed seed slice on
 // purpose: the demo shows full scale while the slice stays inspectable.

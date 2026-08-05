@@ -20,8 +20,8 @@ const rows = computed(() =>
 )
 const note = (status: string, branchId: string) =>
   status === 'Overdue'
-    ? `Tertunggak sejak 15 Jun · ${branchShort(branchId)}`
-    : `Belum ada bukti · ${branchShort(branchId)}`
+    ? `Overdue since 15 June · ${branchShort(branchId)}`
+    : `No proof yet · ${branchShort(branchId)}`
 </script>
 
 <template>
@@ -30,9 +30,9 @@ const note = (status: string, branchId: string) =>
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '20px' }"
   >
     <div class="flex items-center justify-between mb-3">
-      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Bayaran tertunggak</h2>
+      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Outstanding payments</h2>
       <NuxtLink to="/admin/billing" class="no-underline font-bold text-brand-deep" style="font-size: 12.5px">
-        Lihat semua →
+        View all →
       </NuxtLink>
     </div>
 

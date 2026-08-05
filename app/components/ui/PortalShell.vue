@@ -74,14 +74,11 @@ const activeItem = computed(
           :class="isActive(item.to) ? '' : 'hover:bg-[var(--color-bg-app)]'"
         >
           <span class="w-5 text-center" style="font-size: 16px">{{ item.icon }}</span>
-          <span class="min-w-0">
-            <span
-              class="block font-bold leading-tight"
-              :style="{ fontSize: '13.5px', color: isActive(item.to) ? 'var(--color-brand-deep)' : 'var(--color-ink-soft)' }"
-            >
-              {{ item.en }}
-            </span>
-            <span class="block font-semibold text-faintest" style="font-size: 10px">{{ item.ms }}</span>
+          <span
+            class="block min-w-0 font-bold leading-tight"
+            :style="{ fontSize: '13.5px', color: isActive(item.to) ? 'var(--color-brand-deep)' : 'var(--color-ink-soft)' }"
+          >
+            {{ item.label }}
           </span>
         </NuxtLink>
       </nav>
@@ -99,7 +96,7 @@ const activeItem = computed(
           class="block text-center no-underline font-bold text-ink-soft transition-colors hover:text-ink"
           :style="{ padding: '10px', borderRadius: '12px', border: '1.5px solid var(--color-border-input)', fontSize: '12.5px' }"
         >
-          ← Keluar ke laman web
+          ← Back to website
         </NuxtLink>
       </div>
     </aside>
@@ -114,7 +111,7 @@ const activeItem = computed(
           <LogoMark :size="34" />
           <span class="font-display font-bold text-ink" style="font-size: 15px">{{ brandName }}</span>
         </div>
-        <NuxtLink to="/" class="text-ink-soft no-underline font-bold" style="font-size: 12px">← Laman web</NuxtLink>
+        <NuxtLink to="/" class="text-ink-soft no-underline font-bold" style="font-size: 12px">← Website</NuxtLink>
       </div>
       <div class="hz-scroll px-3 pb-3 flex gap-2">
         <NuxtLink
@@ -130,7 +127,7 @@ const activeItem = computed(
             color: isActive(item.to) ? '#fff' : 'var(--color-ink-soft)',
           }"
         >
-          {{ item.icon }} {{ item.en }}
+          {{ item.icon }} {{ item.label }}
         </NuxtLink>
       </div>
     </div>
@@ -142,7 +139,7 @@ const activeItem = computed(
         :style="{ borderBottom: '1px solid var(--color-border)', padding: '14px 30px' }"
       >
         <h1 class="font-display font-semibold text-ink" style="font-size: 16px">
-          {{ activeItem?.en }}
+          {{ activeItem?.label }}
         </h1>
         <div
           class="ml-auto flex items-center gap-2"
@@ -151,7 +148,7 @@ const activeItem = computed(
           <span style="font-size: 14px">🔍</span>
           <input
             type="text"
-            placeholder="Cari pelajar, kelas, tutor..."
+            placeholder="Search students, classes, tutors..."
             class="bg-transparent outline-none w-full text-text-body"
             style="font-size: 13px"
           />

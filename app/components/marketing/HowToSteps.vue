@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import SectionHeading from '~/components/ui/SectionHeading.vue'
 
-// pure presentation content from the prototype "Cara Daftar" section
+// pure presentation content from the prototype "How to register" section
 const steps = [
-  { num: 1, title: 'Daftar minat', desc: 'Isi borang ringkas dalam masa kurang 3 minit.', tile: '#8B6CF0' },
-  { num: 2, title: 'Admin hubungi', desc: 'Pasukan kami WhatsApp anda untuk sahkan butiran.', tile: '#FF7AA8' },
-  { num: 3, title: 'Pilih jadual', desc: 'Tetapkan cawangan, subjek & masa yang sesuai.', tile: '#3DA5F4' },
-  { num: 4, title: 'Mula belajar', desc: 'Anak anda sertai kelas & terus cemerlang!', tile: '#34C77B' },
+  { num: 1, title: 'Register interest', desc: 'Fill in a short form in under 3 minutes.', tile: '#8B6CF0' },
+  { num: 2, title: 'We reach out', desc: 'Our team WhatsApps you to confirm the details.', tile: '#FF7AA8' },
+  { num: 3, title: 'Pick a schedule', desc: 'Set the branch, subjects, and time that suit you.', tile: '#3DA5F4' },
+  { num: 4, title: 'Start learning', desc: 'Your child joins class and starts thriving!', tile: '#34C77B' },
 ]
 </script>
 
@@ -15,9 +15,9 @@ const steps = [
     <div class="mx-auto" style="max-width: 1180px; padding: 72px 22px">
       <SectionHeading
         center
-        label="Cara daftar"
-        title="Daftar minat anak anda dengan mudah"
-        sub="Empat langkah ringkas, siap dalam masa kurang 3 minit."
+        label="How to register"
+        title="Register your child's interest, made easy"
+        sub="Four simple steps, done in under 3 minutes."
         class="mb-11"
       />
 

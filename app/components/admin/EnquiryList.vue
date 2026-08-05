@@ -8,10 +8,10 @@ import { toneByIndex } from '~/utils/tone'
 const enquiries = useEnquiries()
 const filter = ref<EnquiryFilter>('all')
 const filters: { key: EnquiryFilter; label: string }[] = [
-  { key: 'all', label: 'Semua' },
-  { key: 'new', label: 'Baru' },
+  { key: 'all', label: 'All' },
+  { key: 'new', label: 'New' },
   { key: 'pending', label: 'Pending' },
-  { key: 'week', label: 'Minggu ini' },
+  { key: 'week', label: 'This week' },
 ]
 const rows = computed(() => enquiries.filter(filter.value))
 </script>
@@ -22,7 +22,7 @@ const rows = computed(() => enquiries.filter(filter.value))
     :style="{ border: '1px solid var(--color-border)', borderRadius: '20px', padding: '20px' }"
   >
     <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
-      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Enquiry dari iklan</h2>
+      <h2 class="font-display font-semibold text-ink" style="font-size: 16px">Enquiries from ads</h2>
       <div class="flex gap-1.5">
         <button
           v-for="f in filters"
@@ -65,7 +65,7 @@ const rows = computed(() => enquiries.filter(filter.value))
         </div>
       </li>
       <li v-if="!rows.length" class="text-center text-faint py-4" style="font-size: 12.5px">
-        Tiada enquiry untuk penapis ini.
+        No enquiries for this filter.
       </li>
     </ul>
   </section>

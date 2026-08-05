@@ -24,7 +24,7 @@ const inner = computed(() => Math.round(props.size * 0.73))
         {{ pct }}%
       </div>
       <div class="font-bold text-faint uppercase" style="font-size: 9.5px; letter-spacing: 0.02em">
-        Hadir
+        Present
       </div>
     </div>
   </div>

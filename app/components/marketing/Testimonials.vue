@@ -2,26 +2,26 @@
 import { tonePair } from '~/utils/tone'
 import type { SubjectTone } from '~/types'
 
-// pure presentation content from the prototype "Kata ibu bapa" section
+// pure presentation content from the prototype "What parents say" section
 const testimonials: { quote: string; name: string; role: string; initial: string; tone: SubjectTone }[] = [
   {
-    quote: 'Anak saya jadi lebih yakin dengan Matematik. Guru sangat sabar dan suasana belajar seronok.',
+    quote: 'My child is so much more confident with Matematik now. The tutors are patient and the classes are fun.',
     name: 'Puan Noraini',
-    role: 'Ibu kepada pelajar Tahun 5',
+    role: 'Mother of a Tahun 5 student',
     initial: 'N',
     tone: 'pink',
   },
   {
-    quote: 'Senang nak daftar dan admin cepat balas WhatsApp. Markah PT3 anak saya naik banyak.',
+    quote: 'Registration was easy and the admin team replies fast on WhatsApp. My child\'s PT3 scores went up a lot.',
     name: 'Encik Faizal',
-    role: 'Bapa kepada pelajar Tingkatan 3',
+    role: 'Father of a Tingkatan 3 student',
     initial: 'F',
     tone: 'blue',
   },
   {
-    quote: 'Cawangan dekat rumah, jadual fleksibel. Anak saya tak rasa stress langsung.',
+    quote: 'The branch is close to home and the schedule is flexible. My child doesn\'t feel stressed at all.',
     name: 'Puan Sufiah',
-    role: 'Ibu kepada pelajar SPM',
+    role: 'Mother of an SPM student',
     initial: 'S',
     tone: 'violet',
   },
@@ -40,13 +40,13 @@ const testimonials: { quote: string; name: string; role: string; initial: string
           class="inline-flex items-center font-bold"
           :style="{ padding: '6px 14px', borderRadius: '999px', background: 'rgba(255,255,255,.2)', color: '#fff', fontSize: '12px' }"
         >
-          Kata ibu bapa
+          What parents say
         </span>
         <h2
           class="font-display font-bold"
           style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); color: #fff; line-height: 1.1; margin: 12px 0 0"
         >
-          Mereka belajar dengan yakin
+          They learn with confidence
         </h2>
       </div>
 

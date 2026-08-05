@@ -17,16 +17,16 @@ const { self, estimatedPay } = useEducators()
 const me = self()
 const myClasses = useClasses().forEducator(me.id)
 
-// Derived, never hand-entered: today is Isnin in this curated snapshot.
-const todayCount = computed(() => myClasses.filter((c) => c.day === 'Isnin').length)
+// Derived, never hand-entered: today is Mon in this curated snapshot.
+const todayCount = computed(() => myClasses.filter((c) => c.day === 'Mon').length)
 const studentCount = computed(() => myClasses.reduce((t, c) => t + c.roster.length, 0))
 const weekHours = computed(() => myClasses.reduce((t, c) => t + c.dur, 0))
 
 const stats = computed(() => [
-  { icon: '📚', tone: 'pink' as const, value: String(todayCount.value), label: 'Classes today', sub: 'Kelas hari ini', delta: 'Isnin' },
-  { icon: '⏱️', tone: 'blue' as const, value: `${weekHours.value} j`, label: 'Hours this week', sub: 'Jam minggu ini', delta: '4 kelas' },
-  { icon: '🧑‍🎓', tone: 'violet' as const, value: String(studentCount.value), label: 'My students', sub: 'Pelajar saya', delta: 'aktif' },
-  { icon: '💰', tone: 'green' as const, value: formatRM(estimatedPay('hafiz')), label: 'Est. salary', sub: 'Anggaran gaji Jun', delta: '38 j' },
+  { icon: '📚', tone: 'pink' as const, value: String(todayCount.value), label: 'Classes today', delta: 'Mon' },
+  { icon: '⏱️', tone: 'blue' as const, value: `${weekHours.value} h`, label: 'Hours this week', delta: '4 classes' },
+  { icon: '🧑‍🎓', tone: 'violet' as const, value: String(studentCount.value), label: 'My students', delta: 'active' },
+  { icon: '💰', tone: 'green' as const, value: formatRM(estimatedPay('hafiz')), label: 'Est. salary', sub: 'Estimated salary, June', delta: '38 h' },
 ])
 </script>
 
@@ -37,9 +37,9 @@ const stats = computed(() => [
         <h1 class="font-display font-bold text-ink" style="font-size: 30px; line-height: 1.1">
           {{ greeting }}, Cikgu Hafiz 👋
         </h1>
-        <p class="text-muted mt-1" style="font-size: 14px">{{ dateLabel }} · {{ todayCount }} kelas hari ini</p>
+        <p class="text-muted mt-1" style="font-size: 14px">{{ dateLabel }} · {{ todayCount }} classes today</p>
       </div>
-      <AppButton variant="dark" to="/tutor/pendapatan">Lihat pendapatan saya →</AppButton>
+      <AppButton variant="dark" to="/tutor/earnings">View my earnings →</AppButton>
     </header>
 
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

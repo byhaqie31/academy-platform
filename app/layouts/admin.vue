@@ -10,7 +10,7 @@ const { academy } = useAcademy()
   <PortalShell
     :nav="adminNav"
     base="/admin"
-    section-label="Pengurusan"
+    section-label="Management"
     :brand-name="`${academy.shortName} Admin`"
     :brand-tagline="academy.name"
     :profile="{ name: 'Admin Hz', sub: 'Kota Warisan', initial: 'A', tone: 'violet' }"

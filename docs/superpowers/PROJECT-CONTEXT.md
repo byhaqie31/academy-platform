@@ -266,8 +266,8 @@ Nuxt file-based routes; master-detail is a `[id]` route param.
 Ad-conversion page, Meta Pixel intent, WhatsApp funnel. Motion via GSAP/Lenis here only.
 - `pages/index.vue` — landing page (Hero, TrustStrip, SubjectGrid, HowToSteps,
   RecommendedSolution, BranchGrid, Testimonials, CtaBanner, SiteHeader/Footer, FloatingWhatsApp)
-- `pages/daftar.vue` — 6-step **RegistrationWizard** (student registration flow)
-- `pages/portal/ibubapa.vue` — **parent/student teaser** (one screen only; everything else stubbed)
+- `pages/register.vue` — 6-step **RegistrationWizard** (student registration flow)
+- `pages/portal/parents.vue` — **parent/student teaser** (one screen only; everything else stubbed)
 
 ### Admin portal (the meeting-winner) — `layouts/admin.vue`, nav = 9 items
 - **HERO:** Dashboard `pages/admin/index.vue`; Students+guardians `students/index.vue` and detail
@@ -277,15 +277,15 @@ Ad-conversion page, Meta Pixel intent, WhatsApp funnel. Motion via GSAP/Lenis he
 - **STUB:** Branches `branches.vue`; Settings & integrations `settings.vue` (Zoom / Microsoft /
   WhatsApp toggles). (Audit log is mentioned in the vision but rendered via the stub pattern.)
 
-### Tutor portal (the stickiness) — `layouts/tutor.vue`, nav = 5 items (Malay-primary routes)
-- **HERO:** Dashboard `pages/tutor/index.vue`; Classroom list `kelas/index.vue` + student/class
-  detail `kelas/[id].vue`; Salary & payslip `pendapatan.vue`; (Onboarding is part of the flow)
-- **SUPPORTING:** My schedule `jadual.vue`; My syllabus / lesson plans `rancangan.vue`
+### Tutor portal (the stickiness) — `layouts/tutor.vue`, nav = 5 items
+- **HERO:** Dashboard `pages/tutor/index.vue`; Classroom list `classes/index.vue` + student/class
+  detail `classes/[id].vue`; Salary & payslip `earnings.vue`; (Onboarding is part of the flow)
+- **SUPPORTING:** My schedule `schedule.vue`; My syllabus / lesson plans `lesson-plans.vue`
 - The tutor persona is **Cikgu Hafiz** (`tutorSelfId: 'hafiz'`), whose 4 classes and sessions
   drive the RM 1,710 payroll invariant.
 
 ### Parent / student portal
-**One teaser screen only** (`portal/ibubapa.vue`). Everything else stubbed. Do not build out until
+**One teaser screen only** (`portal/parents.vue`). Everything else stubbed. Do not build out until
 admin and tutor close a deal.
 
 Reusable stub pattern lives in `app/components/admin/StubScreen.vue` (titled, styled "sedang
@@ -384,8 +384,8 @@ portal.
 | Marketing page | `app/pages/index.vue` |
 | Admin routes | `app/pages/admin/*` |
 | Tutor routes | `app/pages/tutor/*` |
-| Parent teaser | `app/pages/portal/ibubapa.vue` |
-| Registration wizard | `app/pages/daftar.vue` + `components/marketing/RegistrationWizard.vue` |
+| Parent teaser | `app/pages/portal/parents.vue` |
+| Registration wizard | `app/pages/register.vue` + `components/marketing/RegistrationWizard.vue` |
 | Rulebook for Claude | `CLAUDE.md` |
 | Design spec / plan | `docs/superpowers/specs/…` and `…/plans/…` |
 
