@@ -38,9 +38,10 @@ Source palette (convert to OKLCH in `@theme`):
 - Sentence case everywhere. No title case headers.
 - No em dashes. Use commas, periods, or "to" for word ranges ("Mon to Sat").
   En-dashes are allowed as numeric range glyphs ("3PM–9PM").
-- **Language split.** Malay for what a visitor reads on the public marketing surfaces
-  (`/`, `/subjects`, `/how-it-works`, `/tutors`, `/fees`, `/contact`, `/register`, `/portal/login`,
-  and the landing pages). English for the admin and tutor portals, which are product chrome.
+- **Language split.** Malay for everything a parent or visitor reads: the public marketing
+  surfaces (`/`, `/subjects`, `/how-it-works`, `/tutors`, `/fees`, `/contact`, `/register`,
+  `/portal/login`, the landing pages) and the parent portal (`/portal/parent`). English for
+  the admin and tutor portals, which are product chrome.
   No bilingual sub-labels anywhere: pick the language for the surface, not for the label.
 - **English for everything a developer touches**, on every surface: routes, filenames, component
   names, types, composables, props, store keys, comments, tests. A Malay page is built out of
@@ -63,7 +64,7 @@ Seed realistic Malaysian data: real-format names, IC numbers, RM amounts, the fo
 **Marketing** — ad conversion page, Meta Pixel, WhatsApp funnel. (port from existing mockup later)
 
 **Admin** (the meeting-winner)
-- HERO: Dashboard, Students & guardians (+ detail), Educators (+ detail), Schedule & lesson plans, Student billing
+- HERO: Dashboard, Tonight, Collection week, Timetable, Students & guardians (+ detail), Educators (+ detail), Schedule & lesson plans, Student billing
 - SUPPORTING: Syllabus / e-learning tree, Tutor payroll output
 - STUB: Branches, Audit log, Settings & integrations (Zoom / Microsoft / WhatsApp toggles)
 
@@ -71,7 +72,10 @@ Seed realistic Malaysian data: real-format names, IC numbers, RM amounts, the fo
 - HERO: Onboarding, Dashboard, Classroom (+ student detail), Salary & payslip
 - SUPPORTING: My syllabus
 
-**Parent / student** — one teaser screen only. Everything else stubbed. Do not build until admin and tutor close a deal.
+**Parent** (the HERO surface)
+- In a fully-online centre the parent portal substitutes for the building: it is where the product is felt day to day. The suspended-to-paying recovery flow is the single strongest commercial argument in the product.
+- HERO: Parent home (tonight's classes, join buttons, payment card, package card), Suspended screen and the recovery flow back to paying.
+- The old one-screen teaser at `app/pages/portal/parents.vue` is superseded by `/portal/parent`.
 
 ## KPM syllabus
 Stages: Sekolah Rendah (Tahun 1 to 6), Menengah Rendah (Tingkatan 1 to 3), Menengah Atas (Tingkatan 4 to 5). Show core subjects (BM, BI, Matematik, Sains, Sejarah, Geografi) plus STEM and TVET as categories. Populate a convincing slice with authentic topic names. Do not build the full national syllabus in the mockup.
@@ -92,7 +96,7 @@ Zoom and Microsoft are integration stubs (a "Join class" button, a settings togg
 2. Tutor dashboard + payslip.
 3. Schedule + Classroom (ties admin and tutor together).
 4. Billing + payroll output.
-5. Parent teaser.
+5. Parent portal.
 6. Polish, mobile pass, demo watermark, login split.
 
 Work in stages with a checkpoint after each. Report and wait for go-ahead before moving to the next stage.

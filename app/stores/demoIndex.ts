@@ -43,10 +43,13 @@ const demoNotes: Record<string, string> = {
   '/register': 'Five-step interest form, ending on WhatsApp',
   // Admin
   '/admin': 'Centre-wide numbers: revenue, attendance, classes running today',
+  '/admin/tonight': 'Live ops from 7:30pm: who is in which room, and what is wrong',
   '/admin/students': 'Student and guardian records, with a detail view each',
   '/admin/educators': 'Tutor records, hours taught and derived pay',
+  '/admin/timetable': 'The weekly grid, with licences used against licences available',
   '/admin/schedule': 'The weekly grid across every class, plus lesson plans',
   '/admin/syllabus': 'KPM syllabus tree and the material bank',
+  '/admin/collection': 'The 1st to the 7th, where the whole month gets collected',
   '/admin/billing': 'Invoices, outstanding balances and payment proof',
   '/admin/payroll': 'Pay derived from recorded sessions, never hand-entered',
   '/admin/branches': 'Placeholder. Proves the feature exists for centres with branches',
@@ -58,7 +61,9 @@ const demoNotes: Record<string, string> = {
   '/tutor/lesson-plans': 'Plans for the week ahead',
   '/tutor/earnings': 'Payslip. Reconciles exactly with the admin payroll screen',
   // Parent
-  '/portal/parents': 'Teaser only. Built in full once admin and tutor close a deal',
+  '/portal/parent': 'What a parent actually opens: one screen, three answers',
+  '/portal/parent/suspended': 'The 9th of the month, and the two taps back in',
+  '/portal/parents': 'The original teaser, superseded by the full portal at /portal/parent',
   '/portal/login': 'The portal door. No password, a link sent to WhatsApp',
   // Archive
   '/v1': 'The first mockup, frozen. English, branch-based, one long page',
@@ -75,6 +80,8 @@ const marketingEntries: DemoEntry[] = [
 ]
 
 const parentEntries: DemoEntry[] = [
+  { label: 'Parent home', to: '/portal/parent', note: demoNotes['/portal/parent']!, status: 'live' },
+  { label: 'Suspended and back', to: '/portal/parent/suspended', note: demoNotes['/portal/parent/suspended']!, status: 'live' },
   { label: 'Parent teaser', to: '/portal/parents', note: demoNotes['/portal/parents']!, status: 'live' },
   { label: 'Portal login', to: '/portal/login', note: demoNotes['/portal/login']!, status: 'live' },
 ]

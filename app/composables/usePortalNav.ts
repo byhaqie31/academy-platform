@@ -6,10 +6,13 @@ export interface NavItem {
 
 export const adminNav: NavItem[] = [
   { to: '/admin', icon: '📊', label: 'Dashboard' },
+  { to: '/admin/tonight', icon: '🎥', label: 'Tonight' },
   { to: '/admin/students', icon: '🧑‍🎓', label: 'Students' },
   { to: '/admin/educators', icon: '🧑‍🏫', label: 'Educators' },
+  { to: '/admin/timetable', icon: '🧩', label: 'Timetable' },
   { to: '/admin/schedule', icon: '🗓️', label: 'Schedule' },
   { to: '/admin/syllabus', icon: '📚', label: 'Syllabus' },
+  { to: '/admin/collection', icon: '🧾', label: 'Collection week' },
   { to: '/admin/billing', icon: '💳', label: 'Billing' },
   { to: '/admin/payroll', icon: '💰', label: 'Payroll' },
   { to: '/admin/branches', icon: '📍', label: 'Branches' },
