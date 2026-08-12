@@ -13,8 +13,8 @@ const parent = useParentPortal()
       :style="{ borderBottom: '1px solid var(--color-border-marketing)' }"
     >
       <div
-        class="mx-auto flex items-center justify-between gap-3"
-        :style="{ maxWidth: '560px', padding: '11px 18px' }"
+        class="mx-auto flex items-center justify-between gap-3 max-w-[560px] lg:max-w-[1164px]"
+        :style="{ padding: '11px 18px' }"
       >
         <div class="flex items-center gap-2.5 min-w-0">
           <LogoMark :size="34" />
@@ -44,14 +44,21 @@ const parent = useParentPortal()
       </div>
     </header>
 
-    <ParentDemoStateBar />
-
     <main :style="{ background: 'linear-gradient(180deg, #FBF8FF, #FFFFFF 320px)' }">
-      <div class="mx-auto" :style="{ maxWidth: '560px', padding: '18px 18px 64px' }">
-        <slot />
+      <div
+        class="mx-auto max-w-[560px] lg:max-w-[1164px] lg:grid lg:grid-cols-[minmax(0,880px)_260px] lg:gap-6 lg:items-start"
+        :style="{ padding: '18px 18px 64px' }"
+      >
+        <div>
+          <slot />
+        </div>
+        <div class="hidden lg:block">
+          <ParentDemoPanel />
+        </div>
       </div>
     </main>
 
+    <ParentDemoSheet />
     <DemoWatermark />
   </div>
 </template>

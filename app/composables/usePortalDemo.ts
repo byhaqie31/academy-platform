@@ -24,7 +24,7 @@ export const cycleSteps: CycleStep[] = [
   { key: 'final', label: 'Hari akhir', day: '7 Ogos', hint: 'Due today, escalated weight' },
   { key: 'partial', label: 'Bayar separa', day: '7 Ogos', hint: 'Two subjects paid, one not' },
   { key: 'grace', label: 'Tempoh lanjut', day: '8 Ogos', hint: 'Past due, inside the grace window' },
-  { key: 'suspended', label: 'Akses dijeda', day: '9 Ogos', hint: 'The gate closed, the recovery screen' },
+  { key: 'suspended', label: 'Akses disekat', day: '9 Ogos', hint: 'The gate closed, the recovery screen' },
 ]
 
 const cycle = ref<CycleState>('due')

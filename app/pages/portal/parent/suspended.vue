@@ -24,7 +24,7 @@ const owed = computed(() => unpaid.value.reduce((n, l) => n + l.amount, 0) || p.
 </script>
 
 <template>
-  <div class="flex flex-col" :style="{ gap: '16px' }">
+  <div class="mx-auto w-full flex flex-col" :style="{ gap: '16px', maxWidth: '540px' }">
     <section
       class="bg-surface"
       :style="{
@@ -40,7 +40,7 @@ const owed = computed(() => unpaid.value.reduce((n, l) => n + l.amount, 0) || p.
         class="font-display font-bold text-ink"
         :style="{ fontSize: 'clamp(1.4rem, 4.6vw, 1.75rem)', lineHeight: '1.2', margin: '15px 0 6px' }"
       >
-        Kelas {{ p.child.first }} dijeda
+        Kelas {{ p.child.first }} disekat
       </h1>
       <p class="text-muted" :style="{ fontSize: '14px', margin: '0 0 18px' }">
         Yuran {{ p.period }} belum dijelaskan.
@@ -131,7 +131,7 @@ const owed = computed(() => unpaid.value.reduce((n, l) => n + l.amount, 0) || p.
     </a>
 
     <p class="text-center text-faint" :style="{ fontSize: '11.5px', margin: 0, lineHeight: '1.5' }">
-      Sudah bayar tapi masih dijeda? Hantar resit di WhatsApp,<br>
+      Sudah bayar tapi masih disekat? Hantar resit di WhatsApp,<br>
       kami buka semula dalam masa 5 minit.
     </p>
   </div>

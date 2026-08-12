@@ -44,7 +44,7 @@ function verdict(cycle: CycleState, subject: string): Verdict {
     return { allowed: false, reason: 'unpaid', message: 'Yuran subjek ini belum dijelaskan' }
   }
   if (cycle === 'grace') {
-    return { allowed: true, reason: 'grace', message: 'Akses akan dijeda esok' }
+    return { allowed: true, reason: 'grace', message: 'Akses akan disekat esok' }
   }
   if (paid(cycle, subject)) {
     return { allowed: true, reason: 'paid', message: '' }

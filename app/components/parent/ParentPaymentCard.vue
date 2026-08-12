@@ -24,9 +24,9 @@ const view = computed((): { key: string, tone: PillTone, icon: string, title: st
     case 'final':
       return { key: 'final', tone: 'overdue', icon: '⏰', title: 'Hari terakhir untuk bayar' }
     case 'grace':
-      return { key: 'grace', tone: 'amber', icon: '🕐', title: 'Akses akan dijeda esok' }
+      return { key: 'grace', tone: 'amber', icon: '🕐', title: 'Akses akan disekat esok' }
     case 'suspended':
-      return { key: 'suspended', tone: 'overdue', icon: '🔒', title: 'Kelas dijeda' }
+      return { key: 'suspended', tone: 'overdue', icon: '🔒', title: 'Kelas disekat' }
     default:
       return { key: 'due', tone: 'violet', icon: '💳', title: `Yuran ${props.period}` }
   }
