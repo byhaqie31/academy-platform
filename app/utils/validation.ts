@@ -35,6 +35,13 @@ export function isValidMyPhone(s: string): boolean {
   return /^0\d{9,10}$/.test(digits)
 }
 
+/** "012-345 6789" -> "012•••6789": first three and last four digits survive. */
+export function maskMyPhone(s: string): string {
+  const digits = s.replace(/\D/g, '')
+  if (digits.length < 8) return digits
+  return digits.slice(0, 3) + '•'.repeat(digits.length - 7) + digits.slice(-4)
+}
+
 /** Whether the wizard may advance from `step` given the current form. */
 export function canAdvance(step: number, form: Partial<RegForm>): boolean {
   switch (step) {

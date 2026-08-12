@@ -63,7 +63,6 @@ const demoNotes: Record<string, string> = {
   // Parent
   '/portal/parent': 'What a parent actually opens: one screen, three answers',
   '/portal/parent/suspended': 'The 9th of the month, and the two taps back in',
-  '/portal/parents': 'The original teaser, superseded by the full portal at /portal/parent',
   '/portal/login': 'The portal door. No password, a link sent to WhatsApp',
   // Archive
   '/v1': 'The first mockup, frozen. English, branch-based, one long page',
@@ -80,10 +79,9 @@ const marketingEntries: DemoEntry[] = [
 ]
 
 const parentEntries: DemoEntry[] = [
+  { label: 'Portal login', to: '/portal/login', note: demoNotes['/portal/login']!, status: 'live' },
   { label: 'Parent home', to: '/portal/parent', note: demoNotes['/portal/parent']!, status: 'live' },
   { label: 'Suspended and back', to: '/portal/parent/suspended', note: demoNotes['/portal/parent/suspended']!, status: 'live' },
-  { label: 'Parent teaser', to: '/portal/parents', note: demoNotes['/portal/parents']!, status: 'live' },
-  { label: 'Portal login', to: '/portal/login', note: demoNotes['/portal/login']!, status: 'live' },
 ]
 
 const archiveEntries: DemoEntry[] = [
@@ -174,11 +172,11 @@ const demoGroups: DemoGroup[] = [
     key: 'parent',
     title: 'Parent portal',
     badge: 'phase 2',
-    note: 'One teaser screen and the door. Built out after admin and tutor close.',
+    note: 'The door, the home screen and the recovery flow. Where the product is felt day to day.',
     icon: '👨‍👩‍👧',
     tone: 'amber',
-    primaryTo: '/portal/parents',
-    primaryLabel: 'Open the parent teaser',
+    primaryTo: '/portal/login',
+    primaryLabel: 'Open the parent portal',
     entries: parentEntries,
   },
   {

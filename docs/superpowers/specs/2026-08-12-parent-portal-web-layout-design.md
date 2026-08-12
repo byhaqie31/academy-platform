@@ -65,6 +65,34 @@ a floating pill with a bottom sheet on mobile.
 - The recovery card + WhatsApp link + receipt note stay a centered `max-width: 540px`
   column inside the wide frame. Card content unchanged.
 
+## Addendum: demo chrome moves to an outer frame (approved 2026-08-12)
+
+Supersedes the in-grid sidebar above. The demo control must read as scaffolding
+around the product, never as part of it:
+
+- Desktop: a dark ink rail fixed to the left viewport edge (240px, full
+  height): demo badge, cycle steps (dark variant), hint, "← Keluar demo" at the
+  bottom. The layout clears it with left padding at `lg+`.
+- The product frame is clean: header and content center at 880px, no grid
+  column, and the "Keluar" link leaves the portal header (the avatar stays).
+- Mobile: floating pill + sheet as before, with "← Keluar demo" added to the
+  sheet.
+
+## Addendum: portal login with a 6-digit code (approved 2026-08-12)
+
+`/portal/login` becomes a two-step fake OTP flow, replacing the dead-end
+"Pautan dihantar" state:
+
+- Step 1: phone input as today, copy shifts from magic link to a 6-digit
+  WhatsApp code ("Hantar kod ke WhatsApp").
+- Step 2: six digit boxes with auto-advance focus, backspace-to-previous and
+  full-code paste. Shows the masked phone, "Hantar semula kod" (fake) and
+  "Tukar nombor" (back to step 1).
+- Any 6 digits verify. On the 6th digit, a brief "Mengesahkan..." beat, then
+  navigate to `/portal/parent`.
+- `maskMyPhone` joins `app/utils/validation.ts` with unit tests. No real auth,
+  no session, per project rules.
+
 ## Out of scope
 
 - No changes to composable data logic, seed data, types, or any other portal.

@@ -64,6 +64,14 @@ const open = ref(false)
           </button>
         </div>
         <ParentDemoStepList @selected="open = false" />
+
+        <NuxtLink
+          to="/demo"
+          class="block text-center font-semibold no-underline text-muted"
+          :style="{ fontSize: '12.5px', marginTop: '16px' }"
+        >
+          ← Keluar demo
+        </NuxtLink>
       </div>
     </div>
   </div>

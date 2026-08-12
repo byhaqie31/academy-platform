@@ -1,26 +1,57 @@
 <script setup lang="ts">
-// Demo control, not part of the product. Desktop sidebar variant; the layout
-// shows it only at lg+ and gives it the 260px column.
+// Demo control, not part of the product. A dark rail fixed to the left
+// viewport edge, deliberately outside the product frame so a stakeholder
+// can see where the sample-demo scaffolding ends and the product begins.
+// The layout shows it only at lg+ and clears its width with padding.
 </script>
 
 <template>
-  <div class="sticky" :style="{ top: '76px' }">
-    <div
-      class="bg-surface"
+  <aside
+    class="fixed left-0 top-0 bottom-0 flex flex-col"
+    :style="{
+      width: '240px',
+      zIndex: 55,
+      background: 'var(--color-ink)',
+      padding: '20px 16px',
+      overflowY: 'auto',
+    }"
+  >
+    <div :style="{ marginBottom: '16px' }">
+      <div
+        class="inline-flex items-center font-bold uppercase"
+        :style="{
+          gap: '6px',
+          background: 'rgba(255,255,255,.12)',
+          color: '#fff',
+          borderRadius: '999px',
+          padding: '5px 11px',
+          fontSize: '10px',
+          letterSpacing: '0.08em',
+        }"
+      >
+        ✨ Demo
+      </div>
+      <div
+        class="font-semibold"
+        :style="{ color: 'rgba(255,255,255,.55)', fontSize: '11.5px', marginTop: '10px' }"
+      >
+        Kitaran bulanan, tekan untuk tukar keadaan
+      </div>
+    </div>
+
+    <ParentDemoStepList variant="dark" />
+
+    <NuxtLink
+      to="/demo"
+      class="font-semibold no-underline transition-colors"
       :style="{
-        border: '1px solid var(--color-border-marketing)',
-        borderRadius: '20px',
-        padding: '16px',
-        boxShadow: '0 10px 28px rgba(30,35,72,.06)',
+        marginTop: 'auto',
+        paddingTop: '18px',
+        color: 'rgba(255,255,255,.65)',
+        fontSize: '12.5px',
       }"
     >
-      <div
-        class="font-bold uppercase text-faint"
-        :style="{ fontSize: '9.5px', letterSpacing: '0.07em', marginBottom: '10px' }"
-      >
-        Demo · kitaran bulanan
-      </div>
-      <ParentDemoStepList />
-    </div>
-  </div>
+      ← Keluar demo
+    </NuxtLink>
+  </aside>
 </template>
