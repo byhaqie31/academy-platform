@@ -42,7 +42,7 @@ const demoNotes: Record<string, string> = {
   '/contact': 'WhatsApp first, enquiry form second',
   '/register': 'Five-step interest form, ending on WhatsApp',
   // Admin
-  '/admin': 'Centre-wide numbers: revenue, attendance, classes running today',
+  '/admin': 'Tonight, the collection cycle and centre-wide revenue, on one screen',
   '/admin/tonight': 'Live ops from 7:30pm: who is in which room, and what is wrong',
   '/admin/students': 'Student and guardian records, with a detail view each',
   '/admin/educators': 'Tutor records, hours taught and derived pay',
@@ -52,7 +52,6 @@ const demoNotes: Record<string, string> = {
   '/admin/collection': 'The 1st to the 7th, where the whole month gets collected',
   '/admin/billing': 'Invoices, outstanding balances and payment proof',
   '/admin/payroll': 'Pay derived from recorded sessions, never hand-entered',
-  '/admin/branches': 'Placeholder. Proves the feature exists for centres with branches',
   '/admin/settings': 'Zoom, Microsoft and WhatsApp integration toggles',
   // Tutor
   '/tutor': "What a tutor sees first: today's classes and pay so far",

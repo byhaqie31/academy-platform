@@ -14,13 +14,24 @@ export interface PaymentRow {
 // swap internals for API calls when backend lands; signature stays stable
 export function useBilling() {
   const store = useAcademyStore()
-  const all = store.invoices as Invoice[]
+
+  /**
+   * Seeded invoices with the walkthrough's settled payments layered on top.
+   * Rebuilt per read so a payment recorded on one screen shows on every other,
+   * and so the seed itself is never written to.
+   */
+  const all = (): Invoice[] =>
+    (store.invoices as Invoice[]).map((i) =>
+      store.demo.paidInvoiceIds.includes(i.id)
+        ? { ...i, status: 'Paid' as PayStatus, proof: true }
+        : i,
+    )
 
   const filter = (f: BillingFilter): Invoice[] =>
-    f === 'all' ? all : all.filter((i) => i.status.toLowerCase() === f)
+    f === 'all' ? all() : all().filter((i) => i.status.toLowerCase() === f)
 
   const sumBy = (status: PayStatus) =>
-    all.filter((i) => i.status === status).reduce((t, i) => t + i.amount, 0)
+    all().filter((i) => i.status === status).reduce((t, i) => t + i.amount, 0)
 
   const summary = () => ({
     paid: sumBy('Paid'),
@@ -30,7 +41,7 @@ export function useBilling() {
 
   // Three-month history derived from the student's current invoice + status.
   const paymentHistory = (studentId: string): PaymentRow[] => {
-    const inv = all.find((i) => i.studentId === studentId)
+    const inv = all().find((i) => i.studentId === studentId)
     const amount = inv?.amount ?? store.metrics.defaultFee
     if (inv?.status === 'Overdue') {
       return [
@@ -53,5 +64,13 @@ export function useBilling() {
     ]
   }
 
-  return { all, filter, summary, paymentHistory }
+  // `all` stays a property, not a function, so callers read it unchanged.
+  return {
+    get all() {
+      return all()
+    },
+    filter,
+    summary,
+    paymentHistory,
+  }
 }

@@ -25,3 +25,31 @@ describe('payroll derivation', () => {
     expect(byClass.reduce((t, c) => t + c.amount, 0)).toBe(1710)
   })
 })
+
+describe('the payroll board the admin screen renders', () => {
+  it('has one row per educator', () => {
+    const board = usePayroll().board('Jun 2026')
+    expect(board.rows).toHaveLength(useEducators().all.length)
+  })
+
+  it('pays every educator exactly what their own portal shows them', () => {
+    const educators = useEducators()
+    for (const row of usePayroll().board('Jun 2026').rows) {
+      expect(row.amount).toBe(educators.estimatedPay(row.educatorId))
+    }
+  })
+
+  it('totals to the centre-wide payroll figure', () => {
+    const board = usePayroll().board('Jun 2026')
+    const summed = board.rows.reduce((t, r) => t + r.amount, 0)
+    expect(board.total).toBe(summed)
+    expect(board.hours).toBe(170)
+  })
+
+  it('carries the name and rate each row needs, without a second lookup', () => {
+    const row = usePayroll().board('Jun 2026').rows.find((r) => r.educatorId === 'hafiz')!
+    expect(row.name).toBe('Cikgu Hafiz')
+    expect(row.rate).toBe(45)
+    expect(row.hours).toBe(38)
+  })
+})

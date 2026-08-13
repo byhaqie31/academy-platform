@@ -7,12 +7,30 @@ import { useAcademyStore } from '~/stores/academy'
 export function useAdminMetrics() {
   const store = useAcademyStore()
   const m = store.metrics
+
+  /**
+   * Headline figures are centre-wide constants, so a walkthrough payment applies
+   * a delta rather than recomputing from the seed slice. Exposed as getters so
+   * a screen reading `metrics.outstanding` re-evaluates when the overlay changes.
+   */
+  const settled = () =>
+    store.demo.paidInvoiceIds.reduce(
+      (total, id) => total + (store.invoices.find((i) => i.id === id)?.amount ?? 0),
+      0,
+    )
+
   return {
     enquiries: m.newEnquiries,
-    activeStudents: m.activeStudents,
+    get activeStudents() {
+      return m.activeStudents + store.demo.registeredStudents.length
+    },
     classesToday: m.classesToday,
-    outstanding: m.outstanding,
-    outstandingCount: m.outstandingCount,
+    get outstanding() {
+      return m.outstanding - settled()
+    },
+    get outstandingCount() {
+      return m.outstandingCount - store.demo.paidInvoiceIds.length
+    },
     revenue: m.revenue,
     cost: m.cost,
     margin: m.margin,

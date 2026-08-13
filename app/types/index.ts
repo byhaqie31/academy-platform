@@ -92,6 +92,13 @@ export interface Student {
   school?: string
 }
 
+/** What the register form collects. The rest of a Student is filled in for it. */
+export interface NewStudent {
+  name: string
+  level: string
+  subjects: string[]
+}
+
 export interface Educator {
   id: string
   name: string
@@ -198,6 +205,7 @@ export interface ScheduleCell {
   subject: string
   cls: string
   tutor: string
-  branch: string
+  /** the licensed room the class runs in, e.g. `host-01` */
+  host: string
   tone: SubjectTone
 }

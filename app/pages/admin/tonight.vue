@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useTonight, type SessionState } from '~/composables/useTonight'
+import { useTonight, type SessionState, type TonightRow } from '~/composables/useTonight'
 import StatCard from '~/components/ui/StatCard.vue'
 import StatusPill from '~/components/ui/StatusPill.vue'
 import AppButton from '~/components/ui/AppButton.vue'
@@ -13,6 +13,25 @@ definePageMeta({ layout: 'admin' })
 const day = ref<Day>('Mon')
 const board = useTonight()
 const tonight = computed(() => board.forDay(day.value))
+const toast = useToast()
+
+// The two things an operator actually does at 7:30pm about an alert.
+function resolve(row: TonightRow) {
+  if (row.state === 'empty') {
+    toast.add({
+      title: `Calling ${row.tutor}`,
+      description: `${row.cls.subject} · ${row.cls.cls} is still empty. A WhatsApp call is placed.`,
+      icon: 'i-fluent-call-24-regular',
+    })
+    return
+  }
+  toast.add({
+    title: 'Participants reviewed',
+    description: `${row.alert} in ${row.cls.cls}. Anyone not on the paid roster is removed.`,
+    icon: 'i-fluent-shield-24-regular',
+    color: 'success',
+  })
+}
 
 const days: { key: Day; label: string }[] = [
   { key: 'Mon', label: 'Mon' },
@@ -110,7 +129,7 @@ const stateLabel = (s: SessionState): string =>
               {{ r.cls.subject }} · {{ r.cls.cls }}
             </div>
             <div class="text-muted truncate" :style="{ fontSize: '12.5px' }">
-              {{ r.tutor }} · {{ r.branch }} · {{ r.host }}
+              {{ r.tutor }} · {{ r.host }}
             </div>
           </div>
 
@@ -127,7 +146,7 @@ const stateLabel = (s: SessionState): string =>
             <span class="font-bold" :style="{ color: 'var(--color-fg-overdue)', fontSize: '12.5px' }">
               {{ r.alert }}
             </span>
-            <AppButton variant="dark" size="sm">
+            <AppButton variant="dark" size="sm" @click="resolve(r)">
               {{ r.state === 'empty' ? 'Call tutor' : 'Review' }}
             </AppButton>
           </div>

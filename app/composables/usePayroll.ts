@@ -1,5 +1,20 @@
 import { useAcademyStore } from '~/stores/academy'
-import type { PayrollRun } from '~/types'
+import type { PayrollRun, SubjectTone } from '~/types'
+
+/** A payroll run with the identity the admin table shows alongside it. */
+export interface PayrollBoardRow extends PayrollRun {
+  name: string
+  first: string
+  subjects: string[]
+  tone: SubjectTone
+}
+
+export interface PayrollBoard {
+  period: string
+  rows: PayrollBoardRow[]
+  total: number
+  hours: number
+}
 
 // swap internals for API calls when backend lands; signature stays stable
 export function usePayroll() {
@@ -46,5 +61,27 @@ export function usePayroll() {
     }))
   }
 
-  return { runFor, weeklyBreakdown, byClass, hoursFor, weekLabels: store.weekLabels }
+  /**
+   * The whole centre's payroll for a period, one row per educator.
+   *
+   * Every figure is derived from recorded sessions here, exactly as the tutor's
+   * own payslip derives it, which is what makes the two screens reconcile.
+   */
+  const board = (period: string): PayrollBoard => {
+    const rows: PayrollBoardRow[] = store.educators.map((e) => ({
+      ...runFor(e.id, period),
+      name: e.name,
+      first: e.first,
+      subjects: e.subjects,
+      tone: e.tone,
+    }))
+    return {
+      period,
+      rows,
+      total: rows.reduce((t, r) => t + r.amount, 0),
+      hours: rows.reduce((t, r) => t + r.hours, 0),
+    }
+  }
+
+  return { runFor, weeklyBreakdown, byClass, hoursFor, board, weekLabels: store.weekLabels }
 }

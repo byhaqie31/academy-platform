@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useBilling, type BillingFilter } from '~/composables/useBilling'
-import { useAcademy } from '~/composables/useAcademy'
+import { useStudents } from '~/composables/useStudents'
+import { useDemoActions } from '~/composables/useDemoActions'
+import type { Invoice } from '~/types'
 import StatusPill from '~/components/ui/StatusPill.vue'
 import IconTile from '~/components/ui/IconTile.vue'
 import DataTable, { type Column } from '~/components/ui/DataTable.vue'
@@ -13,9 +15,23 @@ import { toneByIndex } from '~/utils/tone'
 definePageMeta({ layout: 'admin' })
 
 const billing = useBilling()
-const { branchShort } = useAcademy()
+const students = useStudents()
+const demo = useDemoActions()
+const toast = useToast()
+const levelOf = (studentId: string) => students.byId(studentId)?.level ?? ''
 
-const summary = billing.summary()
+function markPaid(row: Invoice) {
+  demo.recordPayment(row.id)
+  toast.add({
+    title: 'Payment recorded',
+    description: `${row.name} is settled for ${row.period}. Outstanding updates across the portal.`,
+    icon: 'i-fluent-checkmark-circle-24-regular',
+    color: 'success',
+  })
+}
+
+// Computed, not read once: recording a payment has to move these.
+const summary = computed(() => billing.summary())
 const paidCount = computed(() => billing.filter('paid').length)
 const pendingCount = computed(() => billing.filter('pending').length)
 const overdueCount = computed(() => billing.filter('overdue').length)
@@ -26,7 +42,7 @@ const cards = computed(() => [
     icon: 'i-fluent-checkmark-circle-24-regular',
     tone: 'green' as const,
     label: 'Paid',
-    value: formatRM(summary.paid),
+    value: formatRM(summary.value.paid),
     valueColor: 'var(--color-fg-green)',
     sub: `${paidCount.value} invoices settled`,
   },
@@ -34,7 +50,7 @@ const cards = computed(() => [
     icon: 'i-fluent-hourglass-24-regular',
     tone: 'amber' as const,
     label: 'Pending',
-    value: formatRM(summary.pending),
+    value: formatRM(summary.value.pending),
     valueColor: 'var(--color-fg-amber)',
     sub: `${pendingCount.value} awaiting proof`,
   },
@@ -42,7 +58,7 @@ const cards = computed(() => [
     icon: 'i-fluent-warning-24-regular',
     tone: 'overdue' as const,
     label: 'Overdue',
-    value: formatRM(summary.overdue),
+    value: formatRM(summary.value.overdue),
     valueColor: 'var(--color-fg-overdue)',
     sub: `${overdueCount.value} overdue`,
   },
@@ -131,7 +147,7 @@ const columns: Column[] = [
           <div class="min-w-0">
             <div class="font-bold text-ink" style="font-size: 13px">{{ row.name }}</div>
             <div class="text-muted" style="font-size: 10.5px; font-weight: 600">
-              {{ branchShort(row.branchId) }}
+              {{ levelOf(row.studentId) }}
             </div>
           </div>
         </div>
@@ -167,6 +183,7 @@ const columns: Column[] = [
             fontSize: '11.5px',
             boxShadow: 'var(--shadow-wa)',
           }"
+          @click="markPaid(row)"
         >
           ✓ Mark as paid
         </button>

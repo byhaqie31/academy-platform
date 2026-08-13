@@ -17,6 +17,14 @@ export function attTone(s: AttendanceStatus): PillTone {
   return s === 'present' ? 'green' : s === 'late' ? 'amber' : 'overdue'
 }
 
+/**
+ * Attendance reads as a health figure, not a status, so it is coloured on a
+ * threshold rather than a pill. Below 80 is the number an admin should act on.
+ */
+export function attendanceTone(pct: number): PillTone {
+  return pct >= 90 ? 'green' : pct >= 80 ? 'amber' : 'overdue'
+}
+
 export function enquiryTone(s: EnquiryStatus): PillTone {
   return s === 'new' ? 'blue' : s === 'pending' ? 'amber' : 'inactive'
 }

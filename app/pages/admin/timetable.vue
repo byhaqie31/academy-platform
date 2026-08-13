@@ -44,7 +44,7 @@ const totalClasses = computed(() => rows.value.reduce((n, r) => n + r.cells.filt
       <StatCard icon="i-fluent-calendar-ltr-24-regular" tone="violet" :value="String(totalClasses)" label="Classes scheduled" sub="this week" />
       <StatCard icon="i-fluent-ticket-diagonal-24-regular" tone="blue" :value="`${pool.size} / ${pool.capacity}`" label="Licences needed" sub="peak concurrency, not headcount" />
       <StatCard icon="i-fluent-people-24-regular" tone="green" :value="String(metrics.classesActive)" label="Classes active" sub="centre-wide" />
-      <StatCard icon="i-fluent-location-24-regular" tone="amber" :value="String(metrics.branchesActive)" label="Branches" sub="all running" />
+      <StatCard icon="i-fluent-timer-24-regular" tone="amber" :value="`${metrics.totalHours} h`" label="Hours scheduled" sub="this month" />
     </div>
 
     <section
@@ -114,7 +114,7 @@ const totalClasses = computed(() => rows.value.reduce((n, r) => n + r.cells.filt
                       {{ cell.cls }}
                     </div>
                     <div class="truncate" :style="{ color: 'var(--color-muted)', fontSize: '10.5px', marginTop: '2px' }">
-                      {{ cell.tutor }} · {{ cell.branch }}
+                      {{ cell.tutor }} · {{ cell.host }}
                     </div>
                   </div>
                   <div

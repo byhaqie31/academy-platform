@@ -17,7 +17,6 @@ export const adminNav: NavItem[] = [
   { to: '/admin/collection', icon: 'i-fluent-receipt-24', label: 'Collection week' },
   { to: '/admin/billing', icon: 'i-fluent-payment-24', label: 'Billing' },
   { to: '/admin/payroll', icon: 'i-fluent-money-24', label: 'Payroll' },
-  { to: '/admin/branches', icon: 'i-fluent-location-24', label: 'Branches' },
   { to: '/admin/settings', icon: 'i-fluent-settings-24', label: 'Settings' },
 ]
 

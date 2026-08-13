@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { useSubjects } from '~/composables/useSubjects'
 import { useEducators } from '~/composables/useEducators'
-import { useAcademy } from '~/composables/useAcademy'
 import { useSchedule } from '~/composables/useSchedule'
 import AppButton from '~/components/ui/AppButton.vue'
 
@@ -11,7 +10,6 @@ const emit = defineEmits<{ close: [] }>()
 
 const subjects = useSubjects()
 const educators = useEducators()
-const academy = useAcademy()
 const days = useSchedule().days
 
 // Pseudo-select fields: label + the option list to render inside a styled box.
@@ -19,7 +17,6 @@ const fields = [
   { label: 'Subject', options: subjects.all.map((s) => s.name) },
   { label: 'Class', options: ['Tahun 4 Bestari', 'Tingkatan 3 Cerdik', 'Tingkatan 5 Gigih', 'Tahun 6'] },
   { label: 'Tutor', options: educators.all.map((e) => e.name) },
-  { label: 'Branch', options: academy.branches.map((b) => b.name) },
   { label: 'Day', options: days },
 ]
 

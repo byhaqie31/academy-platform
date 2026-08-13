@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useCollection } from '~/composables/useCollection'
+import { useDemoActions } from '~/composables/useDemoActions'
 import DataTable, { type Column } from '~/components/ui/DataTable.vue'
 import StatusPill from '~/components/ui/StatusPill.vue'
 import AppButton from '~/components/ui/AppButton.vue'
@@ -10,25 +11,57 @@ import { payTone } from '~/utils/status'
 definePageMeta({ layout: 'admin' })
 
 const collection = useCollection()
-const board = collection.board
+const demo = useDemoActions()
+const toast = useToast()
+// Computed, not read once: recording a payment has to move these.
+const board = computed(() => collection.board)
 
 type Tab = 'unpaid' | 'all'
 const tab = ref<Tab>('unpaid')
 const rows = computed(() => (tab.value === 'unpaid' ? collection.unpaid : collection.rows))
 
-const tabs: { k: Tab, label: string }[] = [
+const tabs = computed<{ k: Tab, label: string }[]>(() => [
   { k: 'unpaid', label: `Not yet paid (${collection.unpaid.length})` },
   { k: 'all', label: `All families (${collection.rows.length})` },
-]
+])
 
 const columns: Column[] = [
+  { key: 'select', label: '' },
   { key: 'guardian', label: 'Family' },
   { key: 'children', label: 'Children' },
-  { key: 'branch', label: 'Branch' },
   { key: 'amount', label: 'Outstanding', align: 'right' },
   { key: 'lastReminder', label: 'Last chased' },
   { key: 'status', label: 'Status' },
 ]
+
+// Families ticked for a reminder. Cleared once the reminder goes out.
+const selected = ref<string[]>([])
+const isSelected = (id: string) => selected.value.includes(id)
+function toggleSelect(id: string) {
+  selected.value = isSelected(id)
+    ? selected.value.filter((x) => x !== id)
+    : [...selected.value, id]
+}
+
+function chaseSelected() {
+  const count = selected.value.length
+  if (!count) {
+    toast.add({
+      title: 'Nobody selected',
+      description: 'Tick the families you want to remind first.',
+      icon: 'i-fluent-info-24-regular',
+    })
+    return
+  }
+  demo.chase(selected.value)
+  selected.value = []
+  toast.add({
+    title: `WhatsApp reminder sent to ${count} ${count === 1 ? 'family' : 'families'}`,
+    description: 'Each parent gets the amount due and a payment link.',
+    icon: 'i-fluent-chat-24-regular',
+    color: 'success',
+  })
+}
 </script>
 
 <template>
@@ -42,7 +75,9 @@ const columns: Column[] = [
           {{ board.period }} · fees due on the 7th · access pauses on the 8th
         </p>
       </div>
-      <AppButton variant="dark">Chase selected</AppButton>
+      <AppButton variant="dark" @click="chaseSelected">
+        Chase selected<span v-if="selected.length"> ({{ selected.length }})</span>
+      </AppButton>
     </header>
 
     <section
@@ -118,6 +153,18 @@ const columns: Column[] = [
     </div>
 
     <DataTable :columns="columns" :rows="rows" row-key="guardianId" :min-width="940">
+      <template #cell-select="{ row }">
+        <input
+          type="checkbox"
+          class="cursor-pointer"
+          :aria-label="`Select ${row.guardian}`"
+          :checked="isSelected(row.guardianId)"
+          :disabled="row.status === 'Paid'"
+          :style="{ width: '16px', height: '16px', accentColor: 'var(--color-brand)' }"
+          @change="toggleSelect(row.guardianId)"
+        />
+      </template>
+
       <template #cell-guardian="{ row }">
         <div class="font-semibold text-ink">{{ row.guardian }}</div>
         <div class="text-faint" :style="{ fontSize: '11.5px' }">

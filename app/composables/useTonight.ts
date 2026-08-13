@@ -1,6 +1,5 @@
 import { useClasses } from '~/composables/useClasses'
 import { useSubjects } from '~/composables/useSubjects'
-import { useAcademy } from '~/composables/useAcademy'
 import { useHostPool } from '~/composables/useHostPool'
 import type { Class, Day, SubjectTone } from '~/types'
 
@@ -9,7 +8,6 @@ export type SessionState = 'running' | 'starting' | 'scheduled' | 'empty'
 export interface TonightRow {
   cls: Class
   tutor: string
-  branch: string
   tone: SubjectTone
   host: string
   expected: number
@@ -47,7 +45,6 @@ export interface TonightView {
 export function useTonight() {
   const classes = useClasses()
   const subjects = useSubjects()
-  const { branchShort } = useAcademy()
   const pool = useHostPool()
 
   function forDay(day: Day): TonightView {
@@ -72,7 +69,6 @@ export function useTonight() {
         return {
           cls: c,
           tutor: subjects.tutorFor(c.subject) || 'Unassigned',
-          branch: branchShort(c.branchId),
           tone: subjects.toneOf(c.subject) as SubjectTone,
           host: pool.hostFor(c.id),
           expected,
@@ -102,5 +98,20 @@ export function useTonight() {
     }
   }
 
-  return { forDay }
+  /**
+   * The nearest day from `from` that actually teaches, rolling forward through
+   * the week. The dashboard opens on real classes rather than an empty box on
+   * a day the centre does not run.
+   */
+  const WEEK: Day[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const teachingDayFrom = (from: Day): Day => {
+    const start = WEEK.indexOf(from)
+    for (let i = 0; i < WEEK.length; i++) {
+      const day = WEEK[(start + i) % WEEK.length]!
+      if (classes.all.some((c) => c.day === day)) return day
+    }
+    return from
+  }
+
+  return { forDay, teachingDayFrom }
 }

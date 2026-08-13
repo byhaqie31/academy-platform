@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStudents } from '~/composables/useStudents'
-import { useAcademy } from '~/composables/useAcademy'
 import { useSubjects } from '~/composables/useSubjects'
 import IconTile from '~/components/ui/IconTile.vue'
 import StatusPill from '~/components/ui/StatusPill.vue'
@@ -17,7 +16,6 @@ definePageMeta({ layout: 'admin' })
 const route = useRoute()
 const students = useStudents()
 const subjects = useSubjects()
-const { branchShort } = useAcademy()
 
 const student = computed(() => students.byId(String(route.params.id)))
 const tone = computed(() => toneByIndex(students.indexOf(String(route.params.id))))
@@ -71,7 +69,7 @@ const attendance = computed(() => {
             {{ student.name }}
           </div>
           <div class="text-muted mt-0.5" style="font-size: 13.5px; font-weight: 600">
-            {{ student.level }} · {{ branchShort(student.branchId) }}
+            {{ student.level }}
           </div>
         </div>
         <StatusPill :tone="enrolTone(student.enrol)" :label="'● ' + student.enrol" />

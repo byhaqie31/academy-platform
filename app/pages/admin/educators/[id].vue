@@ -9,7 +9,6 @@ import { useEducators } from '~/composables/useEducators'
 import { usePayroll } from '~/composables/usePayroll'
 import { useClasses } from '~/composables/useClasses'
 import { useSubjects } from '~/composables/useSubjects'
-import { useAcademy } from '~/composables/useAcademy'
 import { formatRM } from '~/utils/money'
 
 definePageMeta({ layout: 'admin' })
@@ -21,7 +20,6 @@ const { byId, estimatedPay } = useEducators()
 const { weeklyBreakdown } = usePayroll()
 const { forEducator } = useClasses()
 const subjects = useSubjects()
-const { branchShort } = useAcademy()
 
 const e = computed(() => byId(id.value))
 const classes = computed(() => forEducator(id.value))
@@ -51,7 +49,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
           </div>
           <div class="font-display font-bold text-ink" style="font-size: 21px">{{ e.name }}</div>
           <div class="text-faint" style="font-size: 13px; font-weight: 600; margin-bottom: 14px">
-            Educator · {{ e.branches }}
+            Educator · {{ e.subjects.join(', ') }}
           </div>
           <div class="flex flex-wrap justify-center" style="gap: 5px; margin-bottom: 18px">
             <SubjectChip v-for="s in e.subjects" :key="s" :subject="s" size="full" />
@@ -124,7 +122,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
                   <span class="text-faint" style="font-weight: 600; font-size: 12px">· {{ c.cls }}</span>
                 </div>
                 <div class="text-muted" style="font-size: 12px; font-weight: 600; margin-top: 2px">
-                  {{ c.day }} {{ c.time }} · {{ branchShort(c.branchId) }}
+                  {{ c.day }} {{ c.time }}
                 </div>
               </div>
               <span style="font-weight: 800; font-size: 13px; color: var(--color-brand-deep); flex: none">

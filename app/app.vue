@@ -7,8 +7,11 @@ import DemoNav from '~/components/ui/DemoNav.vue'
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
-  <DemoNav />
+  <!-- UApp provides the toast outlet the walkthrough actions confirm through. -->
+  <UApp>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+    <DemoNav />
+  </UApp>
 </template>
