@@ -20,7 +20,7 @@ const { academy } = useAcademy()
       backdropFilter: 'blur(8px)',
     }"
   >
-    <span style="font-size: 13px">✨</span>
+    <UIcon name="i-fluent-sparkle-16-regular" :style="{ width: '13px', height: '13px' }" />
     Live mockup by Axel Nova
   </a>
 </template>

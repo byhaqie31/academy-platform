@@ -23,10 +23,10 @@ const studentCount = computed(() => myClasses.reduce((t, c) => t + c.roster.leng
 const weekHours = computed(() => myClasses.reduce((t, c) => t + c.dur, 0))
 
 const stats = computed(() => [
-  { icon: '📚', tone: 'pink' as const, value: String(todayCount.value), label: 'Classes today', delta: 'Mon' },
-  { icon: '⏱️', tone: 'blue' as const, value: `${weekHours.value} h`, label: 'Hours this week', delta: '4 classes' },
-  { icon: '🧑‍🎓', tone: 'violet' as const, value: String(studentCount.value), label: 'My students', delta: 'active' },
-  { icon: '💰', tone: 'green' as const, value: formatRM(estimatedPay('hafiz')), label: 'Est. salary', sub: 'Estimated salary, June', delta: '38 h' },
+  { icon: 'i-fluent-book-24-regular', tone: 'pink' as const, value: String(todayCount.value), label: 'Classes today', delta: 'Mon' },
+  { icon: 'i-fluent-timer-24-regular', tone: 'blue' as const, value: `${weekHours.value} h`, label: 'Hours this week', delta: '4 classes' },
+  { icon: 'i-fluent-hat-graduation-24-regular', tone: 'violet' as const, value: String(studentCount.value), label: 'My students', delta: 'active' },
+  { icon: 'i-fluent-money-24-regular', tone: 'green' as const, value: formatRM(estimatedPay('hafiz')), label: 'Est. salary', sub: 'Estimated salary, June', delta: '38 h' },
 ])
 </script>
 

@@ -30,7 +30,7 @@ const subjects = useSubjects()
       @click="$emit('select', i)"
     >
       <IconTile
-        :icon="subjects.byName(name)?.icon ?? '📘'"
+        :icon="subjects.byName(name)?.fluentIcon ?? 'i-fluent-book-24-regular'"
         :tone="subjects.toneOf(name)"
         :size="46"
         :radius="14"

@@ -25,7 +25,8 @@ const open = ref(false)
       }"
       @click="open = true"
     >
-      🎬 Demo
+      <UIcon name="i-fluent-sparkle-16-regular" class="inline-block align-[-2px]" :style="{ width: '13px', height: '13px' }" />
+      Demo
     </button>
 
     <div v-if="open" class="fixed inset-0" :style="{ zIndex: 70 }">
@@ -56,11 +57,12 @@ const open = ref(false)
           </div>
           <button
             type="button"
+            aria-label="Tutup"
             class="font-semibold text-muted"
             :style="{ fontSize: '12px', padding: '4px 8px' }"
             @click="open = false"
           >
-            ✕
+            <UIcon name="i-fluent-dismiss-20-regular" :style="{ width: '16px', height: '16px' }" />
           </button>
         </div>
         <ParentDemoStepList @selected="open = false" />

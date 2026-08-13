@@ -29,7 +29,8 @@
           letterSpacing: '0.08em',
         }"
       >
-        ✨ Demo
+        <UIcon name="i-fluent-sparkle-16-regular" class="inline-block align-[-2px]" :style="{ width: '12px', height: '12px' }" />
+        Demo
       </div>
       <div
         class="font-semibold"

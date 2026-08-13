@@ -6,16 +6,16 @@ import { formatRM } from '~/utils/money'
 definePageMeta({ layout: 'admin' })
 const m = useAdminMetrics()
 const stats = [
-  { icon: '💰', tone: 'green' as const, value: formatRM(m.payrollTotal), label: 'June payroll total', sub: 'All tutors' },
-  { icon: '🧑‍🏫', tone: 'blue' as const, value: '6', label: 'Active tutors', sub: 'This month' },
-  { icon: '⏱️', tone: 'violet' as const, value: `${m.totalHours} h`, label: 'Hours logged', sub: 'Jun 2026' },
+  { icon: 'i-fluent-money-24-regular', tone: 'green' as const, value: formatRM(m.payrollTotal), label: 'June payroll total', sub: 'All tutors' },
+  { icon: 'i-fluent-people-24-regular', tone: 'blue' as const, value: '6', label: 'Active tutors', sub: 'This month' },
+  { icon: 'i-fluent-timer-24-regular', tone: 'violet' as const, value: `${m.totalHours} h`, label: 'Hours logged', sub: 'Jun 2026' },
 ]
 </script>
 
 <template>
   <StubScreen
     title="Payroll"
-    icon="💰"
+    icon="i-fluent-money-24-regular"
     desc="Payroll for all tutors, downloadable payslips, and deductions will live here. Every figure is calculated from recorded teaching hours."
     :stats="stats"
   />

@@ -22,7 +22,12 @@ const tone = computed(() => meta.value?.tone ?? 'violet')
       ...pillStyle(tone),
     }"
   >
-    <span v-if="size === 'full'">{{ meta?.icon }}</span>
+    <UIcon
+      v-if="size === 'full' && meta"
+      :name="meta.fluentIcon"
+      class="inline-block align-[-2px]"
+      :style="{ width: '13px', height: '13px' }"
+    />
     {{ size === 'sm' ? meta?.short ?? subject : subject }}
   </span>
 </template>

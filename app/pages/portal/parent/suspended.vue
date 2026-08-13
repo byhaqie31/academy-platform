@@ -34,7 +34,7 @@ const owed = computed(() => unpaid.value.reduce((n, l) => n + l.amount, 0) || p.
         boxShadow: '0 10px 28px rgba(30,35,72,.06)',
       }"
     >
-      <IconTile icon="🔒" tone="overdue" :size="52" :radius="16" />
+      <IconTile icon="i-fluent-lock-closed-24-regular" tone="overdue" :size="52" :radius="16" />
 
       <h1
         class="font-display font-bold text-ink"
@@ -99,7 +99,7 @@ const owed = computed(() => unpaid.value.reduce((n, l) => n + l.amount, 0) || p.
           marginTop: '12px',
         }"
       >
-        <span :style="{ fontSize: '15px', lineHeight: '1.3' }">⚡</span>
+        <UIcon name="i-fluent-flash-16-regular" class="shrink-0" :style="{ width: '15px', height: '15px' }" />
         <p class="font-semibold" :style="{ color: 'var(--color-fg-green)', fontSize: '13px', margin: 0, lineHeight: '1.45' }">
           Akses kembali serta-merta.
           <template v-if="nextToday">
@@ -127,7 +127,8 @@ const owed = computed(() => unpaid.value.reduce((n, l) => n + l.amount, 0) || p.
         color: 'var(--color-ink-soft)',
       }"
     >
-      💬 Hubungi kami
+      <UIcon name="i-fluent-chat-16-regular" class="inline-block align-[-2px]" :style="{ width: '14px', height: '14px' }" />
+      Hubungi kami
     </a>
 
     <p class="text-center text-faint" :style="{ fontSize: '11.5px', margin: 0, lineHeight: '1.5' }">

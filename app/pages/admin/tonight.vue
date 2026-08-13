@@ -62,10 +62,10 @@ const stateLabel = (s: SessionState): string =>
     </header>
 
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      <StatCard icon="🎥" tone="violet" :value="String(tonight.totals.classes)" label="Rooms tonight" :sub="`${tonight.totals.peakUsed} at peak`" />
-      <StatCard icon="🎫" tone="blue" :value="`${tonight.totals.peakUsed} / ${tonight.totals.licences}`" label="Licences in use" sub="1 licence = 1 room at a time" />
-      <StatCard icon="🙋" tone="green" :value="`${tonight.totals.joined} / ${tonight.totals.expected}`" label="Students joined" sub="live from webhooks" />
-      <StatCard icon="⚠️" tone="overdue" :value="String(tonight.totals.alerts)" label="Needs attention" :sub="`${tonight.totals.unknown} unknown participants`" />
+      <StatCard icon="i-fluent-video-24-regular" tone="violet" :value="String(tonight.totals.classes)" label="Rooms tonight" :sub="`${tonight.totals.peakUsed} at peak`" />
+      <StatCard icon="i-fluent-ticket-diagonal-24-regular" tone="blue" :value="`${tonight.totals.peakUsed} / ${tonight.totals.licences}`" label="Licences in use" sub="1 licence = 1 room at a time" />
+      <StatCard icon="i-fluent-hand-wave-24-regular" tone="green" :value="`${tonight.totals.joined} / ${tonight.totals.expected}`" label="Students joined" sub="live from webhooks" />
+      <StatCard icon="i-fluent-warning-24-regular" tone="overdue" :value="String(tonight.totals.alerts)" label="Needs attention" :sub="`${tonight.totals.unknown} unknown participants`" />
     </div>
 
     <section

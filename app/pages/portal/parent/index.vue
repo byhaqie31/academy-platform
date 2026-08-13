@@ -46,7 +46,8 @@ const dots = computed(() =>
       >
         <div class="flex items-center justify-between gap-3" :style="{ marginBottom: '14px' }">
           <div class="font-display font-semibold text-ink" :style="{ fontSize: '16px' }">
-            🎒 Kelas hari ini
+            <UIcon name="i-fluent-backpack-16-regular" class="inline-block align-[-2px]" :style="{ width: '15px', height: '15px' }" />
+            Kelas hari ini
           </div>
           <span class="font-semibold text-faint" :style="{ fontSize: '12px' }">{{ p.todayLabel }}</span>
         </div>
@@ -75,7 +76,8 @@ const dots = computed(() =>
         }"
       >
         <div class="font-display font-semibold text-ink" :style="{ fontSize: '16px', marginBottom: '12px' }">
-          📅 Jadual minggu ini
+          <UIcon name="i-fluent-calendar-ltr-16-regular" class="inline-block align-[-2px]" :style="{ width: '15px', height: '15px' }" />
+          Jadual minggu ini
         </div>
         <div class="flex flex-col" :style="{ gap: '12px' }">
           <ParentClassRow v-for="row in p.rows.value" :key="row.cls.id" :row="row" />
@@ -107,7 +109,8 @@ const dots = computed(() =>
       >
         <div class="flex items-center justify-between gap-3" :style="{ marginBottom: '12px' }">
           <div class="font-display font-semibold text-ink" :style="{ fontSize: '16px' }">
-            ✅ Kehadiran
+            <UIcon name="i-fluent-checkmark-circle-16-regular" class="inline-block align-[-2px]" :style="{ width: '15px', height: '15px' }" />
+            Kehadiran
           </div>
           <span class="font-semibold text-ink-soft" :style="{ fontSize: '13px' }">
             Hadir {{ p.attendance.value.attended }} daripada {{ p.attendance.value.total }} kelas

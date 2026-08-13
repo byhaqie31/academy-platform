@@ -23,7 +23,7 @@ const overdueCount = computed(() => billing.filter('overdue').length)
 // Custom-coloured summary cards in the StatCard mould.
 const cards = computed(() => [
   {
-    icon: '✅',
+    icon: 'i-fluent-checkmark-circle-24-regular',
     tone: 'green' as const,
     label: 'Paid',
     value: formatRM(summary.paid),
@@ -31,7 +31,7 @@ const cards = computed(() => [
     sub: `${paidCount.value} invoices settled`,
   },
   {
-    icon: '⏳',
+    icon: 'i-fluent-hourglass-24-regular',
     tone: 'amber' as const,
     label: 'Pending',
     value: formatRM(summary.pending),
@@ -39,7 +39,7 @@ const cards = computed(() => [
     sub: `${pendingCount.value} awaiting proof`,
   },
   {
-    icon: '⚠️',
+    icon: 'i-fluent-warning-24-regular',
     tone: 'overdue' as const,
     label: 'Overdue',
     value: formatRM(summary.overdue),

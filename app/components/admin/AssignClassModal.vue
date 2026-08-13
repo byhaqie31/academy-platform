@@ -80,7 +80,7 @@ const selectedSlot = ref<string>('4:30 PM')
           }"
           @click="emit('close')"
         >
-          ✕
+          <UIcon name="i-fluent-dismiss-20-regular" :style="{ width: '16px', height: '16px' }" />
         </button>
       </div>
 

@@ -113,7 +113,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
               :style="{ gap: '13px', padding: '13px 14px', borderRadius: '15px', background: 'var(--color-surface-subtle)', border: '1px solid var(--color-divider)' }"
             >
               <IconTile
-                :icon="subjects.byName(c.subject)?.icon ?? '📘'"
+                :icon="subjects.byName(c.subject)?.fluentIcon ?? 'i-fluent-book-24-regular'"
                 :tone="subjects.toneOf(c.subject)"
                 :size="42"
                 :radius="12"
@@ -139,5 +139,5 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
     </div>
   </div>
 
-  <EmptyState v-else icon="🧑‍🏫" title="Educator not found" desc="Back to the educators list." />
+  <EmptyState v-else icon="i-fluent-people-24-regular" title="Educator not found" desc="Back to the educators list." />
 </template>

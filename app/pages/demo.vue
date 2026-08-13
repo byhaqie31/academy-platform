@@ -257,7 +257,7 @@ useHead({
             class="flex items-baseline gap-2.5"
             :style="{ marginBottom: 'var(--space-sm)' }"
           >
-            <span aria-hidden="true" style="font-size: 13px; line-height: 1.5">{{ tip.icon }}</span>
+            <UIcon :name="tip.icon" aria-hidden="true" class="shrink-0" :style="{ width: '15px', height: '15px' }" />
             <div class="min-w-0">
               <dt class="font-bold text-ink" style="font-size: 13px; line-height: 1.5">
                 {{ tip.title }}
@@ -396,7 +396,7 @@ useHead({
             }"
             @click="setExpanded(group.key)"
           >
-            <span aria-hidden="true">{{ group.icon }}</span>
+            <UIcon :name="group.icon" aria-hidden="true" class="shrink-0" :style="{ width: '15px', height: '15px' }" />
             <span class="min-w-0 truncate">{{ group.title }}</span>
           </button>
         </nav>

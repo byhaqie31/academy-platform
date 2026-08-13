@@ -56,7 +56,7 @@ const summaryPills = computed(() => [
       :style="{ border: '1px solid var(--color-border)', borderRadius: '22px', padding: '24px' }"
     >
       <div class="flex items-center gap-4 flex-wrap">
-        <IconTile icon="📐" tone="pink" :size="60" :radius="18" />
+        <IconTile icon="i-fluent-calculator-24-regular" tone="pink" :size="60" :radius="18" />
         <div class="flex-1" style="min-width: 180px">
           <div class="font-display font-bold text-ink" style="font-size: 23px; line-height: 1.1">
             Matematik · {{ cls.cls }}

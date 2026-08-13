@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
       :style="{ width: '40px', height: '40px', borderRadius: '12px', background: 'var(--color-bg-app)' }"
       @click="open = !open"
     >
-      <span style="font-size: 16px">🔔</span>
+      <UIcon name="i-fluent-alert-20-regular" class="shrink-0" :style="{ width: '18px', height: '18px' }" />
       <span
         v-if="unread"
         class="absolute"

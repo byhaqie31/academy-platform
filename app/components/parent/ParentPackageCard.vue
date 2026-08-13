@@ -17,7 +17,8 @@ defineProps<{ lines: FeeLine[]; available: FeeLine[]; total: number; childFirst:
     }"
   >
     <div class="font-display font-semibold text-ink" :style="{ fontSize: '16px', marginBottom: '4px' }">
-      📦 Pakej {{ childFirst }}
+      <UIcon name="i-fluent-box-16-regular" class="inline-block align-[-2px]" :style="{ width: '14px', height: '14px' }" />
+      Pakej {{ childFirst }}
     </div>
     <p class="text-muted" :style="{ fontSize: '12.5px', margin: '0 0 14px' }">
       Yuran dikira ikut subjek yang diambil

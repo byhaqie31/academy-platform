@@ -10,7 +10,7 @@ import GuardianCard from '~/components/admin/GuardianCard.vue'
 import PaymentHistory from '~/components/admin/PaymentHistory.vue'
 import AttendanceDonut from '~/components/admin/AttendanceDonut.vue'
 import { enrolTone, payTone } from '~/utils/status'
-import { toneByIndex, toneTile } from '~/utils/tone'
+import { toneByIndex } from '~/utils/tone'
 
 definePageMeta({ layout: 'admin' })
 
@@ -30,7 +30,7 @@ const classes = computed(() =>
   (student.value?.subjects ?? []).map((name) => ({
     name,
     cls: className(name, student.value!.level),
-    icon: subjects.byName(name)?.icon ?? '📘',
+    icon: subjects.byName(name)?.fluentIcon ?? 'i-fluent-book-24-regular',
     tone: subjects.byName(name)?.tone ?? 'violet',
     schedule: subjects.scheduleFor(name),
     tutor: subjects.tutorFor(name),
@@ -101,12 +101,7 @@ const attendance = computed(() => {
                 border: '1px solid var(--color-divider)',
               }"
             >
-              <div
-                class="grid place-items-center shrink-0"
-                :style="{ width: '42px', height: '42px', borderRadius: '12px', fontSize: '19px', background: toneTile(c.tone) }"
-              >
-                {{ c.icon }}
-              </div>
+              <IconTile :icon="c.icon" :tone="c.tone" :size="42" :radius="12" />
               <div class="min-w-0 flex-1">
                 <div class="font-bold text-ink" style="font-size: 14px">
                   {{ c.name }}

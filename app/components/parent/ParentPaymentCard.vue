@@ -18,17 +18,17 @@ const props = defineProps<{
 const view = computed((): { key: string, tone: PillTone, icon: string, title: string } => {
   switch (props.cycle) {
     case 'paid':
-      return { key: 'paid', tone: 'green', icon: '✅', title: `Yuran ${props.period} sudah dijelaskan` }
+      return { key: 'paid', tone: 'green', icon: 'i-fluent-checkmark-circle-20-regular', title: `Yuran ${props.period} sudah dijelaskan` }
     case 'partial':
-      return { key: 'partial', tone: 'amber', icon: '⚠️', title: 'Sebahagian yuran belum dijelaskan' }
+      return { key: 'partial', tone: 'amber', icon: 'i-fluent-warning-20-regular', title: 'Sebahagian yuran belum dijelaskan' }
     case 'final':
-      return { key: 'final', tone: 'overdue', icon: '⏰', title: 'Hari terakhir untuk bayar' }
+      return { key: 'final', tone: 'overdue', icon: 'i-fluent-clock-alarm-20-regular', title: 'Hari terakhir untuk bayar' }
     case 'grace':
-      return { key: 'grace', tone: 'amber', icon: '🕐', title: 'Akses akan disekat esok' }
+      return { key: 'grace', tone: 'amber', icon: 'i-fluent-clock-20-regular', title: 'Akses akan disekat esok' }
     case 'suspended':
-      return { key: 'suspended', tone: 'overdue', icon: '🔒', title: 'Kelas disekat' }
+      return { key: 'suspended', tone: 'overdue', icon: 'i-fluent-lock-closed-20-regular', title: 'Kelas disekat' }
     default:
-      return { key: 'due', tone: 'violet', icon: '💳', title: `Yuran ${props.period}` }
+      return { key: 'due', tone: 'violet', icon: 'i-fluent-payment-20-regular', title: `Yuran ${props.period}` }
   }
 })
 

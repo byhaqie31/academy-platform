@@ -29,6 +29,8 @@ const isActive = (to: string) =>
 const activeItem = computed(
   () => [...props.nav].reverse().find((n) => isActive(n.to)) ?? props.nav[0],
 )
+const navIcon = (item: NavItem, active: boolean) =>
+  `${item.icon}-${active ? 'filled' : 'regular'}`
 </script>
 
 <template>
@@ -73,7 +75,11 @@ const activeItem = computed(
           }"
           :class="isActive(item.to) ? '' : 'hover:bg-[var(--color-bg-app)]'"
         >
-          <span class="w-5 text-center" style="font-size: 16px">{{ item.icon }}</span>
+          <UIcon
+            :name="navIcon(item, isActive(item.to))"
+            class="w-5 h-5 shrink-0"
+            :style="{ color: isActive(item.to) ? 'var(--color-brand-deep)' : 'var(--color-ink-soft)' }"
+          />
           <span
             class="block min-w-0 font-bold leading-tight"
             :style="{ fontSize: '13.5px', color: isActive(item.to) ? 'var(--color-brand-deep)' : 'var(--color-ink-soft)' }"
@@ -127,7 +133,8 @@ const activeItem = computed(
             color: isActive(item.to) ? '#fff' : 'var(--color-ink-soft)',
           }"
         >
-          {{ item.icon }} {{ item.label }}
+          <UIcon :name="navIcon(item, isActive(item.to))" class="inline-block align-[-2px]" :style="{ width: '14px', height: '14px' }" />
+          {{ item.label }}
         </NuxtLink>
       </div>
     </div>
@@ -145,7 +152,7 @@ const activeItem = computed(
           class="ml-auto flex items-center gap-2"
           :style="{ background: 'var(--color-bg-app)', borderRadius: '12px', padding: '9px 13px', width: '300px' }"
         >
-          <span style="font-size: 14px">🔍</span>
+          <UIcon name="i-fluent-search-16-regular" class="shrink-0 text-ink-soft" :style="{ width: '15px', height: '15px' }" />
           <input
             type="text"
             placeholder="Search students, classes, tutors..."

@@ -59,9 +59,13 @@ const rows = computed(() => enquiries.filter(filter.value))
         </div>
         <div class="flex flex-col items-end gap-1.5 shrink-0">
           <span class="inline-flex items-center gap-1 font-bold" :style="{ padding: '3px 9px', borderRadius: '999px', fontSize: '10.5px', ...pillStyle(sourceTone(e.source)) }">
-            {{ sourceIcon(e.source) }} {{ e.source }}
+            <UIcon :name="sourceIcon(e.source)" aria-hidden="true" class="shrink-0" :style="{ width: '12px', height: '12px' }" />
+            {{ e.source }}
           </span>
-          <button class="font-bold text-whatsapp-deep cursor-pointer" style="font-size: 11.5px">💬 Follow-up</button>
+          <button class="font-bold text-whatsapp-deep cursor-pointer" style="font-size: 11.5px">
+            <UIcon name="i-fluent-chat-16-regular" class="inline-block align-[-2px]" :style="{ width: '12px', height: '12px' }" />
+            Follow-up
+          </button>
         </div>
       </li>
       <li v-if="!rows.length" class="text-center text-faint py-4" style="font-size: 12.5px">

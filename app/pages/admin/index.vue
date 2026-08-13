@@ -14,10 +14,10 @@ definePageMeta({ layout: 'admin' })
 const { greeting, dateLabel } = useGreeting()
 const m = useAdminMetrics()
 const stats = [
-  { icon: '✨', tone: 'pink' as const, value: String(m.enquiries), label: 'New enquiries', delta: '+5 today' },
-  { icon: '🧑‍🎓', tone: 'blue' as const, value: String(m.activeStudents), label: 'Active students', delta: '+12 this month' },
-  { icon: '📚', tone: 'violet' as const, value: String(m.classesToday), label: 'Classes today', delta: '3 upcoming' },
-  { icon: '💳', tone: 'amber' as const, value: formatRM(m.outstanding), label: 'Outstanding', delta: `${m.outstandingCount} students` },
+  { icon: 'i-fluent-sparkle-24-regular', tone: 'pink' as const, value: String(m.enquiries), label: 'New enquiries', delta: '+5 today' },
+  { icon: 'i-fluent-hat-graduation-24-regular', tone: 'blue' as const, value: String(m.activeStudents), label: 'Active students', delta: '+12 this month' },
+  { icon: 'i-fluent-book-24-regular', tone: 'violet' as const, value: String(m.classesToday), label: 'Classes today', delta: '3 upcoming' },
+  { icon: 'i-fluent-payment-24-regular', tone: 'amber' as const, value: formatRM(m.outstanding), label: 'Outstanding', delta: `${m.outstandingCount} students` },
 ]
 </script>
 

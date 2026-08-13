@@ -26,7 +26,11 @@ export function sourceTone(source: string): PillTone {
 }
 
 export function sourceIcon(source: string): string {
-  return source === 'Facebook' ? '📣' : source === 'TikTok' ? '🎵' : '🔍'
+  return source === 'Facebook'
+    ? 'i-fluent-megaphone-20-regular'
+    : source === 'TikTok'
+      ? 'i-fluent-music-note-2-20-regular'
+      : 'i-fluent-search-20-regular'
 }
 
 /** Inline style for any pill / tile from a tone key. */

@@ -35,15 +35,15 @@ export const WEEK_LABELS = [
 ]
 
 const subjects: Subject[] = [
-  { name: 'Matematik', short: 'Mat', icon: '📐', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM' },
-  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM' },
-  { name: 'Bahasa Inggeris', short: 'BI', icon: '🔤', tone: 'blue', stage: ['rendah', 'mr', 'ma'], desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM' },
-  { name: 'Sains', short: 'Sn', icon: '🔬', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM' },
-  { name: 'Sejarah', short: 'Sej', icon: '📜', tone: 'amber', stage: ['mr', 'ma'], desc: 'Memory techniques & neat, structured notes.', level: 'Menengah' },
-  { name: 'Geografi', short: 'Geo', icon: '🌏', tone: 'orange', stage: ['mr'], desc: 'Maps, climate & practical geography skills.', level: 'Menengah' },
-  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM' },
-  { name: 'STEM', short: 'STEM', icon: '🤖', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotics, coding & fun applied science.', level: 'Sekolah Rendah' },
-  { name: 'TVET', short: 'TVET', icon: '🎨', tone: 'rose', stage: ['ma'], desc: 'Practical technical & vocational skills.', level: 'Menengah Atas' },
+  { name: 'Matematik', short: 'Mat', icon: '📐', fluentIcon: 'i-fluent-calculator-24-regular', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM' },
+  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', fluentIcon: 'i-fluent-book-open-24-regular', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM' },
+  { name: 'Bahasa Inggeris', short: 'BI', icon: '🔤', fluentIcon: 'i-fluent-translate-24-regular', tone: 'blue', stage: ['rendah', 'mr', 'ma'], desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM' },
+  { name: 'Sains', short: 'Sn', icon: '🔬', fluentIcon: 'i-fluent-beaker-24-regular', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM' },
+  { name: 'Sejarah', short: 'Sej', icon: '📜', fluentIcon: 'i-fluent-history-24-regular', tone: 'amber', stage: ['mr', 'ma'], desc: 'Memory techniques & neat, structured notes.', level: 'Menengah' },
+  { name: 'Geografi', short: 'Geo', icon: '🌏', fluentIcon: 'i-fluent-globe-24-regular', tone: 'orange', stage: ['mr'], desc: 'Maps, climate & practical geography skills.', level: 'Menengah' },
+  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', fluentIcon: 'i-fluent-building-mosque-24-regular', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM' },
+  { name: 'STEM', short: 'STEM', icon: '🤖', fluentIcon: 'i-fluent-bot-24-regular', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotics, coding & fun applied science.', level: 'Sekolah Rendah' },
+  { name: 'TVET', short: 'TVET', icon: '🎨', fluentIcon: 'i-fluent-paint-brush-24-regular', tone: 'rose', stage: ['ma'], desc: 'Practical technical & vocational skills.', level: 'Menengah Atas' },
 ]
 
 // The marketing landing grid mixes subjects with programme tiles, kept verbatim.

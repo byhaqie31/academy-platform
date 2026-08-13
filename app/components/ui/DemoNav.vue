@@ -209,7 +209,7 @@ onBeforeUnmount(() => {
               }"
               @click="open = false"
             >
-              ✕
+              <UIcon name="i-fluent-dismiss-20-regular" :style="{ width: '16px', height: '16px' }" />
             </button>
           </header>
 
@@ -245,7 +245,7 @@ onBeforeUnmount(() => {
                     cursor: group.primaryTo ? 'pointer' : 'default',
                   }"
                 >
-                  <span aria-hidden="true" style="font-size: 12px">{{ group.icon }}</span>
+                  <UIcon :name="group.icon" aria-hidden="true" :style="{ width: '14px', height: '14px' }" class="shrink-0" />
                   <span class="min-w-0 truncate">{{ group.title }}</span>
                   <span
                     v-if="group.primaryTo"

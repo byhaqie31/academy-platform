@@ -49,13 +49,16 @@ const subjLabel = (name: string) => subjects.byName(name)?.name ?? name
 
 <template>
   <div class="grid gap-3 lg:grid-cols-[1.6fr_repeat(4,1fr)]">
-    <input
-      v-model="state.q"
-      type="search"
-      placeholder="🔍 Search student name…"
-      class="text-ink w-full outline-none focus-visible:border-brand"
-      :style="fieldStyle"
-    />
+    <div class="flex items-center gap-2 focus-within:border-brand!" :style="fieldStyle">
+      <UIcon name="i-fluent-search-16-regular" class="shrink-0 text-muted" :style="{ width: '14px', height: '14px' }" />
+      <input
+        v-model="state.q"
+        type="search"
+        placeholder="Search student name…"
+        class="text-ink w-full outline-none"
+        :style="{ padding: 0, border: 'none', background: 'transparent', font: 'inherit' }"
+      />
+    </div>
     <select v-model="state.branchId" class="text-ink w-full outline-none cursor-pointer hz-select" :style="selectStyle">
       <option value="">All branches</option>
       <option v-for="b in branches" :key="b.id" :value="b.id">{{ b.short }}</option>

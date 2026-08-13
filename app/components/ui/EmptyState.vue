@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { isFluentIcon } from '~/utils/icons'
+
 defineProps<{ icon: string; title: string; desc?: string }>()
 </script>
 
@@ -18,7 +20,8 @@ defineProps<{ icon: string; title: string; desc?: string }>()
         border: '2px dashed var(--color-dashed)',
       }"
     >
-      {{ icon }}
+      <UIcon v-if="isFluentIcon(icon)" :name="icon" :style="{ width: '28px', height: '28px' }" class="text-ink-soft" />
+      <template v-else>{{ icon }}</template>
     </div>
     <h3 class="font-display font-semibold text-ink" style="font-size: 20px">{{ title }}</h3>
     <p v-if="desc" class="text-muted mt-2 max-w-md" style="font-size: 13.5px; line-height: 1.6">

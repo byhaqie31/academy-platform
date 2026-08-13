@@ -18,7 +18,7 @@ const { branchShort } = useAcademy()
     }"
   >
     <div class="flex items-center justify-between" style="margin-bottom: 14px">
-      <IconTile icon="📐" tone="pink" :size="46" :radius="14" />
+      <IconTile icon="i-fluent-calculator-24-regular" tone="pink" :size="46" :radius="14" />
       <span
         class="font-bold text-ink-soft"
         :style="{

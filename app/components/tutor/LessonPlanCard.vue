@@ -56,7 +56,8 @@ defineProps<{ plan: LessonPlan }>()
         border: '1px solid var(--color-border)',
       }"
     >
-      📎 {{ plan.material }}
+      <UIcon name="i-fluent-attach-16-regular" class="inline-block align-[-2px]" :style="{ width: '14px', height: '14px' }" />
+      {{ plan.material }}
     </span>
     <button
       v-else

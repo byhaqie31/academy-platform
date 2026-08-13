@@ -79,7 +79,7 @@ const classList = computed(() =>
       >
         <div class="flex items-center gap-3" style="margin-bottom: 16px">
           <IconTile
-            :icon="selMeta?.icon ?? '📘'"
+            :icon="selMeta?.fluentIcon ?? 'i-fluent-book-24-regular'"
             :tone="subjects.toneOf(selName)"
             :size="44"
             :radius="13"
@@ -108,7 +108,10 @@ const classList = computed(() =>
               <div class="font-bold text-ink" style="font-size: 13px">{{ cl.name }}</div>
               <div class="text-muted font-semibold" style="font-size: 11px">{{ cl.note }}</div>
             </div>
-            <AppButton variant="outline" size="sm">📎 Materials</AppButton>
+            <AppButton variant="outline" size="sm">
+              <UIcon name="i-fluent-attach-16-regular" class="inline-block align-[-2px]" :style="{ width: '14px', height: '14px' }" />
+              Materials
+            </AppButton>
           </div>
         </div>
 

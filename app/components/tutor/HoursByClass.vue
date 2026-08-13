@@ -29,7 +29,7 @@ const { byName } = useSubjects()
         style="gap: 12px"
       >
         <IconTile
-          :icon="byName(byId(row.classId)?.subject ?? '')?.icon ?? '📐'"
+          :icon="byName(byId(row.classId)?.subject ?? '')?.fluentIcon ?? 'i-fluent-book-24-regular'"
           :tone="byName(byId(row.classId)?.subject ?? '')?.tone ?? 'pink'"
           :size="40"
         />

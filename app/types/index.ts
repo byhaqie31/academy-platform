@@ -47,6 +47,8 @@ export interface Subject {
   name: string
   short: string
   icon: string
+  /** Fluent icon (full name with variant) used on portal surfaces; `icon` stays the marketing emoji. */
+  fluentIcon: string
   /** tile colour key, e.g. 'pink' | 'blue' ... maps to --color-tile-* / --color-fg-*. */
   tone: SubjectTone
   stage: Stage[]
