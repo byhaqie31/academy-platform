@@ -18,13 +18,15 @@ that is thin for the first screen anyone sees.
 
 ## Scope
 
-In scope: the admin portal only.
+Originally the admin portal only. The owner then extended it to the tutor
+portal and the public marketing site, so branches are now gone from every live
+surface. See "Second pass" at the end.
 
-Out of scope, deliberately:
+Still out of scope, deliberately:
 
-- The marketing website keeps its four branches. Whether they remain a
-  marketing fact at all is a separate decision.
-- The tutor and parent portals are untouched.
+- The `Branch` type, `config/academy.ts` branches, and every seeded `branchId`
+  all stay. The frozen `/v1` archive renders them, and keeping them means a
+  future multi-branch centre is a display change rather than a migration.
 - The seed is not reshaped into online cohorts. That larger reshape stays
   pending. One narrow exception is listed under "Online centre story".
 
@@ -240,6 +242,49 @@ whole claim is that pay is derived, and its tile is labelled as the educators on
 file, the same way `useCollection` labels its scaled figures. Rebasing the
 centre-wide money constants would also move revenue and margin, which is an
 owner decision rather than a demo polish one.
+
+## Second pass: tutor, parent and marketing
+
+The owner extended the removal beyond admin. Branches are now absent from every
+live surface, verified by loading all 31 pages in a browser.
+
+**Tutor portal.** The branch legend on `/tutor/schedule` is gone. Class cards,
+today's classes and the class detail header show the Zoom host instead, matching
+what admin now shows. Hours-by-class shows the class alone. The profile chip
+reads "Matematik" rather than "Matematik · 2 branches", and the class-reminder
+notification no longer names a branch.
+
+**Parent portal.** `ParentClassRow.branch` was computed on every row and never
+rendered, so it is gone. `classFor()` also loses its branch fallback, leaving
+roster, then level, then whatever exists.
+
+**Marketing.** The homepage already had no branch section. Two remnants did
+survive:
+
+- `components/marketing/BranchGrid.vue` was an orphan, imported by nothing.
+  Deleted. The frozen `/v1` keeps its own `V1BranchGrid`.
+- `Stepper.vue` still carried six labels including "Branch", while the wizard
+  is five steps. It sliced the first five, so the public registration form
+  labelled step 3 "Branch" when that step is "Pilih subjek", and never showed
+  the final "Hantar" label at all. Removing "Branch" realigns all five.
+
+While correcting that array, its labels were also translated to Malay. CLAUDE.md
+requires Malay on `/register`, and the surrounding page is already Malay
+("Langkah 1 daripada 5"), so English labels were a live rule violation on the
+line being edited.
+
+## Known coherence gap after this work
+
+Admin's dashboard agenda now runs at 7:30 and 9:00 in the evening, but the
+seeded `classes` still teach at 3:00, 4:30 and 5:00 in the afternoon, and the
+tutor portal reads its times from those classes. A viewer moving from the admin
+dashboard to the tutor dashboard sees evening in one and afternoon in the other.
+
+Before this work both said afternoon, which was coherent but wrong for an online
+centre. Closing the gap properly means moving every class to the two evening
+slots, which collapses the timetable grid and changes peak concurrency, and
+therefore the licence counts the timetable sells. That is the cohort reshape,
+which remains an owner decision.
 
 ## Risks
 

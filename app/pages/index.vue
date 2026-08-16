@@ -6,9 +6,9 @@ import HowToSteps from '~/components/marketing/HowToSteps.vue'
 import Testimonials from '~/components/marketing/Testimonials.vue'
 import CtaBanner from '~/components/marketing/CtaBanner.vue'
 
-// BranchGrid and WhyChooseUs are deliberately absent. Hz is fully online now,
-// so there are no branches to show; both components survive in /v1 and remain
-// on disk for a centre that still teaches in person.
+// WhyChooseUs is deliberately absent, and there is no branch section at all:
+// Hz is fully online, so there are no locations to show. The frozen /v1 archive
+// keeps its own V1BranchGrid, which is where the branch layout still lives.
 definePageMeta({ layout: 'marketing' })
 
 useHead({

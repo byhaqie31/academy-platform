@@ -4,7 +4,6 @@ import { useGuardians } from '~/composables/useGuardians'
 import { useClasses } from '~/composables/useClasses'
 import { useSubjects } from '~/composables/useSubjects'
 import { useBilling } from '~/composables/useBilling'
-import { useAcademy } from '~/composables/useAcademy'
 import { useEntitlement, type Verdict } from '~/composables/useEntitlement'
 import { usePortalDemo } from '~/composables/usePortalDemo'
 import type { Class, Student, SubjectTone } from '~/types'
@@ -14,7 +13,6 @@ export interface ParentClassRow {
   subject: string
   tone: SubjectTone
   tutor: string
-  branch: string
   today: boolean
   verdict: Verdict
   /** live means the join button is pressable right now */
@@ -40,7 +38,6 @@ export function useParentPortal(studentId = 's0') {
   const classes = useClasses()
   const subjects = useSubjects()
   const billing = useBilling()
-  const { branchShort } = useAcademy()
   const gate = useEntitlement()
   const demo = usePortalDemo()
 
@@ -51,15 +48,14 @@ export function useParentPortal(studentId = 's0') {
    * The class a child actually sits in for a subject.
    *
    * Roster first, because that is the fact. Then level, because putting a
-   * Tahun 4 student in a Tingkatan 2 class is worse than putting them in the
-   * wrong branch. Then branch, then whatever exists.
+   * Tahun 4 student in a Tingkatan 2 class is the worst kind of wrong. Then
+   * whatever exists.
    */
   function classFor(subject: string): Class | undefined {
     const pool = classes.all.filter((c) => c.subject === subject)
     return (
       pool.find((c) => c.roster.includes(child.name))
       ?? pool.find((c) => c.level === child.level)
-      ?? pool.find((c) => c.branchId === child.branchId)
       ?? pool[0]
     )
   }
@@ -76,7 +72,6 @@ export function useParentPortal(studentId = 's0') {
           subject,
           tone: subjects.toneOf(subject) as SubjectTone,
           tutor: subjects.tutorFor(subject),
-          branch: branchShort(cls.branchId),
           today,
           verdict,
           live: today && verdict.allowed,

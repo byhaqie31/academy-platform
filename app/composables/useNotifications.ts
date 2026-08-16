@@ -66,7 +66,7 @@ export const tutorNotifications: AppNotification[] = [
     icon: 'i-fluent-alert-20-regular',
     tone: 'pink',
     title: 'Class reminder',
-    desc: 'Matematik Tahun 5 starts in 30 minutes (Kota Warisan).',
+    desc: 'Matematik Tahun 5 starts in 30 minutes.',
     time: 'Just now',
     unread: true,
   },

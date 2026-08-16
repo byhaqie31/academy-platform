@@ -2,13 +2,13 @@
 import { computed } from 'vue'
 import { useEducators } from '~/composables/useEducators'
 import { useClasses } from '~/composables/useClasses'
-import { useAcademy } from '~/composables/useAcademy'
+import { useHostPool } from '~/composables/useHostPool'
 import SubjectChip from '~/components/ui/SubjectChip.vue'
 import AppButton from '~/components/ui/AppButton.vue'
 import { toneFg } from '~/utils/tone'
 
 const self = useEducators().self()
-const { branchShort } = useAcademy()
+const { hostFor } = useHostPool()
 
 // Today is Mon in the prototype's curated snapshot.
 const rows = computed(() =>
@@ -48,7 +48,7 @@ const rows = computed(() =>
             <span class="font-bold text-ink truncate" style="font-size: 13.5px">{{ c.cls }}</span>
           </div>
           <div class="text-faint mt-0.5" style="font-size: 11.5px; font-weight: 600">
-            {{ c.roster.length }} students · {{ branchShort(c.branchId) }} · {{ c.dur }}h
+            {{ c.roster.length }} students · {{ hostFor(c.id) }} · {{ c.dur }}h
           </div>
         </div>
         <AppButton variant="soft" size="sm" :to="`/tutor/classes/${c.id}`">Mark attendance →</AppButton>

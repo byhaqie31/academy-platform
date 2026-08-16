@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import IconTile from '~/components/ui/IconTile.vue'
 import { useClasses } from '~/composables/useClasses'
-import { useAcademy } from '~/composables/useAcademy'
 import { useSubjects } from '~/composables/useSubjects'
 import { formatRM } from '~/utils/money'
 
 defineProps<{ rows: { classId: string; hours: number; amount: number }[] }>()
 
 const { byId } = useClasses()
-const { branchShort } = useAcademy()
 const { byName } = useSubjects()
 </script>
 
@@ -35,7 +33,7 @@ const { byName } = useSubjects()
         />
         <div class="min-w-0" style="flex: 1">
           <div class="text-ink truncate" style="font-size: 13.5px; font-weight: 700">
-            {{ byId(row.classId)?.cls }} · {{ branchShort(byId(row.classId)?.branchId ?? '') }}
+            {{ byId(row.classId)?.cls }}
           </div>
           <div class="text-muted" style="font-size: 12px; font-weight: 600; margin-top: 2px">
             {{ row.hours }} h

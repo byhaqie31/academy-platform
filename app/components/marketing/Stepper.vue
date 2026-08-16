@@ -3,8 +3,9 @@ import { computed } from 'vue'
 
 const props = defineProps<{ step: number; total: number }>()
 
-// One short label per step, matching the prototype stepper.
-const labels = ['Parent', 'Student', 'Branch', 'Subjects', 'Schedule', 'Submit']
+// One short label per step, in Malay: this is a page a parent reads. No branch
+// step, because Hz is fully online, so the wizard is five steps.
+const labels = ['Ibu bapa', 'Pelajar', 'Subjek', 'Jadual', 'Hantar']
 
 const items = computed(() =>
   Array.from({ length: props.total }, (_, i) => {

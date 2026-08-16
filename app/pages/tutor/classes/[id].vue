@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useClasses } from '~/composables/useClasses'
-import { useAcademy } from '~/composables/useAcademy'
+import { useHostPool } from '~/composables/useHostPool'
 import { useAttendance } from '~/composables/useAttendance'
 import IconTile from '~/components/ui/IconTile.vue'
 import AppButton from '~/components/ui/AppButton.vue'
@@ -11,7 +11,7 @@ import AttendanceRoster from '~/components/tutor/AttendanceRoster.vue'
 definePageMeta({ layout: 'tutor' })
 
 const route = useRoute()
-const { branchShort } = useAcademy()
+const { hostFor } = useHostPool()
 const { counts, reset } = useAttendance()
 
 const id = computed(() => String(route.params.id))
@@ -62,7 +62,7 @@ const summaryPills = computed(() => [
             Matematik · {{ cls.cls }}
           </div>
           <div class="text-muted mt-0.5" style="font-size: 13.5px; font-weight: 600">
-            {{ cls.day }} · {{ cls.time }} · {{ branchShort(cls.branchId) }} · {{ cls.dur }}h
+            {{ cls.day }} · {{ cls.time }} · {{ hostFor(cls.id) }} · {{ cls.dur }}h
           </div>
         </div>
         <div class="text-right">
