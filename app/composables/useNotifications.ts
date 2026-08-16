@@ -15,7 +15,7 @@ export interface AppNotification {
 export const adminNotifications: AppNotification[] = [
   {
     id: 'a1',
-    icon: '📝',
+    icon: 'i-fluent-notepad-20-regular',
     tone: 'blue',
     title: 'New enquiry',
     desc: 'Nurul Aisyah registered interest in Matematik Tingkatan 4.',
@@ -24,7 +24,7 @@ export const adminNotifications: AppNotification[] = [
   },
   {
     id: 'a2',
-    icon: '💳',
+    icon: 'i-fluent-payment-20-regular',
     tone: 'overdue',
     title: 'Late payment',
     desc: "Ahmad Danial's July fee is still unpaid.",
@@ -33,7 +33,7 @@ export const adminNotifications: AppNotification[] = [
   },
   {
     id: 'a3',
-    icon: '✅',
+    icon: 'i-fluent-checkmark-circle-20-regular',
     tone: 'green',
     title: 'Payment received',
     desc: 'RM 280 received from the Tan Wei Ming family.',
@@ -42,7 +42,7 @@ export const adminNotifications: AppNotification[] = [
   },
   {
     id: 'a4',
-    icon: '🗓️',
+    icon: 'i-fluent-calendar-ltr-20-regular',
     tone: 'violet',
     title: 'Class almost full',
     desc: 'Sains Tingkatan 3 (Taman Sutera) has 2 spots left.',
@@ -51,7 +51,7 @@ export const adminNotifications: AppNotification[] = [
   },
   {
     id: 'a5',
-    icon: '🧑‍🏫',
+    icon: 'i-fluent-people-20-regular',
     tone: 'indigo',
     title: 'Schedule confirmed',
     desc: 'Cikgu Farah confirmed the teaching schedule for August.',
@@ -63,16 +63,16 @@ export const adminNotifications: AppNotification[] = [
 export const tutorNotifications: AppNotification[] = [
   {
     id: 't1',
-    icon: '🔔',
+    icon: 'i-fluent-alert-20-regular',
     tone: 'pink',
     title: 'Class reminder',
-    desc: 'Matematik Tahun 5 starts in 30 minutes (Kota Warisan).',
+    desc: 'Matematik Tahun 5 starts in 30 minutes.',
     time: 'Just now',
     unread: true,
   },
   {
     id: 't2',
-    icon: '📝',
+    icon: 'i-fluent-notepad-20-regular',
     tone: 'amber',
     title: 'Lesson plan',
     desc: 'Lesson plan Bab 4 is due before Friday.',
@@ -81,7 +81,7 @@ export const tutorNotifications: AppNotification[] = [
   },
   {
     id: 't3',
-    icon: '💰',
+    icon: 'i-fluent-money-20-regular',
     tone: 'green',
     title: 'Payslip ready',
     desc: 'Your June payslip is ready to review.',
@@ -90,7 +90,7 @@ export const tutorNotifications: AppNotification[] = [
   },
   {
     id: 't4',
-    icon: '👨‍👩‍👧',
+    icon: 'i-fluent-people-community-20-regular',
     tone: 'violet',
     title: 'Message from a parent',
     desc: "Puan Noraini asked about her child's progress.",
@@ -99,7 +99,7 @@ export const tutorNotifications: AppNotification[] = [
   },
   {
     id: 't5',
-    icon: '✅',
+    icon: 'i-fluent-checkmark-circle-20-regular',
     tone: 'blue',
     title: 'Attendance recorded',
     desc: 'Saturday class attendance saved.',

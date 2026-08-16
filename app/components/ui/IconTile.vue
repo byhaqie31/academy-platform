@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { pillStyle, type PillTone } from '~/utils/status'
+import { isFluentIcon } from '~/utils/icons'
 
 const props = withDefaults(
   defineProps<{ icon: string; tone?: PillTone; size?: number; radius?: number }>(),
@@ -18,6 +19,11 @@ const props = withDefaults(
       ...pillStyle(props.tone),
     }"
   >
-    {{ props.icon }}
+    <UIcon
+      v-if="isFluentIcon(props.icon)"
+      :name="props.icon"
+      :style="{ width: props.size * 0.52 + 'px', height: props.size * 0.52 + 'px' }"
+    />
+    <template v-else>{{ props.icon }}</template>
   </div>
 </template>

@@ -22,12 +22,12 @@ const demoIntro = {
     + 'freely: it is a prototype filled with sample data, and nothing you do can break it or '
     + 'affect real students.',
   tips: [
-    { icon: '🚪', title: 'Open walks you through it', body: 'You see exactly what a parent, an admin or a tutor would see.' },
-    { icon: '🗂️', title: 'See screens lists what is inside', body: 'Every screen in that module, with a line on what each one proves.' },
-    { icon: '⬆️', title: 'The Screens tab follows you', body: 'It sits at the bottom of every page and brings you back here.' },
+    { icon: 'i-fluent-open-20-regular', title: 'Open walks you through it', body: 'You see exactly what a parent, an admin or a tutor would see.' },
+    { icon: 'i-fluent-folder-open-20-regular', title: 'See screens lists what is inside', body: 'Every screen in that module, with a line on what each one proves.' },
+    { icon: 'i-fluent-arrow-up-20-regular', title: 'The Screens tab follows you', body: 'It sits at the bottom of every page and brings you back here.' },
     // Hidden once nothing is planned, so the page never explains a state it is
     // not in.
-    { icon: '🚧', title: 'Planned means quoted, not built', body: 'Those screens are specified and priced, and come in the next phase.', whenPlanned: true },
+    { icon: 'i-fluent-wrench-20-regular', title: 'Planned means quoted, not built', body: 'Those screens are specified and priced, and come in the next phase.', whenPlanned: true },
   ],
 }
 
@@ -42,14 +42,16 @@ const demoNotes: Record<string, string> = {
   '/contact': 'WhatsApp first, enquiry form second',
   '/register': 'Five-step interest form, ending on WhatsApp',
   // Admin
-  '/admin': 'Centre-wide numbers: revenue, attendance, classes running today',
+  '/admin': 'Tonight, the collection cycle and centre-wide revenue, on one screen',
+  '/admin/tonight': 'Live ops from 7:30pm: who is in which room, and what is wrong',
   '/admin/students': 'Student and guardian records, with a detail view each',
   '/admin/educators': 'Tutor records, hours taught and derived pay',
+  '/admin/timetable': 'The weekly grid, with licences used against licences available',
   '/admin/schedule': 'The weekly grid across every class, plus lesson plans',
   '/admin/syllabus': 'KPM syllabus tree and the material bank',
+  '/admin/collection': 'The 1st to the 7th, where the whole month gets collected',
   '/admin/billing': 'Invoices, outstanding balances and payment proof',
   '/admin/payroll': 'Pay derived from recorded sessions, never hand-entered',
-  '/admin/branches': 'Placeholder. Proves the feature exists for centres with branches',
   '/admin/settings': 'Zoom, Microsoft and WhatsApp integration toggles',
   // Tutor
   '/tutor': "What a tutor sees first: today's classes and pay so far",
@@ -58,7 +60,8 @@ const demoNotes: Record<string, string> = {
   '/tutor/lesson-plans': 'Plans for the week ahead',
   '/tutor/earnings': 'Payslip. Reconciles exactly with the admin payroll screen',
   // Parent
-  '/portal/parents': 'Teaser only. Built in full once admin and tutor close a deal',
+  '/portal/parent': 'What a parent actually opens: one screen, three answers',
+  '/portal/parent/suspended': 'The 9th of the month, and the two taps back in',
   '/portal/login': 'The portal door. No password, a link sent to WhatsApp',
   // Archive
   '/v1': 'The first mockup, frozen. English, branch-based, one long page',
@@ -75,8 +78,9 @@ const marketingEntries: DemoEntry[] = [
 ]
 
 const parentEntries: DemoEntry[] = [
-  { label: 'Parent teaser', to: '/portal/parents', note: demoNotes['/portal/parents']!, status: 'live' },
   { label: 'Portal login', to: '/portal/login', note: demoNotes['/portal/login']!, status: 'live' },
+  { label: 'Parent home', to: '/portal/parent', note: demoNotes['/portal/parent']!, status: 'live' },
+  { label: 'Suspended and back', to: '/portal/parent/suspended', note: demoNotes['/portal/parent/suspended']!, status: 'live' },
 ]
 
 const archiveEntries: DemoEntry[] = [
@@ -126,7 +130,7 @@ const demoGroups: DemoGroup[] = [
     title: 'Marketing website',
     badge: 'current',
     note: 'Malay, public, six pages. What a parent sees.',
-    icon: '🌏',
+    icon: 'i-fluent-globe-24-regular',
     tone: 'violet',
     primaryTo: '/',
     primaryLabel: 'Open the website',
@@ -137,7 +141,7 @@ const demoGroups: DemoGroup[] = [
     key: 'landing',
     title: 'Campaign landing pages',
     note: 'One page per ad campaign, driven by a data file. No navigation by design.',
-    icon: '🎯',
+    icon: 'i-fluent-target-24-regular',
     tone: 'pink',
     primaryTo: '/lp/ma-matematik-august',
     primaryLabel: 'Open the SPM campaign',
@@ -147,7 +151,7 @@ const demoGroups: DemoGroup[] = [
     key: 'admin',
     title: 'Admin portal',
     note: 'English. What the centre owner and admin staff run the day on.',
-    icon: '📊',
+    icon: 'i-fluent-data-bar-vertical-24-regular',
     tone: 'blue',
     primaryTo: '/admin',
     primaryLabel: 'Open the admin portal',
@@ -157,7 +161,7 @@ const demoGroups: DemoGroup[] = [
     key: 'tutor',
     title: 'Tutor portal',
     note: 'English. What keeps tutors in the system every week.',
-    icon: '🧑‍🏫',
+    icon: 'i-fluent-people-24-regular',
     tone: 'green',
     primaryTo: '/tutor',
     primaryLabel: 'Open the tutor portal',
@@ -167,11 +171,11 @@ const demoGroups: DemoGroup[] = [
     key: 'parent',
     title: 'Parent portal',
     badge: 'phase 2',
-    note: 'One teaser screen and the door. Built out after admin and tutor close.',
-    icon: '👨‍👩‍👧',
+    note: 'The door, the home screen and the recovery flow. Where the product is felt day to day.',
+    icon: 'i-fluent-people-community-24-regular',
     tone: 'amber',
-    primaryTo: '/portal/parents',
-    primaryLabel: 'Open the parent teaser',
+    primaryTo: '/portal/login',
+    primaryLabel: 'Open the parent portal',
     entries: parentEntries,
   },
   {
@@ -179,7 +183,7 @@ const demoGroups: DemoGroup[] = [
     title: 'Archive',
     badge: 'v1',
     note: 'The previous mockup, frozen exactly as it was shown.',
-    icon: '📦',
+    icon: 'i-fluent-box-24-regular',
     tone: 'indigo',
     primaryTo: '/v1',
     primaryLabel: 'Open the v1 site',
@@ -189,7 +193,7 @@ const demoGroups: DemoGroup[] = [
     key: 'documents',
     title: 'Documents',
     note: 'The proposal and the quotation, if you want them to hand.',
-    icon: '📄',
+    icon: 'i-fluent-document-24-regular',
     tone: 'rose',
     primaryTo: '/documents/proposal.pdf',
     primaryLabel: 'Open the proposal',

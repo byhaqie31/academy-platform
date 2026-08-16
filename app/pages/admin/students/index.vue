@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue'
 import { useStudents, type StudentFilter } from '~/composables/useStudents'
 import { useGuardians } from '~/composables/useGuardians'
-import { useAcademy } from '~/composables/useAcademy'
 import { useAdminMetrics } from '~/composables/useAdminMetrics'
 import DataTable, { type Column } from '~/components/ui/DataTable.vue'
 import StatusPill from '~/components/ui/StatusPill.vue'
@@ -10,14 +9,13 @@ import SubjectChip from '~/components/ui/SubjectChip.vue'
 import IconTile from '~/components/ui/IconTile.vue'
 import StudentFilters from '~/components/admin/StudentFilters.vue'
 import type { Student } from '~/types'
-import { enrolTone, payTone } from '~/utils/status'
+import { attendanceTone, enrolTone, payTone } from '~/utils/status'
 import { toneByIndex } from '~/utils/tone'
 
 definePageMeta({ layout: 'admin' })
 
 const students = useStudents()
 const guardians = useGuardians()
-const { branchShort } = useAcademy()
 const metrics = useAdminMetrics()
 
 const filter = ref<StudentFilter>({})
@@ -30,7 +28,7 @@ const guardianName = (id: string) => guardians.forStudent(id)?.name ?? ''
 const columns: Column[] = [
   { key: 'student', label: 'Student' },
   { key: 'level', label: 'Level' },
-  { key: 'branch', label: 'Branch' },
+  { key: 'attendance', label: 'Attendance' },
   { key: 'subject', label: 'Subject' },
   { key: 'enrolment', label: 'Enrolment' },
   { key: 'payment', label: 'Payment' },
@@ -49,7 +47,7 @@ function open(s: Student) {
         Students
       </h1>
       <p class="text-muted mt-1" style="font-size: 14px">
-        {{ metrics.activeStudents }} active students across all branches
+        {{ metrics.activeStudents }} active students, taught online
       </p>
     </header>
 
@@ -72,9 +70,12 @@ function open(s: Student) {
         <span class="font-bold text-ink" style="font-size: 13px">{{ row.level }}</span>
       </template>
 
-      <template #cell-branch="{ row }">
-        <span class="text-ink-soft" style="font-size: 13px; font-weight: 600">
-          {{ branchShort(row.branchId) }}
+      <template #cell-attendance="{ row }">
+        <span
+          class="font-semibold"
+          :style="{ fontSize: '13px', color: `var(--color-fg-${attendanceTone(row.attendancePct)})` }"
+        >
+          {{ row.attendancePct }}%
         </span>
       </template>
 

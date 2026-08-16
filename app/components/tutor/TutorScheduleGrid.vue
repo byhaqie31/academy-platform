@@ -64,7 +64,7 @@ defineProps<{ rows: ScheduleRow[]; days: string[] }>()
               {{ cell.cls }}
             </div>
             <div class="text-muted" :style="{ fontSize: '11px', marginTop: '2px', lineHeight: '1.3' }">
-              {{ cell.branch }}
+              {{ cell.host }}
             </div>
           </NuxtLink>
         </template>

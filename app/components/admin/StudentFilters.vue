@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { computed, reactive, watch } from 'vue'
 import { useStudents, type StudentFilter } from '~/composables/useStudents'
-import { useAcademy } from '~/composables/useAcademy'
 import { useSubjects } from '~/composables/useSubjects'
 
 const emit = defineEmits<{ change: [filter: StudentFilter] }>()
 
-const { branches } = useAcademy()
 const students = useStudents()
 const subjects = useSubjects()
 
@@ -17,7 +15,7 @@ const subjectNames = computed(() => [
   ...new Set(students.all.flatMap((s) => s.subjects)),
 ])
 
-const state = reactive<StudentFilter>({ q: '', branchId: '', level: '', subject: '', pay: '' })
+const state = reactive<StudentFilter>({ q: '', level: '', subject: '', pay: '' })
 
 // Drop empty strings so the composable filter treats them as "no filter".
 watch(
@@ -25,7 +23,6 @@ watch(
   () => {
     emit('change', {
       q: state.q || undefined,
-      branchId: state.branchId || undefined,
       level: state.level || undefined,
       subject: state.subject || undefined,
       pay: state.pay || undefined,
@@ -48,18 +45,17 @@ const subjLabel = (name: string) => subjects.byName(name)?.name ?? name
 </script>
 
 <template>
-  <div class="grid gap-3 lg:grid-cols-[1.6fr_repeat(4,1fr)]">
-    <input
-      v-model="state.q"
-      type="search"
-      placeholder="🔍 Search student name…"
-      class="text-ink w-full outline-none focus-visible:border-brand"
-      :style="fieldStyle"
-    />
-    <select v-model="state.branchId" class="text-ink w-full outline-none cursor-pointer hz-select" :style="selectStyle">
-      <option value="">All branches</option>
-      <option v-for="b in branches" :key="b.id" :value="b.id">{{ b.short }}</option>
-    </select>
+  <div class="grid gap-3 lg:grid-cols-[1.6fr_repeat(3,1fr)]">
+    <div class="flex items-center gap-2 focus-within:border-brand!" :style="fieldStyle">
+      <UIcon name="i-fluent-search-16-regular" class="shrink-0 text-muted" :style="{ width: '14px', height: '14px' }" />
+      <input
+        v-model="state.q"
+        type="search"
+        placeholder="Search student name…"
+        class="text-ink w-full outline-none"
+        :style="{ padding: 0, border: 'none', background: 'transparent', font: 'inherit' }"
+      />
+    </div>
     <select v-model="state.level" class="text-ink w-full outline-none cursor-pointer hz-select" :style="selectStyle">
       <option value="">All levels</option>
       <option v-for="l in levels" :key="l" :value="l">{{ l }}</option>

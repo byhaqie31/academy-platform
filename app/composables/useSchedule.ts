@@ -1,4 +1,5 @@
 import { useAcademyStore } from '~/stores/academy'
+import { useHostPool } from '~/composables/useHostPool'
 import type { Class, Day, ScheduleCell, SubjectTone } from '~/types'
 
 const DAYS: Day[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -33,15 +34,15 @@ export function useSchedule() {
     store.subjects.find((s) => s.name === name)?.tone ?? 'violet'
   const tutorFirst = (educatorId: string) =>
     store.educators.find((e) => e.id === educatorId)?.first ?? ''
-  const branchShort = (branchId: string) =>
-    store.academy.branches.find((b) => b.id === branchId)?.short ?? branchId
+  const hosts = useHostPool()
 
   const toCell = (c: Class): ScheduleCell => ({
     classId: c.id,
     subject: c.subject,
     cls: c.cls,
     tutor: tutorFirst(c.educatorId),
-    branch: branchShort(c.branchId),
+    // An online centre locates a class by which licensed room it runs in.
+    host: hosts.hostFor(c.id),
     tone: subjectTone(c.subject),
   })
 
@@ -73,7 +74,6 @@ export function useSchedule() {
     store.agenda.map((a) => ({
       ...a,
       tutor: store.educators.find((e) => e.id === a.educatorId)?.name ?? '',
-      branchName: branchShort(a.branchId),
       tone: subjectTone(a.subject),
     }))
 

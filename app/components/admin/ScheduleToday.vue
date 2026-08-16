@@ -36,7 +36,7 @@ const rows = useSchedule().todayAgenda()
             <span class="font-bold text-ink truncate" style="font-size: 13.5px">{{ r.cls }}</span>
           </div>
           <div class="text-faint mt-0.5" style="font-size: 11.5px; font-weight: 600">
-            {{ r.tutor }} · {{ r.branchName }}
+            {{ r.tutor }}
           </div>
         </div>
       </li>

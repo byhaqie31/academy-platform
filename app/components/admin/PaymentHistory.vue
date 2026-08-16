@@ -43,7 +43,8 @@ const fee = computed(() => rows.value[0]?.amount ?? 0)
               'repeating-linear-gradient(45deg, #F3EEFF, #F3EEFF 6px, #ECE5FF 6px, #ECE5FF 12px)',
           }"
         >
-          {{ p.hasProof ? '🧾' : '—' }}
+          <UIcon v-if="p.hasProof" name="i-fluent-receipt-20-regular" :style="{ width: '16px', height: '16px' }" />
+          <template v-else>—</template>
         </div>
         <div class="min-w-0 flex-1">
           <div class="font-bold text-ink" style="font-size: 13px">Invoice {{ p.period }}</div>

@@ -28,7 +28,7 @@ onBeforeUnmount(() => {
 const portals = [
   { to: '/admin', icon: '🛠️', tone: 'violet' as const, title: 'Admin dashboard', sub: 'Manage students, classes, and payments' },
   { to: '/tutor', icon: '🧑‍🏫', tone: 'pink' as const, title: 'Tutor portal', sub: 'Schedule, attendance, and pay' },
-  { to: '/portal/parents', icon: '👨‍👩‍👧', tone: 'green' as const, title: 'Parent portal', sub: "See your child's info and schedule" },
+  { to: '/portal/login', icon: '👨‍👩‍👧', tone: 'green' as const, title: 'Parent portal', sub: "See your child's info and schedule" },
 ]
 </script>
 

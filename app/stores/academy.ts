@@ -12,6 +12,7 @@ import type {
   Guardian,
   Invoice,
   LessonPlan,
+  NewStudent,
   Session,
   Stage,
   Student,
@@ -35,15 +36,15 @@ export const WEEK_LABELS = [
 ]
 
 const subjects: Subject[] = [
-  { name: 'Matematik', short: 'Mat', icon: '📐', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM' },
-  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM' },
-  { name: 'Bahasa Inggeris', short: 'BI', icon: '🔤', tone: 'blue', stage: ['rendah', 'mr', 'ma'], desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM' },
-  { name: 'Sains', short: 'Sn', icon: '🔬', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM' },
-  { name: 'Sejarah', short: 'Sej', icon: '📜', tone: 'amber', stage: ['mr', 'ma'], desc: 'Memory techniques & neat, structured notes.', level: 'Menengah' },
-  { name: 'Geografi', short: 'Geo', icon: '🌏', tone: 'orange', stage: ['mr'], desc: 'Maps, climate & practical geography skills.', level: 'Menengah' },
-  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM' },
-  { name: 'STEM', short: 'STEM', icon: '🤖', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotics, coding & fun applied science.', level: 'Sekolah Rendah' },
-  { name: 'TVET', short: 'TVET', icon: '🎨', tone: 'rose', stage: ['ma'], desc: 'Practical technical & vocational skills.', level: 'Menengah Atas' },
+  { name: 'Matematik', short: 'Mat', icon: '📐', fluentIcon: 'i-fluent-calculator-24-regular', tone: 'pink', stage: ['rendah', 'mr', 'ma'], desc: 'Solid number sense & quick answering techniques.', level: 'Tahun 1 to SPM' },
+  { name: 'Bahasa Melayu', short: 'BM', icon: '📖', fluentIcon: 'i-fluent-book-open-24-regular', tone: 'green', stage: ['rendah', 'mr', 'ma'], desc: 'Essays, grammar & excellent comprehension.', level: 'Tahun 1 to SPM' },
+  { name: 'Bahasa Inggeris', short: 'BI', icon: '🔤', fluentIcon: 'i-fluent-translate-24-regular', tone: 'blue', stage: ['rendah', 'mr', 'ma'], desc: 'Speaking, writing & confidence in English.', level: 'Tahun 1 to SPM' },
+  { name: 'Sains', short: 'Sn', icon: '🔬', fluentIcon: 'i-fluent-beaker-24-regular', tone: 'violet', stage: ['rendah', 'mr', 'ma'], desc: 'Fun experiments & facts that stick.', level: 'Tahun 1 to SPM' },
+  { name: 'Sejarah', short: 'Sej', icon: '📜', fluentIcon: 'i-fluent-history-24-regular', tone: 'amber', stage: ['mr', 'ma'], desc: 'Memory techniques & neat, structured notes.', level: 'Menengah' },
+  { name: 'Geografi', short: 'Geo', icon: '🌏', fluentIcon: 'i-fluent-globe-24-regular', tone: 'orange', stage: ['mr'], desc: 'Maps, climate & practical geography skills.', level: 'Menengah' },
+  { name: 'Pendidikan Islam', short: 'PI', icon: '🕌', fluentIcon: 'i-fluent-building-mosque-24-regular', tone: 'green', stage: ['rendah'], desc: 'Jawi, tajwid & akhlak, taught with patience.', level: 'Tahun 1 to SPM' },
+  { name: 'STEM', short: 'STEM', icon: '🤖', fluentIcon: 'i-fluent-bot-24-regular', tone: 'indigo', stage: ['rendah', 'mr'], desc: 'Robotics, coding & fun applied science.', level: 'Sekolah Rendah' },
+  { name: 'TVET', short: 'TVET', icon: '🎨', fluentIcon: 'i-fluent-paint-brush-24-regular', tone: 'rose', stage: ['ma'], desc: 'Practical technical & vocational skills.', level: 'Menengah Atas' },
 ]
 
 // The marketing landing grid mixes subjects with programme tiles, kept verbatim.
@@ -175,10 +176,10 @@ const lessonPlans: LessonPlan[] = [
 ]
 
 const enquiries: Enquiry[] = [
-  { id: 'enq0', name: 'Puan Aisyah', ago: '12 min ago', detail: 'Adam · Matematik, Sains · Kota Warisan', source: 'Facebook', status: 'new' },
-  { id: 'enq1', name: 'Encik Rizal', ago: '1 hour ago', detail: 'Nur Iman · BM, BI · Kajang', source: 'TikTok', status: 'new' },
-  { id: 'enq2', name: 'Puan Mei Ling', ago: '2 hours ago', detail: 'Wong Jia · Matematik · Taman Ixora', source: 'Facebook', status: 'pending' },
-  { id: 'enq3', name: 'Encik Suresh', ago: '3 hours ago', detail: 'Diya · SPM Prep · Pekan', source: 'Google Ads', status: 'week' },
+  { id: 'enq0', name: 'Puan Aisyah', ago: '12 min ago', detail: 'Adam · Matematik, Sains · Tahun 4', source: 'Facebook', status: 'new' },
+  { id: 'enq1', name: 'Encik Rizal', ago: '1 hour ago', detail: 'Nur Iman · BM, BI · Tingkatan 2', source: 'TikTok', status: 'new' },
+  { id: 'enq2', name: 'Puan Mei Ling', ago: '2 hours ago', detail: 'Wong Jia · Matematik · Tahun 6', source: 'Facebook', status: 'pending' },
+  { id: 'enq3', name: 'Encik Suresh', ago: '3 hours ago', detail: 'Diya · SPM Prep · Tingkatan 5', source: 'Google Ads', status: 'week' },
 ]
 
 const feedback: Feedback[] = [
@@ -195,12 +196,14 @@ export interface AgendaRow {
   educatorId: string
   branchId: string
 }
+// Two evening slots: the centre is online, so nobody is taught at 3pm while
+// they are still in school.
 const agenda: AgendaRow[] = [
-  { time: '3:00', ampm: 'AFTERNOON', subject: 'Matematik', cls: 'Tahun 4 Bestari', educatorId: 'hafiz', branchId: 'kw' },
-  { time: '4:30', ampm: 'AFTERNOON', subject: 'Sains', cls: 'Tingkatan 2 Amanah', educatorId: 'meiling', branchId: 'sk' },
-  { time: '5:00', ampm: 'AFTERNOON', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', educatorId: 'suresh', branchId: 'ix' },
-  { time: '7:00', ampm: 'EVENING', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', educatorId: 'aishah', branchId: 'pk' },
-  { time: '7:30', ampm: 'EVENING', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', educatorId: 'hafiz', branchId: 'kw' },
+  { time: '7:30', ampm: 'EVENING', subject: 'Matematik', cls: 'Tahun 4 Bestari', educatorId: 'hafiz', branchId: 'kw' },
+  { time: '7:30', ampm: 'EVENING', subject: 'Sains', cls: 'Tingkatan 2 Amanah', educatorId: 'meiling', branchId: 'sk' },
+  { time: '7:30', ampm: 'EVENING', subject: 'Bahasa Inggeris', cls: 'Tahun 6 Cemerlang', educatorId: 'suresh', branchId: 'ix' },
+  { time: '9:00', ampm: 'EVENING', subject: 'Sejarah', cls: 'Tingkatan 4 Wira', educatorId: 'aishah', branchId: 'pk' },
+  { time: '9:00', ampm: 'EVENING', subject: 'Matematik', cls: 'Tingkatan 5 Gigih', educatorId: 'hafiz', branchId: 'kw' },
 ]
 
 // Syllabus bank: stage -> [subject, classes, materials].
@@ -263,6 +266,16 @@ export const useAcademyStore = defineStore('academy', {
     tutorSelfId: 'hafiz',
     /** Live attendance edits, keyed `classId|studentName`. Default present. */
     attendance: {} as Record<string, AttendanceStatus>,
+    /**
+     * Walkthrough edits, layered over the seed rather than written into it.
+     * An overlay keeps the seed pristine, so resetting is dropping the layer.
+     * Nothing here survives a refresh.
+     */
+    demo: {
+      paidInvoiceIds: [] as string[],
+      chasedGuardianIds: [] as string[],
+      registeredStudents: [] as Student[],
+    },
   }),
   getters: {
     branches: (s) => s.academy.branches,
@@ -273,6 +286,39 @@ export const useAcademyStore = defineStore('academy', {
     },
     resetAttendance() {
       this.attendance = {}
+    },
+    recordPayment(invoiceId: string) {
+      if (!this.demo.paidInvoiceIds.includes(invoiceId)) {
+        this.demo.paidInvoiceIds.push(invoiceId)
+      }
+    },
+    chase(guardianIds: string[]) {
+      for (const id of guardianIds) {
+        if (!this.demo.chasedGuardianIds.includes(id)) {
+          this.demo.chasedGuardianIds.push(id)
+        }
+      }
+    },
+    registerStudent(input: NewStudent) {
+      const seq = this.demo.registeredStudents.length
+      this.demo.registeredStudents.push({
+        id: `demo-s${seq}`,
+        name: input.name,
+        first: input.name.split(' ')[0] ?? input.name,
+        level: input.level,
+        branchId: this.academy.branches[0]?.id ?? '',
+        subjects: input.subjects,
+        enrol: 'Trial',
+        pay: 'Pending',
+        guardianId: this.guardians[0]?.id ?? '',
+        attendancePct: 100,
+      })
+    },
+    resetDemo() {
+      this.demo.paidInvoiceIds = []
+      this.demo.chasedGuardianIds = []
+      this.demo.registeredStudents = []
+      this.resetAttendance()
     },
   },
 })

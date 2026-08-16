@@ -17,7 +17,7 @@ const cards = computed(() =>
     return {
       ...p,
       subject: subjectName,
-      icon: meta?.icon ?? '📘',
+      icon: meta?.fluentIcon ?? 'i-fluent-book-24-regular',
       tone: meta?.tone ?? 'violet',
     }
   }),
@@ -89,7 +89,8 @@ const cards = computed(() =>
             border: '1px solid var(--color-border)',
           }"
         >
-          📎 {{ card.material }}
+          <UIcon name="i-fluent-attach-16-regular" class="inline-block align-[-2px]" :style="{ width: '14px', height: '14px' }" />
+          {{ card.material }}
         </span>
         <button
           v-else

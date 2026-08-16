@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isValidMyPhone, canAdvance, canSubmit, emptyRegForm } from '~/utils/validation'
+import { isValidMyPhone, maskMyPhone, canAdvance, canSubmit, emptyRegForm } from '~/utils/validation'
 
 describe('isValidMyPhone', () => {
   it('accepts Malaysian formats and rejects junk', () => {
@@ -49,5 +49,16 @@ describe('canSubmit', () => {
     expect(canSubmit({ ...complete, consent: false })).toBe(false)
     expect(canSubmit({ ...complete, subjects: [], consent: true })).toBe(false)
     expect(canSubmit(emptyRegForm())).toBe(false)
+  })
+})
+
+describe('maskMyPhone', () => {
+  it('shows the first three and last four digits', () => {
+    expect(maskMyPhone('012-345 6789')).toBe('012•••6789')
+    expect(maskMyPhone('0123456789')).toBe('012•••6789')
+  })
+
+  it('handles 11-digit numbers', () => {
+    expect(maskMyPhone('011-2345 6789')).toBe('011••••6789')
   })
 })

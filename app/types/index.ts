@@ -47,6 +47,8 @@ export interface Subject {
   name: string
   short: string
   icon: string
+  /** Fluent icon (full name with variant) used on portal surfaces; `icon` stays the marketing emoji. */
+  fluentIcon: string
   /** tile colour key, e.g. 'pink' | 'blue' ... maps to --color-tile-* / --color-fg-*. */
   tone: SubjectTone
   stage: Stage[]
@@ -88,6 +90,13 @@ export interface Student {
   guardianId: string
   attendancePct: number
   school?: string
+}
+
+/** What the register form collects. The rest of a Student is filled in for it. */
+export interface NewStudent {
+  name: string
+  level: string
+  subjects: string[]
 }
 
 export interface Educator {
@@ -196,6 +205,7 @@ export interface ScheduleCell {
   subject: string
   cls: string
   tutor: string
-  branch: string
+  /** the licensed room the class runs in, e.g. `host-01` */
+  host: string
   tone: SubjectTone
 }

@@ -62,7 +62,7 @@ defineProps<{ rows: ScheduleRow[]; days: string[] }>()
               {{ cell.cls }}
             </div>
             <div class="text-muted" :style="{ fontSize: '11px', marginTop: '2px', lineHeight: '1.3' }">
-              {{ cell.tutor }} · {{ cell.branch }}
+              {{ cell.tutor }} · {{ cell.host }}
             </div>
           </div>
         </template>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useAcademy } from '~/composables/useAcademy'
+import { useHostPool } from '~/composables/useHostPool'
 import IconTile from '~/components/ui/IconTile.vue'
 import type { Class } from '~/types'
 
 const props = defineProps<{ cls: Class }>()
-const { branchShort } = useAcademy()
+const { hostFor } = useHostPool()
 </script>
 
 <template>
@@ -18,7 +18,7 @@ const { branchShort } = useAcademy()
     }"
   >
     <div class="flex items-center justify-between" style="margin-bottom: 14px">
-      <IconTile icon="📐" tone="pink" :size="46" :radius="14" />
+      <IconTile icon="i-fluent-calculator-24-regular" tone="pink" :size="46" :radius="14" />
       <span
         class="font-bold text-ink-soft"
         :style="{
@@ -36,7 +36,7 @@ const { branchShort } = useAcademy()
       Matematik · {{ props.cls.cls }}
     </div>
     <div class="text-muted" style="font-size: 12.5px; font-weight: 600; margin-top: 3px">
-      {{ props.cls.day }} · {{ props.cls.time }} · {{ branchShort(props.cls.branchId) }}
+      {{ props.cls.day }} · {{ props.cls.time }} · {{ hostFor(props.cls.id) }}
     </div>
 
     <div

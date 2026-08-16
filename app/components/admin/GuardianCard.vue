@@ -49,13 +49,16 @@ const waLink = computed(() => {
           border: '1px solid var(--color-divider)',
         }"
       >
-        <span style="font-size: 15px">📞</span>
+        <UIcon name="i-fluent-call-16-regular" class="shrink-0" :style="{ width: '15px', height: '15px' }" />
         <div>
           <div class="font-bold text-faint uppercase" style="font-size: 10.5px">Phone</div>
           <div class="font-bold text-ink" style="font-size: 13px">{{ guardian.phone }}</div>
         </div>
       </div>
-      <AppButton variant="whatsapp" :to="waLink" block>💬 WhatsApp guardian</AppButton>
+      <AppButton variant="whatsapp" :to="waLink" block>
+        <UIcon name="i-fluent-chat-16-regular" class="inline-block align-[-2px]" :style="{ width: '14px', height: '14px' }" />
+        WhatsApp guardian
+      </AppButton>
     </div>
   </section>
 </template>

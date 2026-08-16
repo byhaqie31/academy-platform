@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStudents } from '~/composables/useStudents'
-import { useAcademy } from '~/composables/useAcademy'
 import { useSubjects } from '~/composables/useSubjects'
 import IconTile from '~/components/ui/IconTile.vue'
 import StatusPill from '~/components/ui/StatusPill.vue'
@@ -10,14 +9,13 @@ import GuardianCard from '~/components/admin/GuardianCard.vue'
 import PaymentHistory from '~/components/admin/PaymentHistory.vue'
 import AttendanceDonut from '~/components/admin/AttendanceDonut.vue'
 import { enrolTone, payTone } from '~/utils/status'
-import { toneByIndex, toneTile } from '~/utils/tone'
+import { toneByIndex } from '~/utils/tone'
 
 definePageMeta({ layout: 'admin' })
 
 const route = useRoute()
 const students = useStudents()
 const subjects = useSubjects()
-const { branchShort } = useAcademy()
 
 const student = computed(() => students.byId(String(route.params.id)))
 const tone = computed(() => toneByIndex(students.indexOf(String(route.params.id))))
@@ -30,7 +28,7 @@ const classes = computed(() =>
   (student.value?.subjects ?? []).map((name) => ({
     name,
     cls: className(name, student.value!.level),
-    icon: subjects.byName(name)?.icon ?? '📘',
+    icon: subjects.byName(name)?.fluentIcon ?? 'i-fluent-book-24-regular',
     tone: subjects.byName(name)?.tone ?? 'violet',
     schedule: subjects.scheduleFor(name),
     tutor: subjects.tutorFor(name),
@@ -71,7 +69,7 @@ const attendance = computed(() => {
             {{ student.name }}
           </div>
           <div class="text-muted mt-0.5" style="font-size: 13.5px; font-weight: 600">
-            {{ student.level }} · {{ branchShort(student.branchId) }}
+            {{ student.level }}
           </div>
         </div>
         <StatusPill :tone="enrolTone(student.enrol)" :label="'● ' + student.enrol" />
@@ -101,12 +99,7 @@ const attendance = computed(() => {
                 border: '1px solid var(--color-divider)',
               }"
             >
-              <div
-                class="grid place-items-center shrink-0"
-                :style="{ width: '42px', height: '42px', borderRadius: '12px', fontSize: '19px', background: toneTile(c.tone) }"
-              >
-                {{ c.icon }}
-              </div>
+              <IconTile :icon="c.icon" :tone="c.tone" :size="42" :radius="12" />
               <div class="min-w-0 flex-1">
                 <div class="font-bold text-ink" style="font-size: 14px">
                   {{ c.name }}

@@ -16,6 +16,6 @@
         'repeating-linear-gradient(45deg, var(--color-tile-violet), var(--color-tile-violet) 5px, #ECE5FF 5px, #ECE5FF 10px)',
     }"
   >
-    🧾
+    <UIcon name="i-fluent-receipt-20-regular" class="shrink-0" :style="{ width: '18px', height: '18px' }" />
   </div>
 </template>

@@ -3,18 +3,19 @@ import DataTable, { type Column } from '~/components/ui/DataTable.vue'
 import IconTile from '~/components/ui/IconTile.vue'
 import SubjectChip from '~/components/ui/SubjectChip.vue'
 import { useEducators } from '~/composables/useEducators'
-import { useAcademy } from '~/composables/useAcademy'
+import { useClasses } from '~/composables/useClasses'
 import { formatRM } from '~/utils/money'
 
 definePageMeta({ layout: 'admin' })
 
 const { all, estimatedPay } = useEducators()
-const { academy } = useAcademy()
+const classes = useClasses()
+const classCount = (educatorId: string) => classes.forEducator(educatorId).length
 
 const columns: Column[] = [
   { key: 'name', label: 'Educator' },
   { key: 'subjects', label: 'Subject' },
-  { key: 'branches', label: 'Branch' },
+  { key: 'classes', label: 'Classes' },
   { key: 'rate', label: 'Hourly rate', align: 'right' },
   { key: 'hours', label: 'Hours this month', align: 'right' },
   { key: 'pay', label: 'Est. salary', align: 'right' },
@@ -33,7 +34,7 @@ function open(id: string) {
           Educators
         </h1>
         <p class="text-muted mt-1" style="font-size: 14px">
-          {{ all.length }} active educators across {{ academy.name }} branches
+          {{ all.length }} active educators, teaching online
         </p>
       </div>
     </header>
@@ -52,8 +53,10 @@ function open(id: string) {
         </div>
       </template>
 
-      <template #cell-branches="{ row }">
-        <span class="text-ink-soft" style="font-size: 12.5px">{{ row.branches }}</span>
+      <template #cell-classes="{ row }">
+        <span class="text-ink-soft" style="font-size: 12.5px">
+          {{ classCount(row.id) }} {{ classCount(row.id) === 1 ? 'class' : 'classes' }}
+        </span>
       </template>
 
       <template #cell-rate="{ row }">

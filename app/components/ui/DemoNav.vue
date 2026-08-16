@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import AppButton from '~/components/ui/AppButton.vue'
 import { useDemoIndex } from '~/composables/useDemoIndex'
+import { useDemoActions } from '~/composables/useDemoActions'
 import { toneTile } from '~/utils/tone'
 import type { DemoGroup } from '~/types'
 
@@ -14,6 +15,18 @@ import type { DemoGroup } from '~/types'
 // frozen /v1 archive without any file in app/components/v1 being edited.
 const { groups } = useDemoIndex()
 const route = useRoute()
+const demo = useDemoActions()
+const toast = useToast()
+
+function resetDemo() {
+  demo.reset()
+  open.value = false
+  toast.add({
+    title: 'Demo data reset',
+    description: 'Payments, reminders and new students are back to how they started.',
+    icon: 'i-fluent-arrow-counterclockwise-24-regular',
+  })
+}
 
 const open = ref(false)
 watch(() => route.path, () => (open.value = false))
@@ -189,9 +202,34 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
+            <!-- Only once something has actually been changed. Before that it
+                 would advertise a mess the walkthrough has not made yet. -->
+            <button
+              v-if="demo.hasEdits"
+              type="button"
+              class="ml-auto shrink-0 font-bold text-ink-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              :style="{
+                padding: '7px 13px',
+                borderRadius: 'var(--radius-pill)',
+                fontSize: '12px',
+                border: '1px solid var(--color-border-input)',
+                background: 'var(--color-surface-subtle)',
+              }"
+              @click="resetDemo"
+            >
+              Reset demo data
+            </button>
+
             <!-- A primary action, not a footnote: going back to the module
                  overview is the most common thing to want from here. -->
-            <AppButton to="/demo" variant="gradient" size="sm" pill class="ml-auto shrink-0">
+            <AppButton
+              to="/demo"
+              variant="gradient"
+              size="sm"
+              pill
+              class="shrink-0"
+              :class="demo.hasEdits ? '' : 'ml-auto'"
+            >
               See full directory
             </AppButton>
 
@@ -209,7 +247,7 @@ onBeforeUnmount(() => {
               }"
               @click="open = false"
             >
-              ✕
+              <UIcon name="i-fluent-dismiss-20-regular" :style="{ width: '16px', height: '16px' }" />
             </button>
           </header>
 
@@ -245,7 +283,7 @@ onBeforeUnmount(() => {
                     cursor: group.primaryTo ? 'pointer' : 'default',
                   }"
                 >
-                  <span aria-hidden="true" style="font-size: 12px">{{ group.icon }}</span>
+                  <UIcon :name="group.icon" aria-hidden="true" :style="{ width: '14px', height: '14px' }" class="shrink-0" />
                   <span class="min-w-0 truncate">{{ group.title }}</span>
                   <span
                     v-if="group.primaryTo"

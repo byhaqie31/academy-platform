@@ -31,7 +31,7 @@ const { academy, branches } = useAcademy()
         <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #9ca0be">
           <NuxtLink to="/" class="no-underline" style="color: #9ca0be">Home</NuxtLink>
           <NuxtLink to="/register" class="no-underline" style="color: #9ca0be">Register interest</NuxtLink>
-          <NuxtLink to="/portal/parents" class="no-underline" style="color: #9ca0be">Parent portal</NuxtLink>
+          <NuxtLink to="/portal/login" class="no-underline" style="color: #9ca0be">Parent portal</NuxtLink>
         </div>
       </div>
 

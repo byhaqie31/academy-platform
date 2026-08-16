@@ -9,7 +9,6 @@ import { useEducators } from '~/composables/useEducators'
 import { usePayroll } from '~/composables/usePayroll'
 import { useClasses } from '~/composables/useClasses'
 import { useSubjects } from '~/composables/useSubjects'
-import { useAcademy } from '~/composables/useAcademy'
 import { formatRM } from '~/utils/money'
 
 definePageMeta({ layout: 'admin' })
@@ -21,7 +20,6 @@ const { byId, estimatedPay } = useEducators()
 const { weeklyBreakdown } = usePayroll()
 const { forEducator } = useClasses()
 const subjects = useSubjects()
-const { branchShort } = useAcademy()
 
 const e = computed(() => byId(id.value))
 const classes = computed(() => forEducator(id.value))
@@ -51,7 +49,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
           </div>
           <div class="font-display font-bold text-ink" style="font-size: 21px">{{ e.name }}</div>
           <div class="text-faint" style="font-size: 13px; font-weight: 600; margin-bottom: 14px">
-            Educator · {{ e.branches }}
+            Educator · {{ e.subjects.join(', ') }}
           </div>
           <div class="flex flex-wrap justify-center" style="gap: 5px; margin-bottom: 18px">
             <SubjectChip v-for="s in e.subjects" :key="s" :subject="s" size="full" />
@@ -113,7 +111,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
               :style="{ gap: '13px', padding: '13px 14px', borderRadius: '15px', background: 'var(--color-surface-subtle)', border: '1px solid var(--color-divider)' }"
             >
               <IconTile
-                :icon="subjects.byName(c.subject)?.icon ?? '📘'"
+                :icon="subjects.byName(c.subject)?.fluentIcon ?? 'i-fluent-book-24-regular'"
                 :tone="subjects.toneOf(c.subject)"
                 :size="42"
                 :radius="12"
@@ -124,7 +122,7 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
                   <span class="text-faint" style="font-weight: 600; font-size: 12px">· {{ c.cls }}</span>
                 </div>
                 <div class="text-muted" style="font-size: 12px; font-weight: 600; margin-top: 2px">
-                  {{ c.day }} {{ c.time }} · {{ branchShort(c.branchId) }}
+                  {{ c.day }} {{ c.time }}
                 </div>
               </div>
               <span style="font-weight: 800; font-size: 13px; color: var(--color-brand-deep); flex: none">
@@ -139,5 +137,5 @@ const pay = computed(() => (e.value ? estimatedPay(e.value.id) : 0))
     </div>
   </div>
 
-  <EmptyState v-else icon="🧑‍🏫" title="Educator not found" desc="Back to the educators list." />
+  <EmptyState v-else icon="i-fluent-people-24-regular" title="Educator not found" desc="Back to the educators list." />
 </template>

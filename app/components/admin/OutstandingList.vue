@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useBilling } from '~/composables/useBilling'
-import { useAcademy } from '~/composables/useAcademy'
 import StatusPill from '~/components/ui/StatusPill.vue'
 import IconTile from '~/components/ui/IconTile.vue'
 import { formatRM } from '~/utils/money'
@@ -9,7 +8,6 @@ import { payTone } from '~/utils/status'
 import { toneByIndex } from '~/utils/tone'
 
 const billing = useBilling()
-const { branchShort } = useAcademy()
 
 // Overdue first, then pending; the three most pressing.
 const rows = computed(() =>
@@ -18,10 +16,8 @@ const rows = computed(() =>
     .sort((a, b) => (a.status === 'Overdue' ? -1 : 1) - (b.status === 'Overdue' ? -1 : 1))
     .slice(0, 3),
 )
-const note = (status: string, branchId: string) =>
-  status === 'Overdue'
-    ? `Overdue since 15 June · ${branchShort(branchId)}`
-    : `No proof yet · ${branchShort(branchId)}`
+const note = (status: string) =>
+  status === 'Overdue' ? 'Overdue since 15 June' : 'No proof yet'
 </script>
 
 <template>
@@ -41,7 +37,7 @@ const note = (status: string, branchId: string) =>
         <IconTile :icon="o.name.charAt(0)" :tone="toneByIndex(i)" :size="36" :radius="11" />
         <div class="min-w-0 flex-1">
           <div class="font-bold text-ink" style="font-size: 13px">{{ o.name }}</div>
-          <div class="text-faint truncate" style="font-size: 11px; font-weight: 600">{{ note(o.status, o.branchId) }}</div>
+          <div class="text-faint truncate" style="font-size: 11px; font-weight: 600">{{ note(o.status) }}</div>
         </div>
         <div class="flex flex-col items-end gap-1 shrink-0">
           <span class="font-display font-bold text-ink" style="font-size: 14px">{{ formatRM(o.amount) }}</span>

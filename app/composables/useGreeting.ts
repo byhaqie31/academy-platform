@@ -39,5 +39,8 @@ export function useGreeting() {
     return `${DAYS[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`
   })
 
-  return { now, greeting, dateLabel }
+  /** Today as a `Day`, for screens that key off the teaching week. */
+  const today = computed(() => DAYS[now.value.getDay()]!)
+
+  return { now, greeting, dateLabel, today }
 }

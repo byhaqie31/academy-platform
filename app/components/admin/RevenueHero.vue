@@ -38,7 +38,7 @@ const m = useAdminMetrics()
         </span>
         <p class="mt-4" style="font-size: 13.5px; color: #B7B6D8; line-height: 1.6; max-width: 340px">
           Revenue {{ formatRM(m.revenue) }} minus tutor cost {{ formatRM(m.cost) }}. Healthy margin
-          across {{ m.branchesActive }} branches for Jun 2026.
+          across {{ m.classesActive }} classes for Jun 2026.
         </p>
       </div>
 
