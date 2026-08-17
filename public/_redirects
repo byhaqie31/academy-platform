@@ -1,14 +1,15 @@
-# SPA fallback for Cloudflare Pages, for the routes with no prerendered file of
-# their own: the detail pages (/admin/students/s0, /tutor/classes/c0) and 404s.
-# Static assets and prerendered routes are matched first, so every public page
-# still serves its own HTML with its own link-preview tags.
+# SPA fallback for Cloudflare Pages. Static assets and prerendered routes are
+# matched first, so every public page still serves its own HTML with its own
+# link-preview tags.
 #
 # The destination must be /index.html. Pages strips .html from a destination and
 # turns it into a 308, so pointing this at Nuxt's empty /200.html shell instead
 # resolves to /200, which then 308s to itself: an infinite loop on every URL,
 # static assets included. /index.html is the one destination Pages special-cases.
 #
-# Cost of that: index.html now holds the prerendered marketing homepage, so a
-# deep link straight to a portal detail screen paints the homepage for a frame
-# before the router swaps it out. Only hard loads hit this, never in-app clicks.
+# In practice this rule never fires. Measured against the deploy, Pages answers a
+# route with no file of its own (/admin/students/s0, /tutor/classes/c0) with its
+# own 404.html, which is the same empty Nuxt shell: the app boots and the router
+# renders the right screen, only the status line says 404. Production has always
+# behaved this way. The rule stays as the safety net for if that ever changes.
 /*    /index.html   200
