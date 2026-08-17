@@ -8,9 +8,11 @@ const hero = home.hero
 </script>
 
 <template>
-  <section :style="{ background: 'var(--hero-wash)' }">
+  <section class="relative isolate" :style="{ background: 'var(--hero-wash)' }">
+    <HeroBackdrop />
+
     <div
-      class="mx-auto grid gap-12 lg:grid-cols-[1.05fr_.95fr] items-center"
+      class="relative mx-auto grid gap-12 lg:grid-cols-[1.05fr_.95fr] items-center"
       style="max-width: 1120px; padding: 56px 22px 68px"
     >
       <div>
@@ -38,7 +40,7 @@ const hero = home.hero
           {{ hero.headline }}<br >
           <span
             :style="{
-              background: 'var(--headline-gradient)',
+              background: 'var(--hero-headline-gradient)',
               backgroundClip: 'text',
               color: 'transparent',
             }"
@@ -66,7 +68,9 @@ const hero = home.hero
             <dt class="font-display font-semibold text-ink" style="font-size: 25px; line-height: 1.1">
               {{ stat.value }}
             </dt>
-            <dd class="text-muted" style="font-size: 13px">{{ stat.label }}</dd>
+            <!-- ink-soft, not muted: muted clears 4.5:1 on neither the old wash
+                 nor the pink one, and these sit directly on the field. -->
+            <dd class="text-ink-soft" style="font-size: 13px">{{ stat.label }}</dd>
           </div>
         </dl>
       </div>
