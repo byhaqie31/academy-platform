@@ -1,3 +1,9 @@
-# SPA fallback for Cloudflare Pages: serve index.html for client-side routes
-# Static assets are matched first; only unmatched routes fall through to here.
-/*    /index.html   200
+# SPA fallback for Cloudflare Pages, for the routes with no prerendered file of
+# their own: the detail pages (/admin/students/s0, /tutor/classes/c0) and 404s.
+# Static assets are matched first, so every prerendered route still wins here.
+#
+# 200.html, not index.html. Since the public pages are prerendered, index.html
+# now holds the real marketing homepage, and falling back to it would flash the
+# homepage before the router swapped in the requested screen. 200.html is the
+# empty shell Nuxt emits for exactly this.
+/*    /200.html   200

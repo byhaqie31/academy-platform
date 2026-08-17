@@ -41,9 +41,13 @@ const waHref = computed(() => {
   return `https://wa.me/${academy.contact.whatsapp}?text=${encodeURIComponent(text)}`
 })
 
-useHead({
+// A campaign link is pasted into WhatsApp far more often than it is typed, so
+// the card a parent sees names the campaign rather than the centre in general.
+useShareCard({
+  path: `/lp/${campaign.slug}`,
   title: `${campaign.seo.title} · ${academy.name}`,
-  meta: [{ name: 'description', content: campaign.seo.description }],
+  description: campaign.seo.description,
+  image: campaign.seo.image,
 })
 </script>
 

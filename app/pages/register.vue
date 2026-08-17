@@ -3,16 +3,12 @@ import RegistrationWizard from '~/components/marketing/RegistrationWizard.vue'
 
 definePageMeta({ layout: 'marketing' })
 
-useHead({
-  title: 'Daftar minat · Hz Academy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Daftar minat anak anda untuk kelas tuisyen online Hz Academy. Lima langkah ringkas, ' +
-        'tiada bayaran dan tiada komitmen.',
-    },
-  ],
+useShareCard({
+  path: '/register',
+  title: 'Daftar minat · {academy}',
+  description:
+    'Daftar minat anak anda untuk kelas tuisyen online {academy}. Lima langkah ringkas, ' +
+    'tiada bayaran dan tiada komitmen.',
 })
 </script>
 

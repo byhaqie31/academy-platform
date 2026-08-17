@@ -17,6 +17,16 @@ export const academy: Academy = {
     email: 'hello@hzacademy.my',
     web: 'axelnovaventures.com',
   },
+  site: {
+    url: 'https://demo.hzacademy.my',
+    ogImage: '/og/default.png',
+    // The line every page falls back to, so it stays general: it has to read
+    // well under a landing page, a fees page or a shared 404 alike.
+    description:
+      '{academy}, tuisyen online pilihan ibu bapa untuk anak mereka. Kelas langsung '
+      + 'kumpulan kecil, cikgu bertauliah, dari Tahun 1 hingga SPM.',
+    locale: 'ms_MY',
+  },
   branches: [
     { id: 'kw', name: 'Kota Warisan, Sepang', short: 'Kota Warisan', area: 'Sepang', hours: 'Mon to Sat · 3PM–9PM' },
     { id: 'sk', name: 'Taman Sutera, Kajang', short: 'Kajang', area: 'Kajang', hours: 'Mon to Sat · 2PM–9PM' },

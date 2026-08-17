@@ -11,16 +11,12 @@ import CtaBanner from '~/components/marketing/CtaBanner.vue'
 // keeps its own V1BranchGrid, which is where the branch layout still lives.
 definePageMeta({ layout: 'marketing' })
 
-useHead({
-  title: 'Hz Academy · Tuisyen online dipercayai sejak 2014',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Pusat tuisyen online Hz Academy. Kelas langsung kumpulan kecil, cikgu bertauliah, ' +
-        'dari Tahun 1 hingga SPM. Dipercayai sejak 2014.',
-    },
-  ],
+useShareCard({
+  path: '/',
+  title: '{academy} · Tuisyen online dipercayai sejak 2014',
+  description:
+    'Pusat tuisyen online {academy}. Kelas langsung kumpulan kecil, cikgu bertauliah, ' +
+    'dari Tahun 1 hingga SPM. Dipercayai sejak 2014.',
 })
 </script>
 

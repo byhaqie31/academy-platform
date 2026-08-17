@@ -9,9 +9,10 @@ definePageMeta({ layout: 'marketing' })
 
 const { contact } = useSiteContent()
 
-useHead({
-  title: 'Hubungi kami · Hz Academy',
-  meta: [{ name: 'description', content: contact.section.lede }],
+useShareCard({
+  path: '/contact',
+  title: 'Hubungi kami · {academy}',
+  description: contact.section.lede,
 })
 </script>
 

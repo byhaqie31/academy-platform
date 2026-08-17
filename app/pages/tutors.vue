@@ -11,9 +11,10 @@ definePageMeta({ layout: 'marketing' })
 
 const { tutors } = useSiteContent()
 
-useHead({
-  title: 'Cikgu kami · Hz Academy',
-  meta: [{ name: 'description', content: tutors.section.lede }],
+useShareCard({
+  path: '/tutors',
+  title: 'Cikgu kami · {academy}',
+  description: tutors.section.lede,
 })
 </script>
 
