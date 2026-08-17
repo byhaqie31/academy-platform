@@ -6,12 +6,27 @@ import type { SiteSignup } from '~/types'
 // component owns the timers; this owns what a notice says and when the next
 // one is due.
 
+/** What someone on the page actually experiences: one toast every 15s. */
+export const SOCIAL_PROOF_CYCLE_MS = 15_000
+
 export const SOCIAL_PROOF_TIMING = {
   /** Opens sooner than it repeats: a landing visit is usually short. */
   firstDelayMs: 5_000,
-  minGapMs: 12_000,
-  maxGapMs: 20_000,
   visibleMs: 5_000,
+  /**
+   * Gap measured from one toast CLEARING to the next appearing, not from one
+   * appearing to the next. The visible time stacks on top, so these bracket
+   * SOCIAL_PROOF_CYCLE_MS once visibleMs is added rather than being the
+   * interval themselves. Getting this backwards is what made a "15s" setting
+   * read as 25s on the page.
+   */
+  minGapMs: 8_000,
+  maxGapMs: 12_000,
+}
+
+/** Appearance to appearance, which is the interval anyone would describe. */
+export function cycleMs(gapMs: number): number {
+  return SOCIAL_PROOF_TIMING.visibleMs + gapMs
 }
 
 /** A gap somewhere in the configured range, so the run never feels metronomic. */

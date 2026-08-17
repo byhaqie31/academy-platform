@@ -10,7 +10,7 @@ import LandingOffer from '~/components/landing/LandingOffer.vue'
 import LandingIncluded from '~/components/landing/LandingIncluded.vue'
 import LandingFinalCta from '~/components/landing/LandingFinalCta.vue'
 import SignupToast from '~/components/landing/SignupToast.vue'
-import TrustMarquee from '~/components/landing/TrustMarquee.vue'
+import TrustMarquee from '~/components/ui/TrustMarquee.vue'
 import { useAcademy } from '~/composables/useAcademy'
 import { useLandings } from '~/composables/useLandings'
 

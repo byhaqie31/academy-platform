@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
+  SOCIAL_PROOF_CYCLE_MS,
   SOCIAL_PROOF_TIMING,
+  cycleMs,
   hasMore,
   nextGapMs,
   noticeFor,
@@ -70,6 +72,21 @@ describe('nextGapMs', () => {
 
   it('clears each toast well before the next is due', () => {
     expect(SOCIAL_PROOF_TIMING.visibleMs).toBeLessThan(SOCIAL_PROOF_TIMING.minGapMs)
+  })
+})
+
+// The gap is measured from one toast clearing, so visibleMs stacks on top of
+// it. These pin the interval a visitor actually experiences, which is the
+// number anyone tuning this has in mind.
+describe('cycleMs', () => {
+  it('averages the intended cycle', () => {
+    const mid = nextGapMs(() => 0.5)
+    expect(cycleMs(mid)).toBe(SOCIAL_PROOF_CYCLE_MS)
+  })
+
+  it('stays within a couple of seconds of it at both extremes', () => {
+    expect(cycleMs(nextGapMs(() => 0))).toBe(SOCIAL_PROOF_CYCLE_MS - 2_000)
+    expect(cycleMs(nextGapMs(() => 1))).toBe(SOCIAL_PROOF_CYCLE_MS + 2_000)
   })
 })
 
