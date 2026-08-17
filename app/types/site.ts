@@ -153,6 +153,23 @@ export interface DemoGroup {
   entries: DemoEntry[]
 }
 
+/**
+ * One "someone just registered" notice on a campaign page.
+ *
+ * `agoLabel` is a fixed string rather than a timestamp on purpose: the landing
+ * pages are prerendered, so anything derived from the clock differs between the
+ * built HTML and the browser and trips a hydration mismatch. It also keeps the
+ * seed honest, in that nothing here pretends to be live.
+ */
+export interface SiteSignup {
+  id: string
+  /** Includes the honorific, e.g. "Puan Aisyah". */
+  name: string
+  area: string
+  /** e.g. "4 minit lalu". */
+  agoLabel: string
+}
+
 /** Public-facing tutor card. Never carries rate or hours: this renders on the website. */
 export interface PublicEducator {
   id: string

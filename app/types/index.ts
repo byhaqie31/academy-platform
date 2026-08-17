@@ -33,6 +33,7 @@ export type {
   SitePill,
   SitePoint,
   SiteSection,
+  SiteSignup,
   SiteStageGroup,
   SiteStat,
   SiteStep,
