@@ -9,6 +9,8 @@ import LandingHero from '~/components/landing/LandingHero.vue'
 import LandingOffer from '~/components/landing/LandingOffer.vue'
 import LandingIncluded from '~/components/landing/LandingIncluded.vue'
 import LandingFinalCta from '~/components/landing/LandingFinalCta.vue'
+import SignupToast from '~/components/landing/SignupToast.vue'
+import TrustMarquee from '~/components/ui/TrustMarquee.vue'
 import { useAcademy } from '~/composables/useAcademy'
 import { useLandings } from '~/composables/useLandings'
 
@@ -41,9 +43,13 @@ const waHref = computed(() => {
   return `https://wa.me/${academy.contact.whatsapp}?text=${encodeURIComponent(text)}`
 })
 
-useHead({
+// A campaign link is pasted into WhatsApp far more often than it is typed, so
+// the card a parent sees names the campaign rather than the centre in general.
+useShareCard({
+  path: `/lp/${campaign.slug}`,
   title: `${campaign.seo.title} · ${academy.name}`,
-  meta: [{ name: 'description', content: campaign.seo.description }],
+  description: campaign.seo.description,
+  image: campaign.seo.image,
 })
 </script>
 
@@ -58,22 +64,8 @@ useHead({
       :wa-href="waHref"
     />
 
-    <!-- 2 trust strip -->
-    <section :style="{ background: 'var(--color-ink)' }">
-      <div
-        class="mx-auto flex flex-wrap items-center justify-center"
-        :style="{ maxWidth: '1060px', padding: '18px 22px', gap: '10px 26px', color: 'var(--color-footer-text)' }"
-      >
-        <template v-for="(claim, i) in chrome.trustClaims" :key="claim">
-          <span
-            v-if="i > 0"
-            aria-hidden="true"
-            :style="{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--color-accent-pink)' }"
-          />
-          <b class="text-white" style="font-size: 14px">{{ claim }}</b>
-        </template>
-      </div>
-    </section>
+    <!-- 2 trust strip, on one self-scrolling line -->
+    <TrustMarquee :claims="chrome.trustClaims" />
 
     <!-- 3 proof. Testimonials brings its own section and padding. -->
     <div style="padding-top: 76px">
@@ -134,5 +126,9 @@ useHead({
         <span>{{ academy.contact.email }}</span>
       </div>
     </footer>
+
+    <!-- Recent registrations, one at a time, top right. Seeded: see
+         useSocialProof() before this campaign runs as a paid ad. -->
+    <SignupToast :offer-tag="campaign.offer.tag" />
   </div>
 </template>

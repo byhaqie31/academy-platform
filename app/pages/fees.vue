@@ -11,9 +11,10 @@ definePageMeta({ layout: 'marketing' })
 const { fees: feesCopy } = useSiteContent()
 const { includes, discounts, discountLede, paymentNote } = useFees()
 
-useHead({
-  title: 'Yuran · Hz Academy',
-  meta: [{ name: 'description', content: feesCopy.section.lede }],
+useShareCard({
+  path: '/fees',
+  title: 'Yuran · {academy}',
+  description: feesCopy.section.lede,
 })
 </script>
 

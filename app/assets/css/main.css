@@ -132,10 +132,17 @@
   --hero-dark-gradient: linear-gradient(135deg, #1e2348 0%, #2d2f66 55%, #3a2f70 100%);
   /* Marketing headline gradient: the two accent stops already used by --brand-gradient. */
   --headline-gradient: linear-gradient(90deg, #ff7aa8 0%, #ffa94d 100%);
-  /* Marketing hero wash. Built from existing tile tokens so it introduces no new hue. */
+  /* Marketing hero wash: a soft pink field. Built from existing tile tokens so
+     it introduces no new hue. The violet radial stays at the top right so the
+     hero still reads as part of a purple-primary brand rather than a pink one. */
   --hero-wash:
-    radial-gradient(900px 460px at 82% -10%, var(--color-tile-violet) 0, rgba(255, 255, 255, 0) 62%),
-    radial-gradient(700px 420px at 3% 15%, var(--color-tile-rose) 0, rgba(255, 255, 255, 0) 58%);
+    radial-gradient(880px 520px at 84% -12%, var(--color-tile-violet) 0, rgba(255, 255, 255, 0) 58%),
+    radial-gradient(760px 480px at 6% 8%, var(--color-tile-pink) 0, rgba(255, 255, 255, 0) 62%),
+    linear-gradient(180deg, var(--color-tile-rose) 0%, var(--color-tile-pink) 100%);
+  /* Hero headline accent. Separate from --headline-gradient, which the landing
+     pages use on a white background: that pink-to-orange run loses its start
+     against a pink field, so the hero opens on purple instead. */
+  --hero-headline-gradient: linear-gradient(90deg, #6b4bd6 0%, #ff7aa8 100%);
   --dashed-stripes: repeating-linear-gradient(
     45deg,
     #fbf8ff,

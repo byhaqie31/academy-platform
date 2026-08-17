@@ -61,5 +61,6 @@ export const campaign: LandingCampaign = {
     description:
       'Kelas Matematik online untuk Tahun 4, 5 dan 6. Kumpulan kecil 8 pelajar, '
       + 'cikgu yang sama setiap minggu, ibu bapa boleh lihat sendiri. Ambilan Ogos 2026.',
+    image: '/og/rendah-matematik-august.png',
   },
 }

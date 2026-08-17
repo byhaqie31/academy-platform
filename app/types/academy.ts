@@ -17,6 +17,21 @@ export interface AcademyContact {
   web: string
 }
 
+/**
+ * Everything a link preview needs. Lives in config because the origin and the
+ * default card are centre-specific: re-skinning swaps these two strings.
+ */
+export interface AcademySite {
+  /** Origin the share cards point at. Absolute, scheme included. */
+  url: string
+  /** Default share card, served from public/. 1200x630 PNG. */
+  ogImage: string
+  /** Used when a page has no standfirst of its own. Never ship an empty card. */
+  description: string
+  /** Open Graph locale for the public surfaces, which are Malay. */
+  locale: string
+}
+
 export interface Academy {
   name: string
   shortName: string
@@ -25,5 +40,6 @@ export interface Academy {
   logoText: string
   since: number
   contact: AcademyContact
+  site: AcademySite
   branches: Branch[]
 }

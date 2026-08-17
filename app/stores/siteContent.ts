@@ -22,6 +22,7 @@ import type {
   SiteNavItem,
   SitePoint,
   SiteSection,
+  SiteSignup,
   SiteStageGroup,
   SiteStep,
   SiteSubjectCard,
@@ -542,6 +543,29 @@ const siteEnquiryLevels: string[] = [
 const siteConsentLabel =
   'Saya bersetuju Hz Academy menghubungi saya melalui WhatsApp berkenaan kelas tuisyen.'
 
+/**
+ * Recent registrations, shown one at a time on a campaign page.
+ *
+ * SEEDED, NOT REAL. Every name here is invented, like the rest of the mockup.
+ * Before a campaign runs as a paid ad these must be replaced with genuine
+ * recent enquiries: showing a parent a fabricated "someone just registered" is
+ * misleading conduct under the Consumer Protection Act 1999, and it is also the
+ * kind of thing that is embarrassing to be caught doing. useSocialProof() is
+ * the seam, so swapping the source is a change there and nowhere else.
+ *
+ * Areas are the four Hz areas. The run ends when this pool is spent.
+ */
+const siteRecentSignups: SiteSignup[] = [
+  { id: 'sp1', name: 'Puan Aisyah', area: 'Kajang', agoLabel: '3 minit lalu' },
+  { id: 'sp2', name: 'Encik Rizal', area: 'Sepang', agoLabel: '11 minit lalu' },
+  { id: 'sp3', name: 'Puan Mei Ling', area: 'Seri Kembangan', agoLabel: '18 minit lalu' },
+  { id: 'sp4', name: 'Encik Suresh', area: 'Pekan', agoLabel: '26 minit lalu' },
+  { id: 'sp5', name: 'Puan Farah', area: 'Kota Warisan', agoLabel: '34 minit lalu' },
+  { id: 'sp6', name: 'Puan Liza', area: 'Kajang', agoLabel: '47 minit lalu' },
+  { id: 'sp7', name: 'Encik Hafiz', area: 'Seri Kembangan', agoLabel: '52 minit lalu' },
+  { id: 'sp8', name: 'Puan Tan', area: 'Sepang', agoLabel: '1 jam lalu' },
+]
+
 export const siteContent = {
   siteNav,
   siteCta,
@@ -583,6 +607,7 @@ export const siteContent = {
   siteWhatsAppMessage,
   siteEnquiryLevels,
   siteConsentLabel,
+  siteRecentSignups,
   landingTrustClaims,
   landingStats,
   landingHowSection,

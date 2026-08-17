@@ -1,3 +1,5 @@
+import { readdirSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { landingCampaigns } from '~/content/landings'
 import { siteContent } from '~/stores/siteContent'
@@ -66,5 +68,24 @@ describe('campaign content is complete enough to sell', () => {
 
   it.each(campaigns)('%s offers at least one level in the form', (_key, campaign) => {
     expect(campaign.form.levelOptions.length).toBeGreaterThan(0)
+  })
+})
+
+// nuxt.config.ts derives the list of landing routes to prerender by reading
+// this directory's file names, because a campaign is never linked from the site
+// and so a crawler can never discover it. A campaign whose file name drifts
+// from its slug would silently stop being prerendered, and its ad link would
+// preview as the generic site card. This is the test that keeps that honest.
+describe('file name is the slug', () => {
+  // resolve from cwd, not import.meta.url: the Nuxt test environment serves
+  // specs over http, so import.meta.url is not a file URL here.
+  const dir = resolve(process.cwd(), 'app/content/landings')
+  const fileSlugs = readdirSync(dir)
+    .filter((f) => f.endsWith('.ts') && f !== 'index.ts')
+    .map((f) => f.replace(/\.ts$/, ''))
+    .sort()
+
+  it('has one campaign file per registered campaign', () => {
+    expect(fileSlugs).toEqual(Object.keys(landingCampaigns).sort())
   })
 })

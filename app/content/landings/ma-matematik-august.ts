@@ -62,5 +62,6 @@ export const campaign: LandingCampaign = {
     description:
       'Kelas Matematik SPM online untuk Tingkatan 4 dan 5. Kumpulan kecil 8 pelajar, '
       + 'cikgu yang sama setiap minggu, rakaman untuk ulang kaji. Ambilan Ogos 2026.',
+    image: '/og/ma-matematik-august.png',
   },
 }

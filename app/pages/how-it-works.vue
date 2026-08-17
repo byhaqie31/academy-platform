@@ -14,9 +14,10 @@ const { howItWorks, faqSection } = useSiteContent()
 const { set } = useFaqs()
 const faqs = set('website')
 
-useHead({
-  title: 'Cara ia berfungsi · Hz Academy',
-  meta: [{ name: 'description', content: howItWorks.section.lede }],
+useShareCard({
+  path: '/how-it-works',
+  title: 'Cara ia berfungsi · {academy}',
+  description: howItWorks.section.lede,
 })
 </script>
 

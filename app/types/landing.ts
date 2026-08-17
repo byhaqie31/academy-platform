@@ -55,6 +55,11 @@ export interface LandingForm {
 export interface LandingSeo {
   title: string
   description: string
+  /**
+   * Root-relative share card for this campaign, e.g. `/og/ma-matematik-august.png`.
+   * Omit to fall back to the site card in `config/academy.ts`.
+   */
+  image?: string
 }
 
 export interface LandingCampaign {
